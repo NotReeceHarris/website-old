@@ -1,0 +1,63 @@
+.hljs {
+    background-color: transparent;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    border-top: #444 1px solid;
+    border-bottom: #444 1px solid;
+}
+
+.hljs:hover #copy-code {
+    display: block;
+}
+
+#content h2:first-child {
+    padding-top: 0px;
+}
+
+#content h2,#content h3,#content h4,#content h5,#content h6 {
+    color: white;
+    font-weight: 600;
+    padding-bottom: 10px;
+    padding-top: 20px;
+    cursor: pointer;
+}
+
+#content h2:hover::before, #content h3:hover::before, #content h4:hover::before, #content h5:hover::before, #content h6:hover::before {
+    content: '# ';
+    opacity: 40%;
+}
+
+#content h2 {
+    font-size: xx-large;
+}
+#content h3 {
+    font-size: x-large;
+}
+#content h4 {
+    font-size: large;
+}
+#content h5 {
+    font-size: large;
+}
+#content h6 {
+    font-size: large;
+}
+
+#content ul {
+    list-style-type: disc;
+    text-indent: 5px;
+    padding: 15px;
+}
+
+#content ul li {
+    padding-bottom: 10px;
+}
+
+#content ul li:last-child {
+    padding-bottom: 0px;
+}
+
+#content p {
+    padding-top: 5px;
+    padding-bottom: 5px;
+}

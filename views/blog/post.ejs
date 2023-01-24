@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.2/flowbite.min.js"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/stackoverflow-dark.min.css" integrity="sha512-Xn1b0y/BrCD7usnEh6r9CcKxHXFVleVUjGDnfc95zDDwFUwtOz3lJC/XtJcuLRNyrMQJEEToFfwjC9Ue/aWY/g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+
+    <link rel="stylesheet" href="static/style.css">
+
+</head>
+<body class="bg-[#222222]">
+
+    <%- include('../components/header.ejs'); %>
+    <div class="w-full top-0 fixed z-[102]" id="page-progress"><div id="progress-bar" class="w-0 h-[3px] bg-white" style="transition: width 0.5s;"></div></div>
+
+    
+<main class="pt-8 pb-16 lg:pt-16 lg:pb-18 px-6 ">
+    <div class="flex  mx-auto max-w-screen-lg">
+        <article class="mx-auto w-full format format-sm sm:format-base lg:format-lg format-blue text-gray-300">
+            <header class="mb-4 lg:mb-6 not-format">
+                <div class="max-h-screen">
+                    <img class="rounded-md mb-10 w-full hidden 2xl:block" src="static/image.webp" alt="">
+                    <h1 class="mb-6 pb-5 text-3xl font-extrabold leading-tight text-white lg:mb-6 lg:text-4xl">AI Object Detection 101: How to Create an AI Object Detection System</h1>
+                </div>
+                <address class="flex items-center mb-6 not-italic border-b border-t py-6 border-[#444]">
+                    <div class="inline-flex items-center mr-3 text-sm ">
+                        <img class="mr-4 w-16 h-16 rounded-full" src="https://media.licdn.com/dms/image/C4D03AQEv2w9UHIaNIg/profile-displayphoto-shrink_100_100/0/1649242587158?e=1680134400&v=beta&t=ZQoYqbxBRRe-T5_GTFl5YyEjB6N97INl3ZcaUERMo98" alt="Jese Leos">
+                        <div>
+                            <a href="#" rel="author" class="text-xl font-bold text-white ">Reece Harris</a>
+                            <p class="text-base font-light text-gray-400 ">Junior Software Engineer with a Passion for Cybersecurity</p>
+                            <p class="text-base font-light text-gray-200 "><time pubdate datetime="2023-01-23" title="January 23rd, 2023">Jan. 23, 2023</time></p>
+                        </div>
+                    </div>
+                </address>
+            </header>
+
+            <div id="content">
+                <h2>Introduction</h2>
+
+                <p>Artificial Intelligence (AI) is a rapidly growing field that has the potential to revolutionize many industries. From healthcare to finance, AI is being used to automate processes and make more accurate predictions. One of the most promising areas of AI is computer vision, which involves using AI algorithms to analyze and understand images and videos. In this article, we will explore the basics of computer vision and provide a simple example of how to create an AI object detection system using code blocks.</p>
+                
+                <h2>What is computer vision?</h2>
+                
+                <p>Computer vision is a subfield of AI that focuses on teaching machines to understand and interpret images and videos. This includes tasks such as image recognition, object detection, and image segmentation. Computer vision algorithms use machine learning techniques to analyze images and extract useful information from them.</p>
+                
+                <h2>Applications of computer vision</h2>
+                
+                <p>Computer vision has a wide range of applications in various industries, some of which include:</p>
+                
+                <ul>
+                    <li>Self-driving cars: Computer vision is used to analyze images from cameras and sensors to detect objects and make decisions about how to navigate.</li>
+                    <li>Healthcare: Computer vision is used to analyze medical images, such as X-rays and MRIs, to make more accurate diagnoses.</li>
+                    <li>Surveillance: Computer vision is used to analyze video footage and detect suspicious behavior.</li>
+                    <li>Retail: Computer vision is used to analyze images of products to automatically categorize and tag them.</li>
+                </ul>
+                
+                <h2>Building a simple object detection AI</h2>
+                
+                <p>One of the most common tasks in computer vision is object detection, which involves identifying and locating objects in images or videos. In this section, we will walk through the process of building a simple object detection AI using Python and TensorFlow, a popular machine learning library.</p>
+                
+                <h3>Step 1</h3>
+                
+                <p>Install TensorFlow The first step is to install TensorFlow on your computer. You can do this by running the following command in your terminal:</p>
+                
+                <pre><code class="language-shell">pip install tensorflow</code></pre>
+                
+                <h3>Step 4</h3>
+                
+                Prepare your dataset To train your AI object detection model, you will need a dataset of images and their corresponding labels. You can either create your own dataset or use a pre-existing one, such as the COCO dataset.
+                
+                <h3>Step 3</h3>
+                
+                Set up the environment Next, you need to set up the environment for training your model. This includes importing the necessary libraries and loading the dataset.
+                <pre><code class="language-python">import tensorflow as tf
+from object_detection.utils import dataset_util
+
+# Load the dataset
+data = dataset_util.read_examples_list(data_path)</code></pre>
+                
+                <h3>Step 4</h3>
+                
+                Create the model Now it's time to create the model. You can use a pre-trained model, such as the MobileNet SSD, or create your own from scratch.
+                
+                <pre><code class="language-python"># Load a pretrained model
+model = tf.keras.applications.MobileNetV2(weights='imagenet', include_top=False)
+
+# Create a new model on top
+x = model.output
+x = tf.keras.layers.Flatten()(x)
+x = tf.keras.layers.Dense(1024, activation='relu')(x)
+x = tf.keras.layers.Dropout(0.5)(x)
+x = tf.keras.layers.Dense(num_classes, activation='softmax')(x)
+
+# Compile the model
+model = tf.keras.models.Model(inputs=model.input, outputs=x)
+model.compile(optimizer='adam', loss='categorical_crossentropy', metrics=['accuracy'])</code></pre>
+                
+                <h3>Step 5</h3>
+                
+                Train the model Once the model is set up, you can start training it using your dataset.
+                
+                <pre><code class="language-python">model.fit(data, epochs=num_epochs)</code></pre>
+                
+                <h3>Step 6</h3>
+                
+                Test the model Finally, you can test the model by running it on a test dataset and evaluating its performance.
+                
+                <pre><code class="language-python">test_loss, test_acc = model.evaluate(test_data)
+print('Test accuracy:', test_acc)</code></pre>
+                
+                
+                <h2>Common object detection algorithms</h2>
+                
+                There are several different algorithms that are commonly used for object detection, including:
+                
+                    <ul>
+                        <li>Scale-Invariant Feature Transform (SIFT): This algorithm uses a scale-space extrema detection technique to identify keypoints in an image, which are then used to match objects in different images.</li>
+                        <li>Speeded Up Robust Features (SURF): This algorithm is similar to SIFT but is faster and uses a different feature descriptor.</li>
+                        <li>Fast R-CNN: This algorithm uses a convolutional neural network (CNN) to identify objects in an image by analyzing regions of interest.</li>
+                        <li>You Only Look Once (YOLO): This algorithm uses a single CNN to predict bounding boxes and class probabilities for objects in an image.</li>
+                        <li>Single Shot MultiBox Detector (SSD): This algorithm is similar to YOLO but uses multiple feature maps to detect objects at different scales.</li>
+                    </ul>
+                
+                <h2>Limitations of object detection AI</h2>
+                
+                While object detection AI has many potential applications, it is not without its limitations. Some of the major limitations include:
+                
+                    <ul>
+                        <li>Occlusion: Objects that are partially or completely obscured by other objects can be difficult for the model to detect.</li>
+                        <li>Scale variability: Objects that appear at different scales in the image can be difficult for the model to detect.</li>
+                        <li>Viewpoint variability: Objects that appear at different angles or in different lighting conditions can be difficult for the model to detect.</li>
+                        <li>Complex background: Objects that appear in front of complex backgrounds can be difficult for the model to detect.</li>
+                    </ul>
+                
+                <h2>Conclusion</h2>
+                
+                Object detection is a key task in computer vision and has many potential applications in various industries. While creating an AI object detection system requires a certain level of technical expertise, with the help of popular machine learning libraries such as TensorFlow, it is possible to build a simple model. However, object detection is still a complex task and there are some limitations to the technology that need to be considered. Therefore, it's important to keep in mind that this example is just a starting point, and in a real world application, there are many other factors to be taken into account.
+                
+            </div>
+            
+        </article>
+    </div>
+  </main>
+
+  <%- include('../components/footer-blog.ejs'); %>
+
+</body>
+
+</html>
