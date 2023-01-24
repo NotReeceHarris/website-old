@@ -1,4 +1,7 @@
 $( document ).ready(function() {
+
+    $('nav').addClass('fixed')
+
     window.onscroll = function() {
 
         const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
@@ -8,10 +11,8 @@ $( document ).ready(function() {
         console.log(scrollPercentage)
 
         if (window.pageYOffset >= 10) {
-            $('nav').addClass('fixed')
             $('#page-progress #progress-bar').css('width', `${scrollPercentage+5}%`)
         } else {
-            $('nav').removeClass('fixed')
             $('#page-progress #progress-bar').css('width', `0%`)
         }
     }
