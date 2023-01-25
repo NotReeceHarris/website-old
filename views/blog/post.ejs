@@ -154,7 +154,7 @@
             $('#related-articles').append(`
                 <article class="max-w-xs">
                     <a href="#">
-                        <img alt="${escapeHtml(element.attributes.banner.data[0].attributes.alternativeText)}" src="https://cms.reeceharris.net/${element.attributes.banner.data[0].attributes.formats.small.url}" class="mb-5" alt="Image 1">
+                        <img alt="${escapeHtml(element.attributes.banner.data.attributes.alternativeText)}" src="https://cms.reeceharris.net/${element.attributes.banner.data.attributes.formats != null ? element.attributes.banner.data.attributes.formats.small.url : element.attributes.banner.data.attributes.url}" class="mb-5" alt="Image 1">
                     </a>
                     <h3 class="mb-2 text-xl font-bold leading-tight text-white ">
                         <a href="#">${element.attributes.title}</a>
