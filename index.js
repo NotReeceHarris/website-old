@@ -38,6 +38,11 @@ app.use(
 
 /* Add routes to uri */
 
+app.use(function (req, res, next) {
+    res.setHeader('X-Powered-By', '¯\\(º_o)/¯ ascii art');
+    next();
+});
+
 app.use('/', require("./routes/default.js"))
 app.use('/static', serveStatic("./public"))
 
