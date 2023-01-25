@@ -43,7 +43,7 @@ app.use('/static', serveStatic("./public"))
 
 /* START */
 
-const port = 80
+const port = 1336
 
 if (!module.parent) {
     app.listen(port, () => {
