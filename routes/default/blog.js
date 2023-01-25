@@ -18,7 +18,8 @@ router.get('/blog/:slug', async (req, res, next) => {
             axios.get(`https://cms.reeceharris.net/api/authors/${article.data.data.attributes.author.data.id}?populate=*`, authHeader)
             .then(author => {
                 if (author.data != null) {
-                    res.renderMin('./blog/post', {post: article.data, author: author.data});
+                    console.log(article.data.data.attributes)
+                    res.renderMin('./blog/post', {post: article.data.data.attributes, author: author.data});
                 } else {
                     res.renderMin('./blog/notfound');
                 }
@@ -65,7 +66,7 @@ router.get('/rss', async (req, res, next) => {
             response.data.data.forEach(element => {
                 const pubdate = new Date(element.attributes.createdAt);
                 const weekday = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
-                items += `<item><guid>https://reeceharris.net/blog/${element.attributes.slug}</guid><title>${element.attributes.title}</title><link>https://reeceharris.net/cms/${element.attributes.slug}</link><pubDate>${weekday[pubdate.getDay()]}, ${pubdate.getDate()} ${pubdate.toLocaleString('en-US', { month: 'short' })} ${pubdate.getFullYear()} ${pubdate.getHours()}:${pubdate.getMinutes()}:${pubdate.getSeconds()} GMT</pubDate></item>`
+                items += `<item><guid>https://reeceharris.net/blog/${element.attributes.slug}</guid><title>${element.attributes.title}</title><link>https://reeceharris.net/blog/${element.attributes.slug}</link><pubDate>${weekday[pubdate.getDay()]}, ${pubdate.getDate()} ${pubdate.toLocaleString('en-US', { month: 'short' })} ${pubdate.getFullYear()} ${pubdate.getHours()}:${pubdate.getMinutes()}:${pubdate.getSeconds()} GMT</pubDate></item>`
             });
 
             res.set('Content-Type', 'text/xml');

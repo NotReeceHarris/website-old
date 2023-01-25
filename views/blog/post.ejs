@@ -6,22 +6,22 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- SEO TAGS -->
-    <title><%= post.data.attributes.title %></title>
-    <meta name="description" content="<%= post.data.attributes.description %>">
+    <title><%= post.title %></title>
+    <meta name="description" content="<%= post.description %>">
     <meta name="author" content="<%= author.data.attributes.fullname %>">
-    <meta name="keywords" content="<%= post.data.attributes.tags %>">
+    <meta name="keywords" content="<%= post.tags %>">
     <!-- SOCIAL TAGS -->
     <meta property="og:site_name" content="( ͡°( ͡° ͜ʖ( ͡° ͜ʖ ͡°)ʖ ͡°) ͡°)">
-    <meta property="og:title" content="<%= post.data.attributes.title %>" />
-    <meta property="og:description" content="<%= post.data.attributes.description %>">
+    <meta property="og:title" content="<%= post.title %>" />
+    <meta property="og:description" content="<%= post.description %>">
     <meta property="og:type" content="article" />
-    <meta property="og:url" content="https://reeceharris.net/<%= post.data.attributes.slug %>" />
-    <meta property="og:image" content="https://cms.reeceharris.net/<%= post.data.attributes.banner.data[0].attributes.formats.large.url %>" />
+    <meta property="og:url" content="https://reeceharris.net/<%= post.slug %>" />
+    <meta property="og:image" content="https://cms.reeceharris.net/<%= post.banner.data.attributes.formats != null ? post.banner.data.attributes.formats.large.url : post.banner.data.attributes.url %>" />
     <!-- TWITTER TAGS -->
-    <meta name="twitter:title" content="<%= post.data.attributes.title %>">
-    <meta name="twitter:description" content="<%= post.data.attributes.description %>">
-    <meta name="twitter:image" content="https://cms.reeceharris.net/<%= post.data.attributes.banner.data[0].attributes.formats.large.url %>">
-    <meta name="twitter:image:alt" content="<%= post.data.attributes.banner.data[0].attributes.alternativeText %>">
+    <meta name="twitter:title" content="<%= post.title %>">
+    <meta name="twitter:description" content="<%= post.description %>">
+    <meta name="twitter:image" content="https://cms.reeceharris.net/<%= post.banner.data.attributes.formats != null ? post.banner.data.attributes.formats.large.url : post.banner.data.attributes.url %>">
+    <meta name="twitter:image:alt" content="<%= post.banner.data.attributes.alternativeText %>">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:site" content="@n0treeceharris">
     <!-- JSON-LD -->
@@ -29,14 +29,14 @@
         {
           "@context": "https://schema.org",
           "@type": "NewsArticle",
-          "headline": "<%= post.data.attributes.title %>",
+          "headline": "<%= post.title %>",
           "image": [
-            "https://cms.reeceharris.net/<%= post.data.attributes.banner.data[0].attributes.formats.small.url %>",
-            "https://cms.reeceharris.net/<%= post.data.attributes.banner.data[0].attributes.formats.medium.url %>",
-            "https://cms.reeceharris.net/<%= post.data.attributes.banner.data[0].attributes.formats.large.url %>"
+            "https://cms.reeceharris.net/<%= post.banner.data.attributes.formats != null ? post.banner.data.attributes.formats.small.url : post.banner.data.attributes.url %>",
+            "https://cms.reeceharris.net/<%= post.banner.data.attributes.formats != null ? post.banner.data.attributes.formats.medium.url : post.banner.data.attributes.url %>",
+            "https://cms.reeceharris.net/<%= post.banner.data.attributes.formats != null ? post.banner.data.attributes.formats.large.url : post.banner.data.attributes.url %>"
            ],
-          "datePublished": "<%= post.data.attributes.publishedAt %>",
-          "dateModified": "<%= post.data.attributes.updatedAt %>",
+          "datePublished": "<%= post.publishedAt %>",
+          "dateModified": "<%= post.updatedAt %>",
           "author": [{
               "@type": "Person",
               "name": "<%= author.data.attributes.fullname %>",
@@ -60,8 +60,8 @@
             <article class="mx-auto w-full format format-sm sm:format-base lg:format-lg format-blue text-gray-300">
                 <header class="mb-4 lg:mb-6 not-format">
                     <div class="max-h-screen">
-                        <img class="rounded-md mb-10 w-full hidden 2xl:block" src="https://cms.reeceharris.net/<%= post.data.attributes.banner.data[0].attributes.formats.large.url %>" alt="<%= post.data.attributes.banner.data[0].attributes.alternativeText %>">
-                        <h1 class="mb-6 pb-5 text-3xl font-extrabold leading-tight text-white lg:mb-6 lg:text-4xl"><%= post.data.attributes.title %></h1>
+                        <img class="rounded-md mb-10 w-full hidden 2xl:block" src="https://cms.reeceharris.net/<%= post.banner.data.attributes.formats != null ? post.banner.data.attributes.formats.large.url : post.banner.data.attributes.url %>" alt="<%= post.banner.data.attributes.alternativeText %>">
+                        <h1 class="mb-6 pb-5 text-3xl font-extrabold leading-tight text-white lg:mb-6 lg:text-4xl"><%= post.title %></h1>
                     </div>
                     <address class="flex items-center mb-6 not-italic border-b border-t py-6 border-[#444]">
                         <div class="inline-flex items-center mr-3 text-sm ">
@@ -69,12 +69,12 @@
                             <div>
                                 <a href="#" rel="author" class="text-xl font-bold text-white "><%= author.data.attributes.fullname %></a>
                                 <p class="text-base font-light text-gray-400 "><%= author.data.attributes.headliner %></p>
-                                <p class="text-base font-light text-gray-200 "><time pubdate datetime="<%= new Date(post.data.attributes.publishedAt).getFullYear() %>-<%= new Date(post.data.attributes.publishedAt).getMonth() + 1%>-<%= new Date(post.data.attributes.publishedAt).getDate() %>" title="<%= new Date(post.data.attributes.publishedAt).toLocaleString('en-US', { month: 'short' }) %> <%= new Date(post.data.attributes.publishedAt).getDate() %>, <%= new Date(post.data.attributes.publishedAt).getFullYear() %>"><%= new Date(post.data.attributes.publishedAt).toLocaleString('en-US', { month: 'long' }) %> <%= new Date(post.data.attributes.publishedAt).getDate() + (new Date(post.data.attributes.publishedAt).getDate() > 0 ? ['th', 'st', 'nd', 'rd'][(new Date(post.data.attributes.publishedAt).getDate() > 3 && new Date(post.data.attributes.publishedAt).getDate() < 21) || new Date(post.data.attributes.publishedAt).getDate() % 10 > 3 ? 0 : new Date(post.data.attributes.publishedAt).getDate() % 10] : '') %>, <%= new Date(post.data.attributes.publishedAt).getFullYear() %></time></p> <!-- Jan. 23, 2023 -->
+                                <p class="text-base font-light text-gray-200 "><time pubdate datetime="<%= new Date(post.publishedAt).getFullYear() %>-<%= new Date(post.publishedAt).getMonth() + 1%>-<%= new Date(post.publishedAt).getDate() %>" title="<%= new Date(post.publishedAt).toLocaleString('en-US', { month: 'short' }) %> <%= new Date(post.publishedAt).getDate() %>, <%= new Date(post.publishedAt).getFullYear() %>"><%= new Date(post.publishedAt).toLocaleString('en-US', { month: 'long' }) %> <%= new Date(post.publishedAt).getDate() + (new Date(post.publishedAt).getDate() > 0 ? ['th', 'st', 'nd', 'rd'][(new Date(post.publishedAt).getDate() > 3 && new Date(post.publishedAt).getDate() < 21) || new Date(post.publishedAt).getDate() % 10 > 3 ? 0 : new Date(post.publishedAt).getDate() % 10] : '') %>, <%= new Date(post.publishedAt).getFullYear() %></time></p> <!-- Jan. 23, 2023 -->
                             </div>
                         </div>
                     </address>
                 </header>
-                <div id="content"><%- post.data.attributes.content  %></div>
+                <div id="content"><%- post.content  %></div>
             </article>
         </div>
     </main>
