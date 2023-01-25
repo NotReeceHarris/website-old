@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.2/flowbite.min.js"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/stackoverflow-dark.min.css" integrity="sha512-Xn1b0y/BrCD7usnEh6r9CcKxHXFVleVUjGDnfc95zDDwFUwtOz3lJC/XtJcuLRNyrMQJEEToFfwjC9Ue/aWY/g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+
+    <link rel="stylesheet" href="/static/blog.css">
+
+</head>
+<body class="bg-[#222222]">
+
+    <%- include('../components/header.ejs'); %>
+    <div class="w-full top-0 fixed z-[102]" id="page-progress"><div id="progress-bar" class="w-0 h-[2px] bg-white" style="transition: width 0.5s;"></div></div>
+
+    
+<main class="mt-16 pb-16 pt-8 md:pt-16 lg:pb-18 px-6 ">
+    <div class="flex  mx-auto max-w-screen-lg">
+        <article class="mx-auto w-full format format-sm sm:format-base lg:format-lg format-blue text-gray-300">
+            <header class="mb-4 lg:mb-6 not-format">
+                <div class="max-h-screen">
+                    <h1 class="text-3xl font-extrabold leading-tight text-white lg:text-4xl">Privacy policy</h1>
+                    <p class="mt-2">Last updated: <%= new Date(article.data.attributes.updatedAt).toLocaleString('en-US', { month: 'long' }) %> <%= new Date(article.data.attributes.updatedAt).getDate() + (new Date(article.data.attributes.updatedAt).getDate() > 0 ? ['th', 'st', 'nd', 'rd'][(new Date(article.data.attributes.updatedAt).getDate() > 3 && new Date(article.data.attributes.updatedAt).getDate() < 21) || new Date(article.data.attributes.updatedAt).getDate() % 10 > 3 ? 0 : new Date(article.data.attributes.updatedAt).getDate() % 10] : '') %>, <%= new Date(article.data.attributes.updatedAt).getFullYear() %></p>
+                </div>
+            </header>
+            <div id="content">
+                <%- article.data.attributes.content  %>
+            </div>
+            
+        </article>
+    </div>
+  </main>
+
+
+
+<%- include('../components/footer.ejs'); %>
+<script src="https://reeceharris.net/static/script.js"></script>
+
+</body>
+</html>

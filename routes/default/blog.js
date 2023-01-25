@@ -16,7 +16,6 @@ router.get('/blog/:slug', async (req, res, next) => {
     axios.get(`https://cms.reeceharris.net/api/slugify/slugs/article/${req.params.slug}?populate=*`, authHeader)
     .then(response => {
         if (response.data != null) {
-            console.log(response.data.data.attributes.banner)
             res.renderMin('./blog/post', {post: response.data});
         } else {
             res.renderMin('./blog/notfound');
@@ -26,6 +25,44 @@ router.get('/blog/:slug', async (req, res, next) => {
         res.renderMin('./error/500', {error:error});
     });
 
+});
+
+router.get('/rss', async (req, res, next) => {
+    axios.get(`https://cms.reeceharris.net/api/articles?fields=title,createdAt,slug`, authHeader)
+    .then(response => {
+        if (response.data != null) {
+            
+            let items = ``;
+            response.data.data.forEach(element => {
+                const pubdate = new Date(element.attributes.createdAt);
+                const weekday = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
+                items += `<item><guid>https://reeceharris.net/cms/${element.attributes.slug}</guid><title>${element.attributes.title}</title><link>https://reeceharris.net/cms/${element.attributes.slug}</link><pubDate>${weekday[pubdate.getDay()]}, ${pubdate.getDate()} ${pubdate.toLocaleString('en-US', { month: 'short' })} ${pubdate.getFullYear()} ${pubdate.getHours()}:${pubdate.getMinutes()}:${pubdate.getSeconds()} GMT</pubDate></item>`
+            });
+
+            res.set('Content-Type', 'text/xml');
+            res.send(`<rss version="2.0"><channel><title>( ͡° ͜ʖ ͡°)</title><description>Latest articles from the reeceharris.net blog</description><link>https://reeceharris.net</link><image><title>( ͡° ͜ʖ ͡°)</title><url>https://cms.reeceharris.net/uploads/site_logo_5edcfddd75.png</url><link>https://reeceharris.net</link></image>${items}</channel></rss>`)
+        } else {
+            res.renderMin('./error/404');
+        }
+    })
+    .catch(error => {
+        res.renderMin('./error/500', {error:error});
+    });
+});
+
+
+router.get('/privacy-policy', async (req, res, next) => {
+    axios.get(`https://cms.reeceharris.net/api/privacy-policy`, authHeader)
+    .then(response => {
+        if (response.data != null) {
+            res.renderMin('./landing/privacy-policy', {article: response.data});
+        } else {
+            res.renderMin('./error/404');
+        }
+    })
+    .catch(error => {
+        res.renderMin('./error/500', {error:error});
+    });
 });
 
 module.exports = router;
