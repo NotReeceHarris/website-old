@@ -12,11 +12,20 @@ const authHeader = {
 };
 
 router.get('/blog/:slug', async (req, res, next) => {
-
     axios.get(`https://cms.reeceharris.net/api/slugify/slugs/article/${req.params.slug}?populate=*`, authHeader)
-    .then(response => {
-        if (response.data != null) {
-            res.renderMin('./blog/post', {post: response.data});
+    .then(article => {
+        if (article.data != null) {
+            axios.get(`https://cms.reeceharris.net/api/authors/${article.data.data.attributes.author.data.id}?populate=*`, authHeader)
+            .then(author => {
+                if (author.data != null) {
+                    res.renderMin('./blog/post', {post: article.data, author: author.data});
+                } else {
+                    res.renderMin('./blog/notfound');
+                }
+            })
+            .catch(error => {
+                res.renderMin('./error/500', {error:error});
+            });
         } else {
             res.renderMin('./blog/notfound');
         }
@@ -24,7 +33,27 @@ router.get('/blog/:slug', async (req, res, next) => {
     .catch(error => {
         res.renderMin('./error/500', {error:error});
     });
+});
 
+router.get('/api/blogs', async (req, res, next) => {
+    axios.get(`https://cms.reeceharris.net/api/articles?fields=title,slug,description,content,createdAt&populate=banner&sort[0]=createdAt:desc`, authHeader)
+    .then(response => {
+        if (response.data != null) {
+            res.json(response.data)
+        } else {
+            res.json(response.data)
+        }
+    })
+    .catch(error => {
+        res.json(`{
+            "data": null,
+            "error": {
+                "status": 500,
+                "name": "InternalServerError",
+                "message": "Internal Server Error"
+            }
+        }`)
+    });
 });
 
 router.get('/rss', async (req, res, next) => {

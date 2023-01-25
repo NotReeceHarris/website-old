@@ -8,8 +8,6 @@ $( document ).ready(function() {
         const scrolled = (window.pageYOffset / height) * 100;
         const scrollPercentage = parseInt(scrolled)
 
-        console.log(scrollPercentage)
-
         if (window.pageYOffset >= 10) {
             $('#page-progress #progress-bar').css('width', `${scrollPercentage+5}%`)
         } else {

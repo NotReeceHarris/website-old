@@ -1,53 +1,83 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- SITE META -->
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-
+    <!-- SEO TAGS -->
+    <title><%= post.data.attributes.title %></title>
+    <meta name="description" content="<%= post.data.attributes.description %>">
+    <meta name="author" content="<%= author.data.attributes.fullname %>">
+    <meta name="keywords" content="<%= post.data.attributes.tags %>">
+    <!-- SOCIAL TAGS -->
+    <meta property="og:site_name" content="( ͡°( ͡° ͜ʖ( ͡° ͜ʖ ͡°)ʖ ͡°) ͡°)">
+    <meta property="og:title" content="<%= post.data.attributes.title %>" />
+    <meta property="og:description" content="<%= post.data.attributes.description %>">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://reeceharris.net/<%= post.data.attributes.slug %>" />
+    <meta property="og:image" content="https://cms.reeceharris.net/<%= post.data.attributes.banner.data[0].attributes.formats.large.url %>" />
+    <!-- TWITTER TAGS -->
+    <meta name="twitter:title" content="<%= post.data.attributes.title %>">
+    <meta name="twitter:description" content="<%= post.data.attributes.description %>">
+    <meta name="twitter:image" content="https://cms.reeceharris.net/<%= post.data.attributes.banner.data[0].attributes.formats.large.url %>">
+    <meta name="twitter:image:alt" content="<%= post.data.attributes.banner.data[0].attributes.alternativeText %>">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@n0treeceharris">
+    <!-- JSON-LD -->
+    <script type="application/ld+json">
+        {
+          "@context": "https://schema.org",
+          "@type": "NewsArticle",
+          "headline": "<%= post.data.attributes.title %>",
+          "image": [
+            "https://cms.reeceharris.net/<%= post.data.attributes.banner.data[0].attributes.formats.small.url %>",
+            "https://cms.reeceharris.net/<%= post.data.attributes.banner.data[0].attributes.formats.medium.url %>",
+            "https://cms.reeceharris.net/<%= post.data.attributes.banner.data[0].attributes.formats.large.url %>"
+           ],
+          "datePublished": "<%= post.data.attributes.publishedAt %>",
+          "dateModified": "<%= post.data.attributes.updatedAt %>",
+          "author": [{
+              "@type": "Person",
+              "name": "<%= author.data.attributes.fullname %>",
+              "url": "https://reeceharris.com/author/<%= author.data.id %>"
+            }]
+        }
+    </script>
+    <!-- ASSETS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.2/flowbite.min.js"></script>
-
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/stackoverflow-dark.min.css" integrity="sha512-Xn1b0y/BrCD7usnEh6r9CcKxHXFVleVUjGDnfc95zDDwFUwtOz3lJC/XtJcuLRNyrMQJEEToFfwjC9Ue/aWY/g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
-
     <link rel="stylesheet" href="/static/blog.css">
-
 </head>
 <body class="bg-[#222222]">
-
     <%- include('../components/header.ejs'); %>
     <div class="w-full top-0 fixed z-[102]" id="page-progress"><div id="progress-bar" class="w-0 h-[2px] bg-white" style="transition: width 0.5s;"></div></div>
-
     
-<main class="mt-16 pb-16 pt-8 md:pt-16 lg:pb-18 px-6 ">
-    <div class="flex  mx-auto max-w-screen-lg">
-        <article class="mx-auto w-full format format-sm sm:format-base lg:format-lg format-blue text-gray-300">
-            <header class="mb-4 lg:mb-6 not-format">
-                <div class="max-h-screen">
-                    <img class="rounded-md mb-10 w-full hidden 2xl:block" src="https://cms.reeceharris.net/<%= post.data.attributes.banner.data[0].attributes.formats.large.url %>" alt="<%= post.data.attributes.banner.data[0].attributes.alternativeText %>">
-                    <h1 class="mb-6 pb-5 text-3xl font-extrabold leading-tight text-white lg:mb-6 lg:text-4xl"><%= post.data.attributes.title %></h1>
-                </div>
-                <address class="flex items-center mb-6 not-italic border-b border-t py-6 border-[#444]">
-                    <div class="inline-flex items-center mr-3 text-sm ">
-                        <img class="mr-4 w-16 h-16 rounded-full" src="https://media.licdn.com/dms/image/C4D03AQEv2w9UHIaNIg/profile-displayphoto-shrink_100_100/0/1649242587158?e=1680134400&v=beta&t=ZQoYqbxBRRe-T5_GTFl5YyEjB6N97INl3ZcaUERMo98" alt="Jese Leos">
-                        <div>
-                            <a href="#" rel="author" class="text-xl font-bold text-white ">Reece Harris</a>
-                            <p class="text-base font-light text-gray-400 ">Junior Software Engineer with a Passion for Cybersecurity</p>
-                            <p class="text-base font-light text-gray-200 "><time pubdate datetime="<%= new Date(post.data.attributes.updatedAt).getFullYear() %>-<%= new Date(post.data.attributes.updatedAt).getMonth() + 1%>-<%= new Date(post.data.attributes.updatedAt).getDate() %>" title="<%= new Date(post.data.attributes.updatedAt).toLocaleString('en-US', { month: 'short' }) %> <%= new Date(post.data.attributes.updatedAt).getDate() %>, <%= new Date(post.data.attributes.updatedAt).getFullYear() %>"><%= new Date(post.data.attributes.updatedAt).toLocaleString('en-US', { month: 'long' }) %> <%= new Date(post.data.attributes.updatedAt).getDate() + (new Date(post.data.attributes.updatedAt).getDate() > 0 ? ['th', 'st', 'nd', 'rd'][(new Date(post.data.attributes.updatedAt).getDate() > 3 && new Date(post.data.attributes.updatedAt).getDate() < 21) || new Date(post.data.attributes.updatedAt).getDate() % 10 > 3 ? 0 : new Date(post.data.attributes.updatedAt).getDate() % 10] : '') %>, <%= new Date(post.data.attributes.updatedAt).getFullYear() %></time></p> <!-- Jan. 23, 2023 -->
-                        </div>
+    <main class="mt-16 pb-16 pt-8 md:pt-16 lg:pb-18 px-6 ">
+        <div class="flex  mx-auto max-w-screen-lg">
+            <article class="mx-auto w-full format format-sm sm:format-base lg:format-lg format-blue text-gray-300">
+                <header class="mb-4 lg:mb-6 not-format">
+                    <div class="max-h-screen">
+                        <img class="rounded-md mb-10 w-full hidden 2xl:block" src="https://cms.reeceharris.net/<%= post.data.attributes.banner.data[0].attributes.formats.large.url %>" alt="<%= post.data.attributes.banner.data[0].attributes.alternativeText %>">
+                        <h1 class="mb-6 pb-5 text-3xl font-extrabold leading-tight text-white lg:mb-6 lg:text-4xl"><%= post.data.attributes.title %></h1>
                     </div>
-                </address>
-            </header>
-
-            <div id="content">
-                <%- post.data.attributes.content  %>
-            </div>
-            
-        </article>
-    </div>
-  </main>
+                    <address class="flex items-center mb-6 not-italic border-b border-t py-6 border-[#444]">
+                        <div class="inline-flex items-center mr-3 text-sm ">
+                            <img class="mr-4 w-16 h-16 rounded-full" src="https://cms.reeceharris.net/<%= author.data.attributes.portrait.data.attributes.url %>" alt="<%= author.data.attributes.portrait.data.attributes.alternativeText %>">
+                            <div>
+                                <a href="#" rel="author" class="text-xl font-bold text-white "><%= author.data.attributes.fullname %></a>
+                                <p class="text-base font-light text-gray-400 "><%= author.data.attributes.headliner %></p>
+                                <p class="text-base font-light text-gray-200 "><time pubdate datetime="<%= new Date(post.data.attributes.publishedAt).getFullYear() %>-<%= new Date(post.data.attributes.publishedAt).getMonth() + 1%>-<%= new Date(post.data.attributes.publishedAt).getDate() %>" title="<%= new Date(post.data.attributes.publishedAt).toLocaleString('en-US', { month: 'short' }) %> <%= new Date(post.data.attributes.publishedAt).getDate() %>, <%= new Date(post.data.attributes.publishedAt).getFullYear() %>"><%= new Date(post.data.attributes.publishedAt).toLocaleString('en-US', { month: 'long' }) %> <%= new Date(post.data.attributes.publishedAt).getDate() + (new Date(post.data.attributes.publishedAt).getDate() > 0 ? ['th', 'st', 'nd', 'rd'][(new Date(post.data.attributes.publishedAt).getDate() > 3 && new Date(post.data.attributes.publishedAt).getDate() < 21) || new Date(post.data.attributes.publishedAt).getDate() % 10 > 3 ? 0 : new Date(post.data.attributes.publishedAt).getDate() % 10] : '') %>, <%= new Date(post.data.attributes.publishedAt).getFullYear() %></time></p> <!-- Jan. 23, 2023 -->
+                            </div>
+                        </div>
+                    </address>
+                </header>
+                <div id="content"><%- post.data.attributes.content  %></div>
+            </article>
+        </div>
+    </main>
 
   <section class="mb-16">
     <div class="py-6 border-t border-b border-[#444] grid max-w-screen-lg w-[90vw] sm:w-[80vw] md:w-[70vw] lg:w-full px-4 py-2 mx-auto lg:gap-8 lg:grid-cols-12 text-center lg:text-start">
@@ -80,49 +110,64 @@
 <aside aria-label="Related articles" class="py-8 pt-2 lg:pb-12">
 <div class="px-4 mx-auto max-w-screen-lg">
     <h2 class="mb-8 text-2xl font-bold text-white">Related articles</h2>
-    <div class="grid gap-12 sm:grid-cols-2 lg:grid-cols-3">
-        <article class="max-w-xs">
-            <a href="#">
-                <img src="/static/image.webp" class="mb-5" alt="Image 1">
-            </a>
-            <h2 class="mb-2 text-xl font-bold leading-tight text-white ">
-                <a href="#">AI Object Detection 101: How to Create an AI Object Detection System</a>
-            </h2>
-            <p class="mb-4 font-light text-gray-200 ">Over the past year, Volosoft has undergone many changes! After months of preparation.</p>
-            <a href="#" class="inline-flex items-center font-medium underline underline-offset-4 text-gray-200 hover:no-underline">
-                Read in 2 minutes
-            </a>
-        </article>
-        <article class="max-w-xs">
-            <a href="#">
-                <img src="/static/image.webp" class="mb-5" alt="Image 1">
-            </a>
-            <h2 class="mb-2 text-xl font-bold leading-tight text-white ">
-                <a href="#">AI Object Detection 101: How to Create an AI Object Detection System</a>
-            </h2>
-            <p class="mb-4 font-light text-gray-200 ">Over the past year, Volosoft has undergone many changes! After months of preparation.</p>
-            <a href="#" class="inline-flex items-center font-medium underline underline-offset-4 text-gray-200 hover:no-underline">
-                Read in 2 minutes
-            </a>
-        </article>
-        <article class="max-w-xs">
-            <a href="#">
-                <img src="/static/image.webp" class="mb-5" alt="Image 1">
-            </a>
-            <h2 class="mb-2 text-xl font-bold leading-tight text-white ">
-                <a href="#">AI Object Detection 101: How to Create an AI Object Detection System</a>
-            </h2>
-            <p class="mb-4 font-light text-gray-200 ">Over the past year, Volosoft has undergone many changes! After months of preparation.</p>
-            <a href="#" class="inline-flex items-center font-medium underline underline-offset-4 text-gray-200 hover:no-underline">
-                Read in 2 minutes
-            </a>
-        </article>
+    <div class="grid gap-12 sm:grid-cols-2 lg:grid-cols-3" id="related-articles">
+        
     </div>
 </div>
 </aside>
 
 <%- include('../components/footer.ejs'); %>
 <script src="/static/blog.js"></script>
+
+<script>
+
+    function readingTime(content) {
+        var div = document.createElement("div");
+        div.innerHTML = content;
+        var text = div.textContent || div.innerText || "";console.log(text.length)
+        const wpm = 225;
+        const words = text.trim().split(/\s+/).length;
+        const time = Math.ceil(words / wpm);
+        div.remove()
+        return time;
+      }
+
+      function escapeHtml (string) {
+        var entityMap = {
+            '&': '&amp;',
+            '<': '&lt;',
+            '>': '&gt;',
+            '"': '&quot;',
+            "'": '&#39;',
+            '/': '&#x2F;',
+            '`': '&#x60;',
+            '=': '&#x3D;'
+          };
+        return String(string).replace(/[&<>"'`=\/]/g, function (s) {
+          return entityMap[s];
+        });
+      }
+
+    $.get("/api/blogs", function(data, status){
+        data.data.forEach(function(element) {
+            console.log(element)
+            $('#related-articles').append(`
+                <article class="max-w-xs">
+                    <a href="#">
+                        <img alt="${escapeHtml(element.attributes.banner.data[0].attributes.alternativeText)}" src="https://cms.reeceharris.net/${element.attributes.banner.data[0].attributes.formats.small.url}" class="mb-5" alt="Image 1">
+                    </a>
+                    <h3 class="mb-2 text-xl font-bold leading-tight text-white ">
+                        <a href="#">${element.attributes.title}</a>
+                    </h3>
+                    <p class="mb-4 font-light text-gray-200 ">${element.attributes.description}</p>
+                    <a href="#" class="inline-flex items-center font-medium underline underline-offset-4 text-gray-200 hover:no-underline">
+                        Read in ${readingTime(element.attributes.content)} minutes
+                    </a>
+                </article>
+            `)
+        })
+      });
+</script>
 
 </body>
 </html>
