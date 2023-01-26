@@ -23,6 +23,7 @@
     <!-- ASSETS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.2/flowbite.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js" ></script>
 </head>
 
 <body class="bg-[#222222]">
@@ -40,7 +41,7 @@
                     <article class="p-6 rounded-md border border-gray-200 shadow-md">
                         <div class="flex justify-between items-center mb-5 text-gray-500">
                             <span class="text-sm text-white"><time pubdate datetime="<%= new Date(articles.data[i].attributes.publishedAt).getFullYear() %>-<%= new Date(articles.data[i].attributes.publishedAt).getMonth() + 1%>-<%= new Date(articles.data[i].attributes.publishedAt).getDate() %>" title="<%= new Date(articles.data[i].attributes.publishedAt).toLocaleString('en-US', { month: 'short' }) %> <%= new Date(articles.data[i].attributes.publishedAt).getDate() %>, <%= new Date(articles.data[i].attributes.publishedAt).getFullYear() %>"><%= new Date(articles.data[i].attributes.publishedAt).toLocaleString('en-US', { month: 'long' }) %> <%= new Date(articles.data[i].attributes.publishedAt).getDate() + (new Date(articles.data[i].attributes.publishedAt).getDate() > 0 ? ['th', 'st', 'nd', 'rd'][(new Date(articles.data[i].attributes.publishedAt).getDate() > 3 && new Date(articles.data[i].attributes.publishedAt).getDate() < 21) || new Date(articles.data[i].attributes.publishedAt).getDate() % 10 > 3 ? 0 : new Date(articles.data[i].attributes.publishedAt).getDate() % 10] : '') %>, <%= new Date(articles.data[i].attributes.publishedAt).getFullYear() %></time></span>
-                            <span class="text-sm text-white">14 days ago</span>
+                            <span class="text-sm text-white"><script>document.write(moment('<%= articles.data[i].attributes.publishedAt %>').fromNow())</script></span>
                         </div>
                         <img class="hidden sm:block" src="https://cms.reeceharris.net<%= articles.data[i].attributes.banner.data.attributes.url %>" title="<%= articles.data[i].attributes.banner.data.attributes.alternativeText %>" alt="<%= articles.data[i].attributes.banner.data.attributes.alternativeText %>" width="<%= articles.data[i].attributes.banner.data.attributes.width %>" height="<%= articles.data[i].attributes.banner.data.attributes.height %>">
                         <h2 class="mb-2 text-2xl font-bold tracking-tight text-white"><a href="/blog/<%= articles.data[i].attributes.slug %>"><%= articles.data[i].attributes.title %></a></h2>
