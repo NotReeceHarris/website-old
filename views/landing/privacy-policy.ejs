@@ -21,7 +21,7 @@
     <div class="w-full top-0 fixed z-[102]" id="page-progress"><div id="progress-bar" class="w-0 h-[2px] bg-white" style="transition: width 0.5s;"></div></div>
 
     
-<main class="pb-16 pt-8 md:pt-16 lg:pb-18 px-6 ">
+<main class="pb-16 pt-20 md:pt-28 lg:pb-18 px-6 ">
     <div class="flex  mx-auto max-w-screen-lg">
         <article class="mx-auto w-full format format-sm sm:format-base lg:format-lg format-blue text-gray-300">
             <header class="mb-4 lg:mb-6 not-format">
@@ -30,7 +30,7 @@
                     <p class="mt-2">Last updated: <%= new Date(article.data.attributes.updatedAt).toLocaleString('en-US', { month: 'long' }) %> <%= new Date(article.data.attributes.updatedAt).getDate() + (new Date(article.data.attributes.updatedAt).getDate() > 0 ? ['th', 'st', 'nd', 'rd'][(new Date(article.data.attributes.updatedAt).getDate() > 3 && new Date(article.data.attributes.updatedAt).getDate() < 21) || new Date(article.data.attributes.updatedAt).getDate() % 10 > 3 ? 0 : new Date(article.data.attributes.updatedAt).getDate() % 10] : '') %>, <%= new Date(article.data.attributes.updatedAt).getFullYear() %></p>
                 </div>
             </header>
-            <div id="content">
+            <div id="content" class="break-words">
                 <%- article.data.attributes.content  %>
             </div>
             

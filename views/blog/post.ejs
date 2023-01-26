@@ -15,7 +15,7 @@
     <meta property="og:title" content="<%= post.title %>" />
     <meta property="og:description" content="<%= post.description %>">
     <meta property="og:type" content="article" />
-    <meta property="og:url" content="https://reeceharris.net/<%= post.slug %>" />
+    <meta property="og:url" content="https://reeceharris.net/blog/<%= post.slug %>" />
     <meta property="og:image" content="https://cms.reeceharris.net/<%= post.banner.data.attributes.url %>" />
     <!-- TWITTER TAGS -->
     <meta name="twitter:title" content="<%= post.title %>">
@@ -67,8 +67,13 @@
                 <article class="mx-auto w-full format format-sm sm:format-base lg:format-lg format-blue text-gray-300">
                     <header class="mb-4 lg:mb-6 not-format">
                         <div class="max-h-screen">
-                            <img class="rounded-md mb-5 w-full hidden 2xl:block" src="https://cms.reeceharris.net/<%= post.banner.data.attributes.url %>" alt="<%= post.banner.data.attributes.alternativeText %>">
-                            <h1 class="mb-6 pb-5 text-3xl font-extrabold leading-tight text-white lg:mb-6 lg:text-4xl"><%= post.title %></h1>
+                            <img class="rounded-md mb-5 w-full hidden 2xl:block" src="https://cms.reeceharris.net/<%= post.banner.data.attributes.url %>" title="<%= post.banner.data.attributes.alternativeText %>" alt="<%= post.banner.data.attributes.alternativeText %>" width="<%= post.banner.data.attributes.width %>" height="<%= post.banner.data.attributes.height %>">
+                            <h1 class="text-3xl font-extrabold leading-tight text-white lg:text-4xl"><%= post.title %></h1>
+                            <div id="tags" class="mb-6 mt-3 flex gap-x-2 flex-wrap">
+                                <% for(var i=0; i<post.topics.data.length; i++) {%>
+                                    <a class="underline font-semibold text-lg decoration-[<%= post.topics.data[i].attributes.color %>]" href="/topic/<%= post.topics.data[i].attributes.slug %>">#<%= post.topics.data[i].attributes.title %></a>
+                                <% } %>
+                            </div>
                         </div>
                         <address class="flex items-center mb-6 not-italic border-b border-t py-6 border-[#444]">
                             <div class="inline-flex items-center mr-3 text-sm ">
@@ -81,16 +86,16 @@
                             </div>
                         </address>
                     </header>
-                    <div id="content"><%- post.content  %></div>
+                    <div id="content" class="break-words"><%- post.content  %></div>
                 </article>
             </div>
         </main>
 
         <%- include('../components/newsletter-cta.ejs'); %>
 
-        <aside aria-label="Related articles" class="py-8 pt-2 lg:pb-12">
+        <aside aria-label="Related articles" class="py-8 lg:pb-12">
             <div class="px-4 mx-auto max-w-screen-lg">
-                <h2 class="mb-8 text-2xl font-bold text-white">Related articles</h2>
+                <h2 class="mb-4 md:mb-8 text-2xl font-bold text-white">Related articles</h2>
                 <div class="grid gap-12 sm:grid-cols-2 lg:grid-cols-3" id="related-articles">
                     
                 </div>
@@ -102,9 +107,11 @@
         <script src="/static/blog.js"></script>
 
         <script>
+
             $('#page-loader').removeClass('hidden')
-                document.getElementById("page-loader").classList.remove("hidden");
-                document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById("page-loader").classList.remove("hidden");
+
+            document.addEventListener('DOMContentLoaded', function() {
                     $('#page-loader').remove()
             });
 
@@ -140,7 +147,7 @@
                         if (element.attributes.slug != "<%= post.slug %>") {
                             $('#related-articles').append(`
                                 <article class="max-w-xs">
-                                    <a href="/blog/${element.attributes.slug}">
+                                    <a href="/blog/${element.attributes.slug}" class="hidden md:block">
                                         <img alt="${escapeHtml(element.attributes.banner.data.attributes.alternativeText)}" src="https://cms.reeceharris.net/${element.attributes.banner.data.attributes.url}" class="mb-5" alt="Image 1">
                                     </a>
                                     <h3 class="mb-2 text-xl font-bold leading-tight text-white ">

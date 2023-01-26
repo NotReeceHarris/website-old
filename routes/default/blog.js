@@ -11,28 +11,75 @@ const authHeader = {
     }
 };
 
+router.get('/blogs', async (req, res, next) => {
+
+        axios.get(`https://cms.reeceharris.net/api/articles?fields=title,description,slug,publishedAt&sort[0]=publishedAt:DESC&populate=banner`, authHeader)
+        .then(articles => {
+            if (articles.data != null) {
+                res.renderMin('./blog/blogs', {articles: articles.data})
+            } else {
+                res.renderMin('./blog/notfound');
+            }
+        })
+        .catch(error => {
+            res.renderMin('./error/500', {error:error});
+        });
+});
+
 router.get('/blog/:slug', async (req, res, next) => {
-    axios.get(`https://cms.reeceharris.net/api/slugify/slugs/article/${req.params.slug}?populate=*`, authHeader)
-    .then(article => {
-        if (article.data != null) {
-            axios.get(`https://cms.reeceharris.net/api/authors/${article.data.data.attributes.author.data.id}?populate=*`, authHeader)
-            .then(author => {
-                if (author.data != null) {
-                    res.renderMin('./blog/post', {post: article.data.data.attributes, author: author.data});
-                } else {
-                    res.renderMin('./blog/notfound');
-                }
-            })
-            .catch(error => {
-                res.renderMin('./error/500', {error:error});
-            });
-        } else {
-            res.renderMin('./blog/notfound');
-        }
-    })
-    .catch(error => {
-        res.renderMin('./error/500', {error:error});
-    });
+    if (req.params.slug) {
+        axios.get(`https://cms.reeceharris.net/api/slugify/slugs/article/${req.params.slug}?populate=*`, authHeader)
+        .then(article => {
+            if (article.data != null) {
+                axios.get(`https://cms.reeceharris.net/api/authors/${article.data.data.attributes.author.data.id}?populate=*`, authHeader)
+                .then(author => {
+                    if (author.data != null) {
+                        res.renderMin('./blog/post', {post: article.data.data.attributes, author: author.data});
+                    } else {
+                        res.renderMin('./blog/notfound');
+                    }
+                })
+                .catch(error => {
+                    res.renderMin('./error/500', {error:error});
+                });
+            } else {
+                res.renderMin('./blog/notfound');
+            }
+        })
+        .catch(error => {
+            res.renderMin('./error/500', {error:error});
+        });
+    } else {
+        res.redirect('/')
+    }
+});
+
+router.get('/topic/:topic', async (req, res, next) => {
+    if (req.params.topic) {
+        axios.get(`https://cms.reeceharris.net/api/topics?fields=title,slug,color,description&filters[slug]=${req.params.topic}`, authHeader)
+        .then(topic => {
+            if (topic.data != null) {
+                axios.get(`https://cms.reeceharris.net/api/articles?fields=title,description,slug,publishedAt&filters[topics][slug]=${req.params.topic}&sort[0]=publishedAt:DESC&populate=banner`, authHeader)
+                .then(articles => {
+                    if (articles.data != null) {
+                        res.renderMin('./blog/topic', {topic: topic.data.data[0], articles: articles.data})
+                    } else {
+                        res.renderMin('./blog/notfound');
+                    }
+                })
+                .catch(error => {
+                    res.renderMin('./error/500', {error:error});
+                });
+            } else {
+                res.renderMin('./blog/notfound');
+            }
+        })
+        .catch(error => {
+            res.renderMin('./error/500', {error:error});
+        });
+    } else {
+        res.redirect('/')
+    }
 });
 
 router.get('/api/blogs', async (req, res, next) => {

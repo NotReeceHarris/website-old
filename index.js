@@ -39,7 +39,7 @@ app.use(
 /* Add routes to uri */
 
 app.use(function (req, res, next) {
-    res.setHeader('X-Powered-By', '¯\\(º_o)/¯ ascii art');
+    res.setHeader('X-Powered-By', '¯\\(º_o)/¯');
     next();
 });
 
