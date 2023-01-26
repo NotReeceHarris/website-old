@@ -1,0 +1,53 @@
+<section class="mb-16">
+    <div class="py-6 border-t border-b border-[#444] grid max-w-screen-lg w-[90vw] sm:w-[80vw] md:w-[70vw] lg:w-full px-4 py-2 mx-auto lg:gap-8 lg:grid-cols-12 text-center lg:text-start">
+        <div class="mr-auto place-self-center lg:col-span-7">
+            <span class="max-w-2xl text-2xl font-bold tracking-tight leading-none md:text-3xl xl:text-4xl text-white">Sign up for our newsletter</span>
+            <p class="max-w-2xl mb-4 mt-2 font-light text-gray-100 lg:mb-4 md:text-md lg:text-lg text-gray-300">Stay up to date with the roadmap progress, announcements and exclusive discounts feel free to sign up with your email.</p>
+            <div>
+                <div class="flex items-center">   
+                    <label for="email-input" class="sr-only">Search</label>
+                    <div class="relative w-full">
+                        <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                            <svg class="w-5 h-5 text-white" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                        </div>
+                        <input type="email" id="email-input" class="bg-[#222222] border border-[#444] text-white text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5" placeholder="Enter your  email" required>
+                    </div>
+                    <button id="email-signup" class="p-2.5 ml-2 text-sm font-medium text-white bg-[#444] rounded-md border border-[#444] hover:bg-[#4d4c4c]">
+                        <span>Signup</span>
+                    </button>
+                    
+                </div>
+                <div class="text-sm mt-4 text-gray-300">We care about the protection of your data. <a href="/privacy-policy" class="font-medium text-gray-400 hover:underline">Read our Privacy Policy</a>.</div>
+            </div>
+        </div>
+        <div class="hidden lg:mt-0 lg:col-span-5 lg:flex ml-24">
+            <img src="/static/email.webp" alt="mockup" class="h-[250px]">
+        </div>                
+    </div>
+</section>
+
+<script src="https://www.google.com/recaptcha/api.js?render=6LckWSkkAAAAAPXSePkWq0nb7sWXwRSpZmCWuNsL"></script>
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+<script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+<script>
+
+    $('#email-signup').click(function() {
+        grecaptcha.ready(function() {
+            grecaptcha.execute('6LckWSkkAAAAAPXSePkWq0nb7sWXwRSpZmCWuNsL', {action: 'submit'}).then(function(token) {
+                $.ajax({
+                    type: "POST",
+                    url: "/api/newletter",
+                    data: { email: $('#email-input').val(), recaptcha: token },
+                    success: function(response) {
+                        if(response.data == "success"){
+                            toastr.success('','You are now signed up for email alerts!')
+                        }else{
+                            toastr.error('', 'Issue submitting your email.')
+                        }
+                    }
+                });
+            });
+        });
+    })
+</script>

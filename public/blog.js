@@ -1,7 +1,5 @@
 $( document ).ready(function() {
 
-    $('nav').addClass('fixed')
-
     window.onscroll = function() {
 
         const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;

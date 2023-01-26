@@ -18,7 +18,6 @@ router.get('/blog/:slug', async (req, res, next) => {
             axios.get(`https://cms.reeceharris.net/api/authors/${article.data.data.attributes.author.data.id}?populate=*`, authHeader)
             .then(author => {
                 if (author.data != null) {
-                    console.log(article.data.data.attributes)
                     res.renderMin('./blog/post', {post: article.data.data.attributes, author: author.data});
                 } else {
                     res.renderMin('./blog/notfound');
