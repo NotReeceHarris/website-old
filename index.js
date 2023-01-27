@@ -75,6 +75,7 @@ app.use(function(req, res, next) {
   });
 
 app.use('/', require("./routes/default.js"))
+app.use('/sandbox', require("./routes/sandbox.js"))
 app.use('/static', serveStatic("./public"))
 
 /* START */
