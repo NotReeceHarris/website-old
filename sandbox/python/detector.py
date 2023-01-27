@@ -5,7 +5,7 @@ import torch
 # METHOD = 'yolo_416_coco'
 METHOD = 'yolo_608_coco'
 
-YOLOV3_WEIGHTS_PATH = '../weights/yolov3.weight'
+YOLOV3_WEIGHTS_PATH = '../weights/yolov3.weights'
 YOLOV3_416_CFG_PATH = '../cfg/yolov3_416x416.cfg'
 YOLOV3_608_CFG_PATH = '../cfg/yolov3_608x608.cfg'
 
