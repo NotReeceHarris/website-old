@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <!-- SITE META -->
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!-- SEO TAGS -->
+        <title>Latest articles</title>
+        <meta name="description" content="View the latest articles from reeceharris.net, our blog covers topics of technoloy from AI to programming.">
+        <meta name="keywords" content="technology, blog, ai, programming">
+        <!-- SOCIAL TAGS -->
+        <meta property="og:site_name" content="( ͡°( ͡° ͜ʖ( ͡° ͜ʖ ͡°)ʖ ͡°) ͡°)">
+        <meta property="og:title" content="Latest articles" />
+        <meta property="og:description" content="View the latest articles from reeceharris.net, our blog covers topics of technoloy from AI to programming.">
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://reeceharris.net/blogs" />
+        <!-- TWITTER TAGS -->
+        <meta name="twitter:title" content="Latest articles">
+        <meta name="twitter:description" content="View the latest articles from reeceharris.net, our blog covers topics of technoloy from AI to programming.">
+        <!-- ASSETS -->
+        <script src="https://cdn.tailwindcss.com"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.2/flowbite.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js" ></script>
+</head>
+
+<body class="bg-[#222222]">
+    <%- include('../components/header.ejs'); %>
+
+    <main class="mt-12" >
+        <div class="py-8 px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-6">
+            <div class="mx-auto  mb-8">
+                <address class="flex items-center mb-6 not-italic border-b py-6 border-[#444]">
+                    <div class="inline-flex items-center mr-3 text-sm ">
+                        <img class="mr-4 w-16 h-16 rounded-full" src="https://cms.reeceharris.net/<%= author.data.attributes.portrait.data.attributes.url %>" alt="<%= author.data.attributes.portrait.data.attributes.alternativeText %>">
+                        <div>
+                            <span rel="author" class="text-xl font-bold text-white "><%= author.data.attributes.fullname %></span>
+                            <p class="text-base font-light text-gray-400 "><%= author.data.attributes.headliner.substr(0,70) %><%= author.data.attributes.headliner.length >= 70 ? '...' : '' %></p>
+                            <div class="flex gap-x-3 mt-3">
+                                <% for(var i=0; i<author.data.attributes.social.length; i++) {%>
+                                    <a href="<%= author.data.attributes.social[i].Url %>"  target="_blank"><img src="https://cms.reeceharris.net<%= author.data.attributes.social[i].Logo.data.attributes.url %>" alt="<%= author.data.attributes.social[i].Logo.data.attributes.alternativeText %>" width="<%= author.data.attributes.social[i].Logo.data.attributes.width %>" height="<%= author.data.attributes.social[i].Logo.data.attributes.height %>"></a>
+                                <% } %>
+                            </div>
+                        </div>
+                    </div>
+                </address>
+            </div> 
+            <div class="grid gap-8 md:grid-cols-2 xl:grid-cols-3">
+                <% for(var i=0; i<articles.data.length; i++) {%>
+
+                    <article class="p-6 rounded-md border border-gray-200 shadow-md">
+                        <div class="flex justify-between items-center mb-5 text-gray-500">
+                            <span class="text-sm text-white"><time pubdate datetime="<%= new Date(articles.data[i].attributes.publishedAt).getFullYear() %>-<%= new Date(articles.data[i].attributes.publishedAt).getMonth() + 1%>-<%= new Date(articles.data[i].attributes.publishedAt).getDate() %>" title="<%= new Date(articles.data[i].attributes.publishedAt).toLocaleString('en-US', { month: 'short' }) %> <%= new Date(articles.data[i].attributes.publishedAt).getDate() %>, <%= new Date(articles.data[i].attributes.publishedAt).getFullYear() %>"><%= new Date(articles.data[i].attributes.publishedAt).toLocaleString('en-US', { month: 'long' }) %> <%= new Date(articles.data[i].attributes.publishedAt).getDate() + (new Date(articles.data[i].attributes.publishedAt).getDate() > 0 ? ['th', 'st', 'nd', 'rd'][(new Date(articles.data[i].attributes.publishedAt).getDate() > 3 && new Date(articles.data[i].attributes.publishedAt).getDate() < 21) || new Date(articles.data[i].attributes.publishedAt).getDate() % 10 > 3 ? 0 : new Date(articles.data[i].attributes.publishedAt).getDate() % 10] : '') %>, <%= new Date(articles.data[i].attributes.publishedAt).getFullYear() %></time></span>
+                            <span class="text-sm text-white"><script>document.write(moment('<%= articles.data[i].attributes.publishedAt %>').fromNow())</script></span>
+                        </div>
+                        <img class="hidden sm:block" src="https://cms.reeceharris.net<%= articles.data[i].attributes.banner.data.attributes.url %>" title="<%= articles.data[i].attributes.banner.data.attributes.alternativeText %>" alt="<%= articles.data[i].attributes.banner.data.attributes.alternativeText %>" width="<%= articles.data[i].attributes.banner.data.attributes.width %>" height="<%= articles.data[i].attributes.banner.data.attributes.height %>">
+                        <h2 class="mb-2 text-2xl font-bold tracking-tight text-white"><a href="/blog/<%= articles.data[i].attributes.slug %>"><%= articles.data[i].attributes.title %></a></h2>
+                        <p class="mb-5 font-light text-white"><%= articles.data[i].attributes.description %></p>
+                        <div class="flex justify-between items-center">
+                            <a href="/blog/<%= articles.data[i].attributes.slug %>" class="inline-flex items-center font-medium text-white hover:underline">
+                                Read more
+                                <svg class="ml-2 w-4 h-4" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+                            </a>
+                        </div>
+                    </article> 
+
+                <% } %>
+            </div>  
+        </div>
+    </main>
+
+</body>
+
+<script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
+<script>$('#current-year').text(new Date().getFullYear())</script>
+
+</html>

@@ -43,6 +43,37 @@ app.use(function (req, res, next) {
     next();
 });
 
+app.use(function(req, res, next) {
+
+    if (res.statusCode == 404) {
+        if (req.accepts('html')) {
+            res.renderMin('./error/404');
+            return;
+        }
+
+        if (req.accepts('json')) {
+            res.json({ error: 'Internal Server Error' });
+            return;
+        }
+
+        res.type('txt').send('Internal Server Error');
+    } else if (res.statusCode == 500) {
+        if (req.accepts('html')) {
+            res.renderMin('./error/500');
+            return;
+        }
+
+        if (req.accepts('json')) {
+            res.json({ error: 'Not found' });
+            return;
+        }
+
+        res.type('txt').send('Not found');
+    } else {
+        next()
+    }
+  });
+
 app.use('/', require("./routes/default.js"))
 app.use('/static', serveStatic("./public"))
 
