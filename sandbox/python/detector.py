@@ -2,8 +2,8 @@ from darknet import Darknet
 from utils import show_image_w_bboxes_for_server
 import torch
 
-# METHOD = 'yolo_416_coco'
-METHOD = 'yolo_608_coco'
+METHOD = 'yolo_416_coco'
+# METHOD = 'yolo_608_coco'
 
 YOLOV3_WEIGHTS_PATH = '../weights/yolov3.weights'
 YOLOV3_416_CFG_PATH = '../cfg/yolov3_416x416.cfg'
@@ -24,5 +24,5 @@ DEVICE = torch.device('cpu')
 
 if __name__ == "__main__":
     show_image_w_bboxes_for_server(
-        '../../public/wedding.jpg', '../../public', '../archive', '../data/coco.names', '../data/FreeSansBold.ttf', MODEL, DEVICE, 'undefined'
+        '../../public/wedding.jpg', '../../public', '../archive', '../data/coco.names', '../data/FreeSansBold.ttf', MODEL, DEVICE, 'landscape'
     )
