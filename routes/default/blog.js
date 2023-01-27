@@ -183,7 +183,7 @@ router.get('/api/latest', async (req, res, next) => {
 });
 
 router.get('/rss', async (req, res, next) => {
-    axios.get(`https://cms.reeceharris.net/api/articles?fields=title,createdAt,slug`, authHeader)
+    axios.get(`https://cms.reeceharris.net/api/articles?fields=title,createdAt,slug&sort[0]=createdAt:desc`, authHeader)
     .then(response => {
         if (response.data != null) {
             
