@@ -1,6 +1,4 @@
-# Data
-*.db
-/data
+*.weights
 
 # Logs
 logs

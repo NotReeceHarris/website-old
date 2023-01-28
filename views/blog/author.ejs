@@ -1,30 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
-    <!-- SITE META -->
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- SEO TAGS -->
-    <title>Topic <%= topic.attributes.title %></title>
-    <meta name="description" content="View the latest articles from reeceharris.net about <%= topic.attributes.title %>.">
-    <meta name="keywords" content="<%= topic.attributes.title %>">
-    <!-- SOCIAL TAGS -->
-    <meta property="og:site_name" content="( ͡°( ͡° ͜ʖ( ͡° ͜ʖ ͡°)ʖ ͡°) ͡°)">
-    <meta property="og:title" content="Topic <%= topic.attributes.title %>" />
-    <meta property="og:description" content="View the latest articles from reeceharris.net about <%= topic.attributes.title %>.">
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://reeceharris.net/topic/<%= topic.attributes.slug %>" />
-    <meta name="theme-color" content="<%= topic.attributes.color %>">
-    <!-- TWITTER TAGS -->
-    <meta name="twitter:title" content="Topic <%= topic.attributes.title %>">
-    <meta name="twitter:description" content="View the latest articles from reeceharris.net about <%= topic.attributes.title %>.">
-    <meta name="twitter:site" content="@n0treeceharris">
-    <!-- ASSETS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.2/flowbite.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js" ></script>
+        <!-- SITE META -->
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!-- SEO TAGS -->
+        <title>Latest articles</title>
+        <meta name="description" content="View the latest articles from reeceharris.net, our blog covers topics of technoloy from AI to programming.">
+        <meta name="keywords" content="technology, blog, ai, programming">
+        <!-- SOCIAL TAGS -->
+        <meta property="og:site_name" content="( ͡°( ͡° ͜ʖ( ͡° ͜ʖ ͡°)ʖ ͡°) ͡°)">
+        <meta property="og:title" content="Latest articles" />
+        <meta property="og:description" content="View the latest articles from reeceharris.net, our blog covers topics of technoloy from AI to programming.">
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://reeceharris.net/blogs" />
+        <!-- TWITTER TAGS -->
+        <meta name="twitter:title" content="Latest articles">
+        <meta name="twitter:description" content="View the latest articles from reeceharris.net, our blog covers topics of technoloy from AI to programming.">
+        <!-- ASSETS -->
+        <script src="https://cdn.tailwindcss.com"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.2/flowbite.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js" ></script>
 </head>
 
 <body class="bg-[#222222]">
@@ -32,9 +29,21 @@
 
     <main class="mt-12" >
         <div class="py-8 px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-6">
-            <div class="mx-auto mb-8">
-                <h2 class="mb-4 text-3xl lg:text-4xl tracking-tight font-extrabold text-white decoration-[<%= topic.attributes.color %>] underline">#<%= topic.attributes.title %></h2>
-                <p class="font-light text-gray-200 sm:text-xl"><%= topic.attributes.description %></p>
+            <div class="mx-auto  mb-8">
+                <address class="flex items-center mb-6 not-italic border-b py-6 border-[#444]">
+                    <div class="inline-flex items-center mr-3 text-sm ">
+                        <img class="mr-4 w-16 h-16 rounded-full" src="https://cms.reeceharris.net/<%= author.data.attributes.portrait.data.attributes.url %>" alt="<%= author.data.attributes.portrait.data.attributes.alternativeText %>">
+                        <div>
+                            <span rel="author" class="text-xl font-bold text-white "><%= author.data.attributes.fullname %></span>
+                            <p class="text-base font-light text-gray-400 "><%= author.data.attributes.headliner.substr(0,70) %><%= author.data.attributes.headliner.length >= 70 ? '...' : '' %></p>
+                            <div class="flex gap-x-3 mt-3">
+                                <% for(var i=0; i<author.data.attributes.social.length; i++) {%>
+                                    <a href="<%= author.data.attributes.social[i].Url %>"  target="_blank"><img src="https://cms.reeceharris.net<%= author.data.attributes.social[i].Logo.data.attributes.url %>" alt="<%= author.data.attributes.social[i].Logo.data.attributes.alternativeText %>" width="<%= author.data.attributes.social[i].Logo.data.attributes.width %>" height="<%= author.data.attributes.social[i].Logo.data.attributes.height %>"></a>
+                                <% } %>
+                            </div>
+                        </div>
+                    </div>
+                </address>
             </div> 
             <div class="grid gap-8 md:grid-cols-2 xl:grid-cols-3">
                 <% for(var i=0; i<articles.data.length; i++) {%>

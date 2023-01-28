@@ -4,6 +4,7 @@
 const express = require('express');
 const router = express.Router();
 const axios = require('axios');
+const { query, json } = require('express');
 
 const authHeader = {
     headers: {
@@ -40,18 +41,58 @@ router.get('/blog/:slug', async (req, res, next) => {
                     }
                 })
                 .catch(error => {
-                    res.renderMin('./error/500', {error:error});
+                    if (error.response.status == 404) {
+                        res.renderMin('./error/404', {error:error});
+                    } else {
+                        res.renderMin('./error/500', {error:error});
+                    }
                 });
             } else {
                 res.renderMin('./blog/notfound');
             }
         })
         .catch(error => {
-            res.renderMin('./error/500', {error:error});
+            if (error.response.status == 404) {
+                res.renderMin('./error/404', {error:error});
+            } else {
+                res.renderMin('./error/500', {error:error});
+            }
         });
     } else {
         res.redirect('/')
     }
+});
+
+router.get('/author/:id', async (req, res, next) => {
+        axios.get(`https://cms.reeceharris.net/api/articles?fields=title,description,slug,publishedAt&populate=banner,author&sort[0]=createdAt:desc&filters[author][id]=${req.params.id}`, authHeader)
+        .then(article => {
+            if (article.data != null) {
+                axios.get(`https://cms.reeceharris.net/api/authors/${req.params.id}?populate=social.Logo,portrait`, authHeader)
+                .then(author => {
+                    if (author.data != null) {
+                        res.renderMin('./blog/author', {articles: article.data, author: author.data});
+                    } else {
+                        res.renderMin('./blog/notfound');
+                    }
+                })
+                .catch(error => {
+                    if (error.response.status == 404) {
+                        res.renderMin('./error/404', {error:error});
+                    } else {
+                        res.renderMin('./error/500', {error:error});
+                    }
+                });
+            } else {
+                res.renderMin('./blog/notfound');
+            }
+        })
+        .catch(error => {
+            if (error.response.status == 404) {
+                res.renderMin('./error/404', {error:error});
+            } else {
+                res.renderMin('./error/500', {error:error});
+            }
+        });
 });
 
 router.get('/topic/:topic', async (req, res, next) => {
@@ -68,43 +109,81 @@ router.get('/topic/:topic', async (req, res, next) => {
                     }
                 })
                 .catch(error => {
-                    res.renderMin('./error/500', {error:error});
+                    if (error.response.status == 404) {
+                        res.renderMin('./error/404', {error:error});
+                    } else {
+                        res.renderMin('./error/500', {error:error});
+                    }
                 });
             } else {
                 res.renderMin('./blog/notfound');
             }
         })
         .catch(error => {
-            res.renderMin('./error/500', {error:error});
+            if (error.response.status == 404) {
+                res.renderMin('./error/404', {error:error});
+            } else {
+                res.renderMin('./error/500', {error:error});
+            }
         });
     } else {
         res.redirect('/')
     }
 });
 
-router.get('/api/blogs', async (req, res, next) => {
-    axios.get(`https://cms.reeceharris.net/api/articles?fields=title,slug,description,content,createdAt&populate=banner&sort[0]=createdAt:desc`, authHeader)
-    .then(response => {
-        if (response.data != null) {
-            res.json(response.data)
-        } else {
-            res.json(response.data)
-        }
-    })
-    .catch(error => {
-        res.json(`{
-            "data": null,
-            "error": {
-                "status": 500,
-                "name": "InternalServerError",
-                "message": "Internal Server Error"
-            }
-        }`)
+router.get('/api/related', async (req, res, next) => {
+
+    let topicQuery = ''
+
+    req.query.topic.split(',').forEach(element => {
+        topicQuery += `&filters[topics][slug]=${element}`
     });
+
+    if (req.query.topic == null) {} else {
+        axios.get(`https://cms.reeceharris.net/api/articles?fields=title,slug,description,content,createdAt&populate=banner&sort[0]=createdAt:desc&pagination[limit]=3&filters[slug][$not]=${req.query.current}${topicQuery}`, authHeader)
+        .then(response => {
+            if (response.data != null) {
+                res.json(response.data)
+            } else {
+                res.json(response.data)
+            }
+        })
+        .catch(error => {
+            res.json(`{
+                "data": null,
+                "error": {
+                    "status": 500,
+                    "name": "InternalServerError",
+                    "message": "Internal Server Error"
+                }
+            }`)
+        });
+    }
+});
+
+router.get('/api/latest', async (req, res, next) => {
+        axios.get(`https://cms.reeceharris.net/api/articles?fields=title,slug,description,content,createdAt&populate=banner&sort[0]=createdAt:desc&pagination[limit]=3`, authHeader)
+        .then(response => {
+            if (response.data != null) {
+                res.json(response.data)
+            } else {
+                res.json(response.data)
+            }
+        })
+        .catch(error => {
+            res.json(`{
+                "data": null,
+                "error": {
+                    "status": 500,
+                    "name": "InternalServerError",
+                    "message": "Internal Server Error"
+                }
+            }`)
+        });
 });
 
 router.get('/rss', async (req, res, next) => {
-    axios.get(`https://cms.reeceharris.net/api/articles?fields=title,createdAt,slug`, authHeader)
+    axios.get(`https://cms.reeceharris.net/api/articles?fields=title,createdAt,slug&sort[0]=createdAt:desc`, authHeader)
     .then(response => {
         if (response.data != null) {
             
