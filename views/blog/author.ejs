@@ -6,18 +6,18 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <!-- SEO TAGS -->
-        <title>Latest articles</title>
-        <meta name="description" content="View the latest articles from reeceharris.net, our blog covers topics of technoloy from AI to programming.">
-        <meta name="keywords" content="technology, blog, ai, programming">
+        <title>View <%= author.data.attributes.fullname %>(s) articles</title>
+        <meta name="description" content="View the latest articles writen by <%= author.data.attributes.fullname %>.">
         <!-- SOCIAL TAGS -->
         <meta property="og:site_name" content="( ͡°( ͡° ͜ʖ( ͡° ͜ʖ ͡°)ʖ ͡°) ͡°)">
-        <meta property="og:title" content="Latest articles" />
-        <meta property="og:description" content="View the latest articles from reeceharris.net, our blog covers topics of technoloy from AI to programming.">
+        <meta property="og:title" content="View <%= author.data.attributes.fullname %>(s) articles" />
+        <meta property="og:description" content="View the latest articles writen by <%= author.data.attributes.fullname %>.">
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://reeceharris.net/blogs" />
+        <meta property="og:url" content="https://reeceharris.net/author/<%= author.data.id %>" />
+        <meta name="theme-color" content="#fff">
         <!-- TWITTER TAGS -->
-        <meta name="twitter:title" content="Latest articles">
-        <meta name="twitter:description" content="View the latest articles from reeceharris.net, our blog covers topics of technoloy from AI to programming.">
+        <meta name="twitter:title" content="View <%= author.data.attributes.fullname %>(s) articles">
+        <meta name="twitter:description" content="View the latest articles writen by <%= author.data.attributes.fullname %>.">
         <!-- ASSETS -->
         <script src="https://cdn.tailwindcss.com"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.2/flowbite.min.js"></script>
