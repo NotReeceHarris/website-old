@@ -49,21 +49,20 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/stackoverflow-dark.min.css" integrity="sha512-Xn1b0y/BrCD7usnEh6r9CcKxHXFVleVUjGDnfc95zDDwFUwtOz3lJC/XtJcuLRNyrMQJEEToFfwjC9Ue/aWY/g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
     <link rel="stylesheet" href="/static/blog.css">
-    <script src="/static/cube.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
 
 </head>
 
-    <body class="bg-[#222222]">
+    <body class="bg-[#222222] overflow-hidden">
         
-        <div id="page-loader" class="hidden bg-[#222222] w-screen h-screen fixed z-[103] top-0">
+        <div id="page-loader" class="bg-[#222222] w-screen h-screen fixed z-[103] top-0">
             <div id="cube-anim" class="text-white">
             </div>
         </div>
         <%- include('../components/header.ejs'); %>
         <div class="w-full top-0 fixed z-[102]" id="page-progress"><div id="progress-bar" class="w-0 h-[2px] bg-white" style="transition: width 0.5s;"></div></div>
         
-        <main class="mt-16 pb-16 pt-8 md:pt-16 lg:pb-18 px-6 ">
+        <main class="mt-12 pb-16 pt-8 md:pt-16 lg:pb-18 px-6 ">
             <div class="flex  mx-auto max-w-screen-lg">
                 <article class="mx-auto w-full format format-sm sm:format-base lg:format-lg format-blue text-gray-300">
                     <header class="mb-4 lg:mb-6 not-format">
@@ -77,12 +76,21 @@
                             </div>
                         </div>
                         <address class="flex items-center mb-6 not-italic border-b border-t py-6 border-[#444]">
-                            <div class="inline-flex items-center mr-3 text-sm ">
+                            <div class="inline-flex items-center mr-3 text-sm w-full">
                                 <img class="mr-4 w-16 h-16 rounded-full" src="https://cms.reeceharris.net/<%= author.data.attributes.portrait.data.attributes.url %>" alt="<%= author.data.attributes.portrait.data.attributes.alternativeText %>">
-                                <div>
-                                    <a href="/author/<%= author.data.id %>" rel="author" class="text-xl font-bold text-white "><%= author.data.attributes.fullname %></a>
-                                    <p class="text-base font-light text-gray-400 "><%= author.data.attributes.headliner.substr(0,70) %><%= author.data.attributes.headliner.length >= 70 ? '...' : '' %></p>
-                                    <p class="text-base font-light text-gray-200 "><time pubdate datetime="<%= new Date(post.publishedAt).getFullYear() %>-<%= new Date(post.publishedAt).getMonth() + 1%>-<%= new Date(post.publishedAt).getDate() %>" title="<%= new Date(post.publishedAt).toLocaleString('en-US', { month: 'short' }) %> <%= new Date(post.publishedAt).getDate() %>, <%= new Date(post.publishedAt).getFullYear() %>"><%= new Date(post.publishedAt).toLocaleString('en-US', { month: 'long' }) %> <%= new Date(post.publishedAt).getDate() + (new Date(post.publishedAt).getDate() > 0 ? ['th', 'st', 'nd', 'rd'][(new Date(post.publishedAt).getDate() > 3 && new Date(post.publishedAt).getDate() < 21) || new Date(post.publishedAt).getDate() % 10 > 3 ? 0 : new Date(post.publishedAt).getDate() % 10] : '') %>, <%= new Date(post.publishedAt).getFullYear() %></time></p> <!-- Jan. 23, 2023 -->
+                                <div class="md:flex justify-between w-full">
+                                    <div>
+                                        <a href="/author/<%= author.data.id %>" rel="author" class="text-xl font-bold text-white "><%= author.data.attributes.fullname %></a>
+                                        <p class="text-base font-light text-gray-400 "><%= author.data.attributes.headliner.substr(0,70) %><%= author.data.attributes.headliner.length >= 70 ? '...' : '' %></p>
+                                        <p class="text-base font-light text-gray-200 "><time pubdate datetime="<%= new Date(post.publishedAt).getFullYear() %>-<%= new Date(post.publishedAt).getMonth() + 1%>-<%= new Date(post.publishedAt).getDate() %>" title="<%= new Date(post.publishedAt).toLocaleString('en-US', { month: 'short' }) %> <%= new Date(post.publishedAt).getDate() %>, <%= new Date(post.publishedAt).getFullYear() %>"><%= new Date(post.publishedAt).toLocaleString('en-US', { month: 'long' }) %> <%= new Date(post.publishedAt).getDate() + (new Date(post.publishedAt).getDate() > 0 ? ['th', 'st', 'nd', 'rd'][(new Date(post.publishedAt).getDate() > 3 && new Date(post.publishedAt).getDate() < 21) || new Date(post.publishedAt).getDate() % 10 > 3 ? 0 : new Date(post.publishedAt).getDate() % 10] : '') %>, <%= new Date(post.publishedAt).getFullYear() %></time></p> <!-- Jan. 23, 2023 -->
+                                    </div>
+                                    <div class="flex gap-x-4 mt-3 md:mt-6">
+                                        <span id="copy-link" class="cursor-pointer"><img src="/static/share.svg" alt="" srcset=""></span>
+                                        <a target="_blank" href="https://www.LinkedIn.com/shareArticle?mini=true&url=https://reeceharris.net/blog/<%= post.slug %>&title=<%= post.title %>&summary=<%= post.description %>&source=reeceharris.net"><img src="/static/linkedin.svg" alt="" srcset=""></a>
+                                        <a target="_blank" href="https://twitter.com/intent/tweet?text=View the latest article on <%= post.title %> 
+                                            
+                                            View the article here: https://reeceharris.net/blog/<%= post.slug %>"><img src="/static/twitter.svg" alt="" srcset=""></a>
+                                    </div>
                                 </div>
                             </div>
                         </address>
@@ -159,14 +167,17 @@
         <%- include('../components/footer.ejs'); %>
 
         <script src="/static/blog.js"></script>
+        <script src="/static/cube.js"></script>
 
         <script>
 
-            $('#page-loader').removeClass('hidden')
-            document.getElementById("page-loader").classList.remove("hidden");
-
             document.addEventListener('DOMContentLoaded', function() {
+                $('body').removeClass('overflow-hidden')
                     $('#page-loader').remove()
+                setTimeout(function () {
+                    $('body').removeClass('overflow-hidden')
+                    $('#page-loader').remove()
+                }, 1000)
             });
 
             function readingTime(content) {
