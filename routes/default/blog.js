@@ -140,7 +140,7 @@ router.get('/api/related', async (req, res, next) => {
     });
 
     if (req.query.topic == null) {} else {
-        axios.get(`https://cms.reeceharris.net/api/articles?fields=title,slug,description,content,createdAt&populate=banner&sort[0]=createdAt:desc&pagination[limit]=3&filters[slug][$not]=${req.query.current}${topicQuery}`, authHeader)
+        axios.get(`https://cms.reeceharris.net/api/articles?fields=title,slug,description,content,publishedAt&populate=banner&sort[0]=publishedAt:desc&pagination[limit]=3&filters[slug][$not]=${req.query.current}${topicQuery}`, authHeader)
         .then(response => {
             if (response.data != null) {
                 res.json(response.data)
@@ -162,7 +162,7 @@ router.get('/api/related', async (req, res, next) => {
 });
 
 router.get('/api/latest', async (req, res, next) => {
-        axios.get(`https://cms.reeceharris.net/api/articles?fields=title,slug,description,content,createdAt&populate=banner&sort[0]=createdAt:desc&pagination[limit]=3`, authHeader)
+        axios.get(`https://cms.reeceharris.net/api/articles?fields=title,slug,description,content,publishedAt&populate=banner&sort[0]=publishedAt:desc&pagination[limit]=3`, authHeader)
         .then(response => {
             if (response.data != null) {
                 res.json(response.data)
@@ -183,7 +183,7 @@ router.get('/api/latest', async (req, res, next) => {
 });
 
 router.get('/rss', async (req, res, next) => {
-    axios.get(`https://cms.reeceharris.net/api/articles?fields=title,createdAt,slug&sort[0]=createdAt:desc`, authHeader)
+    axios.get(`https://cms.reeceharris.net/api/articles?fields=title,createdAt,slug&sort[0]=publishedAt:desc&pagination[limit]=10`, authHeader)
     .then(response => {
         if (response.data != null) {
             
