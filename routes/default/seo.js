@@ -6,7 +6,7 @@ const router = express.Router();
 
 router.get('/robots.txt', async (req, res, next) => {
     res.type('text/plain')
-    res.send("User-agent: *\nDisallow: /");
+    res.send("User-agent: *\Allow: /");
 });
 
 router.get('/sitemap.xml', async (req, res, next) => {
