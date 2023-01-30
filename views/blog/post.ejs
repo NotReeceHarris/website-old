@@ -4,13 +4,15 @@
     <!-- SITE META -->
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="publisher" content="reeceharris.net">  
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="all">
     <!-- SEO TAGS -->
     <title><%= post.title %></title>
     <link rel="canonical" href="https://reeceharris.net/blog/<%= post.slug %>">
     <meta name="description" content="<%= post.description %>">
     <meta name="author" content="<%= author.data.attributes.fullname %>">
-    <meta name="keywords" content="<%= post.tags %>">
+    <meta name="keywords" content="<% for(var i=0; i<post.topics.data.length; i++) {%><%= post.topics.data[i].attributes.title %>,<% } %>">
     <!-- SOCIAL TAGS -->
     <meta property="og:site_name" content="( ͡°( ͡° ͜ʖ( ͡° ͜ʖ ͡°)ʖ ͡°) ͡°)">
     <meta property="og:title" content="<%= post.title %>" />
@@ -86,11 +88,11 @@
                                         <p class="text-base font-light text-gray-200 "><time pubdate datetime="<%= new Date(post.publishedAt).getFullYear() %>-<%= new Date(post.publishedAt).getMonth() + 1%>-<%= new Date(post.publishedAt).getDate() %>" title="<%= new Date(post.publishedAt).toLocaleString('en-US', { month: 'short' }) %> <%= new Date(post.publishedAt).getDate() %>, <%= new Date(post.publishedAt).getFullYear() %>"><%= new Date(post.publishedAt).toLocaleString('en-US', { month: 'long' }) %> <%= new Date(post.publishedAt).getDate() + (new Date(post.publishedAt).getDate() > 0 ? ['th', 'st', 'nd', 'rd'][(new Date(post.publishedAt).getDate() > 3 && new Date(post.publishedAt).getDate() < 21) || new Date(post.publishedAt).getDate() % 10 > 3 ? 0 : new Date(post.publishedAt).getDate() % 10] : '') %>, <%= new Date(post.publishedAt).getFullYear() %></time></p> <!-- Jan. 23, 2023 -->
                                     </div>
                                     <div class="flex gap-x-4 mt-3 md:mt-6">
-                                        <span id="copy-link" class="cursor-pointer"><img src="/static/share.svg" alt="" srcset=""></span>
-                                        <a target="_blank" href="https://www.LinkedIn.com/shareArticle?mini=true&url=https://reeceharris.net/blog/<%= post.slug %>&title=<%= post.title %>&summary=<%= post.description %>&source=reeceharris.net"><img src="/static/linkedin.svg" alt="" srcset=""></a>
+                                        <span id="copy-link" class="cursor-pointer"><img src="/static/share.svg" alt="Share to clipboard" srcset=""></span>
+                                        <a target="_blank" href="https://www.LinkedIn.com/shareArticle?mini=true&url=https://reeceharris.net/blog/<%= post.slug %>&title=<%= post.title %>&summary=<%= post.description %>&source=reeceharris.net"><img src="/static/linkedin.svg" alt="Share to linkedin" srcset=""></a>
                                         <a target="_blank" href="https://twitter.com/intent/tweet?text=View the latest article on <%= post.title %> 
                                             
-                                            View the article here: https://reeceharris.net/blog/<%= post.slug %>"><img src="/static/twitter.svg" alt="" srcset=""></a>
+                                            View the article here: https://reeceharris.net/blog/<%= post.slug %>"><img src="/static/twitter.svg" alt="Share to twitter" srcset=""></a>
                                     </div>
                                 </div>
                             </div>
