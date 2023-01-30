@@ -21,10 +21,7 @@
     <!-- ASSETS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.2/flowbite.min.js"></script>
-
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/stackoverflow-dark.min.css" integrity="sha512-Xn1b0y/BrCD7usnEh6r9CcKxHXFVleVUjGDnfc95zDDwFUwtOz3lJC/XtJcuLRNyrMQJEEToFfwjC9Ue/aWY/g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
-
+    <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="/static/blog.css">
 
 </head>
@@ -54,7 +51,18 @@
 
 
 <%- include('../components/footer.ejs'); %>
-<script src="https://reeceharris.net/static/script.js"></script>
+<script>
+    $('#content h1, #content h2, #content h3, #content h4, #content h5, #content h6').each(function() {
+        var text = $(this).text();
+        var id = text.toLowerCase().replace(/[^a-z0-9]+/g, "-");
+        $(this).attr("id", id);
+      });
+    $('#content h1, #content h2, #content h3, #content h4, #content h5, #content h6').click(function() {
+        var text = $(this).attr('id');
+        console.log($(this))
+        window.location.hash = text;
+    })
+</script>
 
 </body>
 </html>
