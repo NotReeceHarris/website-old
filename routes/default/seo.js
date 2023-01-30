@@ -26,6 +26,10 @@ router.get('/sitemap.xml', async (req, res, next) => {
             <lastmod>2023-01-29T07:56:12+03:00</lastmod>
         </url>
         <url>
+            <loc>https://reeceharris.net/sandbox/detector</loc>
+            <lastmod>2023-01-29T16:12:20+03:00</lastmod>
+        </url>
+        <url>
             <loc>https://reeceharris.net/privacy-policy</loc>
             <lastmod>2023-01-29T07:56:12+03:00</lastmod>
         </url>

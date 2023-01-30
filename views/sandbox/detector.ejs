@@ -6,17 +6,17 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- SEO TAGS -->
-    <title>Sandbox</title>
-    <meta name="description" content="Experiment with the interactive sandbox, where you can test cutting-edge technology and tools.">
+    <title>Sandbox | AI Object detection</title>
+    <meta name="description" content="This object detector is able to identify and locate objects within an image, and will provide the class the model believes the object belongs to. Keep in mind that the model is trained on 80 specific classes.">
     <!-- SOCIAL TAGS -->
     <meta property="og:site_name" content="( ͡°( ͡° ͜ʖ( ͡° ͜ʖ ͡°)ʖ ͡°) ͡°)">
-    <meta property="og:title" content="Sandbox" />
-    <meta property="og:description" content="Experiment with the interactive sandbox, where you can test cutting-edge technology and tools.">
+    <meta property="og:title" content="Sandbox | AI Object detection" />
+    <meta property="og:description" content="This object detector is able to identify and locate objects within an image, and will provide the class the model believes the object belongs to. Keep in mind that the model is trained on 80 specific classes.">
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://reeceharris.net/sandbox" />
+    <meta property="og:url" content="https://reeceharris.net/sandbox/detector" />
     <!-- TWITTER TAGS -->
-    <meta name="twitter:title" content="Sandbox">
-    <meta name="twitter:description" content="Experiment with the interactive sandbox, where you can test cutting-edge technology and tools.">
+    <meta name="twitter:title" content="Sandbox | AI Object detection">
+    <meta name="twitter:description" content="This object detector is able to identify and locate objects within an image, and will provide the class the model believes the object belongs to. Keep in mind that the model is trained on 80 specific classes.">
     <!-- ASSETS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.2/flowbite.min.js"></script>
@@ -72,22 +72,6 @@
 <script src="https://www.google.com/recaptcha/api.js?render=6LckWSkkAAAAAPXSePkWq0nb7sWXwRSpZmCWuNsL"></script>
 <script src="https://cdn.jsdelivr.net/npm/exif-js"></script>
 <script src="/static/detector.js"></script>
-<script>
-
-$.ajax({
- url: 'https://ai.reeceharris.net/status_check',
- type: 'GET',
- success: function() {
-    $('#status').addClass('text-green-400')
-    $('#status').text('online')
- },
- error: function() {
-    $('#status').addClass('text-red-400')
-    $('#status').text('offline')
- }
-});
-
-</script>
 
 <script>$('#current-year').text(new Date().getFullYear())</script>
 
