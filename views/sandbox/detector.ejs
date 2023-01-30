@@ -76,6 +76,13 @@
 <script src="https://cdn.jsdelivr.net/npm/exif-js"></script>
 <script src="/static/detector.js"></script>
 
+<script>
+    $('#preview').click('img', function() {
+        $('#preview').toggleClass('fixed').toggleClass('flex').toggleClass('cursor-pointer').toggleClass('items-center').toggleClass('justify-center').toggleClass('h-screen').toggleClass('w-screen').toggleClass('top-0').toggleClass('left-0').toggleClass('z-[200]').toggleClass('bg-[#000000c2]')
+        $('#preview img').toggleClass('py-6').toggleClass('px-6').toggleClass('cursor-pointer');
+    })
+</script>
+
 <script>$('#current-year').text(new Date().getFullYear())</script>
 
 </html>
