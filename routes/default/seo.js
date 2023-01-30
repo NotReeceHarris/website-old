@@ -9,6 +9,10 @@ router.get('/robots.txt', async (req, res, next) => {
     res.send("User-agent: *\nAllow: /");
 });
 
+router.get('/faq', async (req, res, next) => {
+    res.renderMin('./landing/faq');
+});
+
 router.get('/sitemap.xml', async (req, res, next) => {
     res.set('Content-Type', 'text/xml');
     res.send(`<?xml version="1.0" encoding="UTF-8"?>
@@ -31,6 +35,10 @@ router.get('/sitemap.xml', async (req, res, next) => {
         </url>
         <url>
             <loc>https://reeceharris.net/privacy-policy</loc>
+            <lastmod>2023-01-29T07:56:12+03:00</lastmod>
+        </url>
+        <url>
+            <loc>https://reeceharris.net/faq</loc>
             <lastmod>2023-01-29T07:56:12+03:00</lastmod>
         </url>
     </urlset>
