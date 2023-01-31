@@ -149,7 +149,7 @@ router.get('/topic/:topic', async (req, res, next) => {
     }
 });
 
-router.get('/api/related', async (req, res, next) => {
+/* router.get('/api/related', async (req, res, next) => {
 
     let topicQuery = ''
 
@@ -189,6 +189,64 @@ router.get('/api/related', async (req, res, next) => {
                 }
             }`)
         });
+    }
+}); */
+
+router.get('/api/related', async (req, res, next) => {
+
+    let topicQuery = ''
+
+    req.query.topic.split(',').forEach(element => {
+        topicQuery += `&filters[topics][slug]=${element}`
+    });
+
+    if (req.query.topic == null) {} else {
+        axios.get(`https://cms.reeceharris.net/api/articles?fields=title,slug,description,content,publishedAt&populate=banner&sort[0]=publishedAt:desc&pagination[limit]=3&filters[slug][$not]=${req.query.current}${topicQuery}`, authHeader)
+            .then(related => {
+
+                let filterOut =  ''
+                related.data.data.forEach(element => {
+                    filterOut += `&filters[$not][slug]=${element.attributes.slug}`
+                })
+
+                let url = `https://cms.reeceharris.net/api/articles?fields=title,slug,description,content,publishedAt&populate=banner&sort[0]=publishedAt:desc&pagination[limit]=3&sort[0]=publishedAt:desc&filters[slug][$not]=${req.query.current}${filterOut}`
+                if (related.data.data.length == 3) {
+                    url = `https://cms.reeceharris.net/api/articles?fields=title,slug,description,content,publishedAt&populate=banner&sort[0]=publishedAt:desc&pagination[limit]=1&sort[0]=publishedAt:desc&filters[slug][$not]=${req.query.current}${filterOut}`
+                }
+
+                console.log(url)
+                
+                axios.get(url, authHeader)
+                .then(latest => {
+                    related.data.data.shift()
+                    if (latest.data != null) {
+                        res.json({data:latest.data.data.concat(related.data.data)})
+                    } else {
+                        res.json({data:latest.data.data.concat(related.data.data)})
+                    }
+                })
+                .catch(error => {console.log(error)
+                    res.json(`{
+                        "data": null,
+                        "error": {
+                            "status": 500,
+                            "name": "InternalServerError",
+                            "message": "Internal Server Error"
+                        }
+                    }`)
+                });
+            })
+            .catch(error => {console.log(error)
+                res.json(`{
+                    "data": null,
+                    "error": {
+                        "status": 500,
+                        "name": "InternalServerError",
+                        "message": "Internal Server Error"
+                    }
+                }`)
+            });
+        
     }
 });
 
