@@ -158,13 +158,26 @@ router.get('/api/related', async (req, res, next) => {
     });
 
     if (req.query.topic == null) {} else {
-        axios.get(`https://cms.reeceharris.net/api/articles?fields=title,slug,description,content,publishedAt&populate=banner&sort[0]=publishedAt:desc&pagination[limit]=3&filters[slug][$not]=${req.query.current}${topicQuery}`, authHeader)
-        .then(response => {
-            if (response.data != null) {
-                res.json(response.data)
-            } else {
-                res.json(response.data)
-            }
+        axios.get(`https://cms.reeceharris.net/api/articles?fields=title,slug,description,content,publishedAt&populate=banner&sort[0]=publishedAt:desc&pagination[limit]=1&sort[0]=publishedAt:desc&filters[slug][$not]=${req.query.current}`, authHeader)
+        .then(latest => {
+            axios.get(`https://cms.reeceharris.net/api/articles?fields=title,slug,description,content,publishedAt&populate=banner&sort[0]=publishedAt:desc&pagination[limit]=3&filters[slug][$not]=${req.query.current}&[$and][slug][$not]=${latest.data.data[0].attributes.slug}${topicQuery}`, authHeader)
+            .then(response => {
+                if (response.data != null) {
+                    res.json({data:latest.data.data.concat(response.data.data)})
+                } else {
+                    res.json({data:latest.data.data.concat(response.data.data)})
+                }
+            })
+            .catch(error => {
+                res.json(`{
+                    "data": null,
+                    "error": {
+                        "status": 500,
+                        "name": "InternalServerError",
+                        "message": "Internal Server Error"
+                    }
+                }`)
+            });
         })
         .catch(error => {
             res.json(`{
