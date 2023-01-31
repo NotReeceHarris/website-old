@@ -3,6 +3,7 @@
 
 const express = require('express');
 const router = express.Router();
+var path = require('path');
 
 router.get('/robots.txt', async (req, res, next) => {
     res.type('text/plain')
@@ -11,6 +12,14 @@ router.get('/robots.txt', async (req, res, next) => {
 
 router.get('/faq', async (req, res, next) => {
     res.renderMin('./landing/faq');
+});
+
+router.get('/favicon.ico', async (req, res, next) => {
+    res.type('image/png')
+    res.sendFile('./favicon.png', {
+            root: path.join(__dirname)
+        }, function (err) {
+    });
 });
 
 router.get('/sitemap.xml', async (req, res, next) => {
