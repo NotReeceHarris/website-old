@@ -40,6 +40,7 @@ app.use(
 
 app.use(function (req, res, next) {
     res.setHeader('X-Powered-By', '¯\\(º_o)/¯');
+    res.locals.url = req.protocol + '://' + req.get('host')  + req.path
     next();
 });
 

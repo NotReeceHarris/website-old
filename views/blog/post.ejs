@@ -9,7 +9,7 @@
     <meta name="robots" content="all">
     <!-- SEO TAGS -->
     <title><%= post.title %></title>
-    <link rel="canonical" href="https://reeceharris.net/blog/<%= post.slug %>">
+    <link rel="canonical" href="<%= locals.url %>">
     <meta name="description" content="<%= post.description %>">
     <meta name="author" content="<%= author.data.attributes.fullname %>">
     <meta name="keywords" content="<% for(var i=0; i<post.topics.data.length; i++) {%><%= post.topics.data[i].attributes.title %>,<% } %>">
@@ -18,7 +18,7 @@
     <meta property="og:title" content="<%= post.title %>" />
     <meta property="og:description" content="<%= post.description %>">
     <meta property="og:type" content="article" />
-    <meta property="og:url" content="https://reeceharris.net/blog/<%= post.slug %>" />
+    <meta property="og:url" content="<%= locals.url %>" />
     <meta property="og:image" content="https://cms.reeceharris.net/<%= post.banner.data.attributes.url %>" />
     <meta name="theme-color" content="#ffffff">
     <!-- TWITTER TAGS -->

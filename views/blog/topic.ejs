@@ -10,7 +10,7 @@
     <meta name="robots" content="all">
     <!-- SEO TAGS -->
     <title>Topic <%= topic.attributes.title %></title>
-    <link rel="canonical" href="https://reeceharris.net/topic/<%= topic.attributes.slug %>">
+    <link rel="canonical" href="<%= locals.url %>">
     <meta name="description" content="View the latest articles from reeceharris.net about <%= topic.attributes.title %>.">
     <meta name="keywords" content="<%= topic.attributes.title %>">
     <!-- SOCIAL TAGS -->
@@ -18,7 +18,7 @@
     <meta property="og:title" content="Topic <%= topic.attributes.title %>" />
     <meta property="og:description" content="View the latest articles from reeceharris.net about <%= topic.attributes.title %>.">
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://reeceharris.net/topic/<%= topic.attributes.slug %>" />
+    <meta property="og:url" content="<%= locals.url %>" />
     <meta name="theme-color" content="<%= topic.attributes.color %>">
     <!-- TWITTER TAGS -->
     <meta name="twitter:title" content="Topic <%= topic.attributes.title %>">
