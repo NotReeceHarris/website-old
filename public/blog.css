@@ -65,6 +65,11 @@
     padding: 15px;
 }
 
+#content details {
+    cursor: pointer;
+    margin-top:0.5rem;
+}
+
 #content ul li {
     padding-bottom: 10px;
 }
