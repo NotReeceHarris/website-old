@@ -1,49 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <!-- SITE META -->
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="publisher" content="reeceharris.net">  
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="robots" content="all">
-    <!-- SEO TAGS -->
-    <title>Sandbox</title>
-    <link rel="canonical" href="<%= locals.url %>">
-    <meta name="description" content="Experiment with the interactive sandbox, where you can test cutting-edge technology and tools.">
-    <!-- SOCIAL TAGS -->
-    <meta property="og:site_name" content="( ͡°( ͡° ͜ʖ( ͡° ͜ʖ ͡°)ʖ ͡°) ͡°)">
-    <meta property="og:title" content="Sandbox" />
-    <meta property="og:description" content="Experiment with the interactive sandbox, where you can test cutting-edge technology and tools.">
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="<%= locals.url %>" />
-    <!-- TWITTER TAGS -->
-    <meta name="twitter:title" content="Sandbox">
-    <meta name="twitter:description" content="Experiment with the interactive sandbox, where you can test cutting-edge technology and tools.">
-    <!-- ASSETS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.2/flowbite.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
+    <head>
+        <!-- SITE META -->
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="publisher" content="reeceharris.net">  
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="robots" content="all">
+        <!-- SEO TAGS -->
+        <title>Sandbox</title>
+        <link rel="canonical" href="<%= locals.url %>">
+        <meta name="description" content="Experiment with the interactive sandbox, where you can test cutting-edge technology and tools.">
+        <!-- SOCIAL TAGS -->
+        <meta property="og:site_name" content="( ͡°( ͡° ͜ʖ( ͡° ͜ʖ ͡°)ʖ ͡°) ͡°)">
+        <meta property="og:title" content="Sandbox" />
+        <meta property="og:description" content="Experiment with the interactive sandbox, where you can test cutting-edge technology and tools.">
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="<%= locals.url %>" />
+        <!-- TWITTER TAGS -->
+        <meta name="twitter:title" content="Sandbox">
+        <meta name="twitter:description" content="Experiment with the interactive sandbox, where you can test cutting-edge technology and tools.">
+        <!-- ASSETS -->
+        <script src="https://cdn.tailwindcss.com"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.2/flowbite.min.js"></script>
+        <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
+    </head>
 
-</head>
+    <body class="bg-[#222222]">
+        
+        <%- include('../components/header.ejs'); %>
 
-<body class="bg-[#222222]">
-    <%- include('../components/header.ejs'); %>
+        <section class="pt-[5rem]">
+            <div class="py-8 px-4 mx-auto max-w-screen-md text-center lg:py-16 lg:px-12">
+                <img class="hidden md:block" src="/static/hammer-art.svg" alt="">
+                <h1 class="mb-4 text-4xl font-bold tracking-tight leading-none text-white lg:mb-6 md:text-5xl xl:text-6xl">Under Maintenance</h1>
+                <p class="font-light text-white md:text-lg xl:text-xl">We are currently working on this page, please check back later.</p>
+            </div>
+        </section>
+        
+        <%- include('../components/footer.ejs'); %>
 
-    <section class="pt-[5rem]">
-        <div class="py-8 px-4 mx-auto max-w-screen-md text-center lg:py-16 lg:px-12">
-            <img class="hidden md:block" src="/static/hammer-art.svg" alt="">
-            <h1 class="mb-4 text-4xl font-bold tracking-tight leading-none text-white lg:mb-6 md:text-5xl xl:text-6xl">Under Maintenance</h1>
-            <p class="font-light text-white md:text-lg xl:text-xl">We are currently working on this page, please check back later.</p>
-        </div>
-    </section>
-    
-    <%- include('../components/footer.ejs'); %>
+    </body>
 
-</body>
-
-<script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
-<script>$('#current-year').text(new Date().getFullYear())</script>
+    <script>$('#current-year').text(new Date().getFullYear())</script>
 
 </html>
 

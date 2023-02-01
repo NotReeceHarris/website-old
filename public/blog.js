@@ -50,7 +50,6 @@ $( document ).ready(function() {
       });
     $('#content h1, #content h2, #content h3, #content h4, #content h5, #content h6').click(function() {
         var text = $(this).attr('id');
-        console.log($(this))
         window.location.hash = text;
     })
 });

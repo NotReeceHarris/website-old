@@ -1,71 +1,71 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <!-- SITE META -->
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="publisher" content="reeceharris.net">  
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="robots" content="all">
-    <!-- SEO TAGS -->
-    <title>Privacy policy</title>
-    <link rel="canonical" href="<%= locals.url %>">
-    <meta name="description" content="We care about the protection of your data, thats why you should read out privacy policy to know how we use your data!">
-    <!-- SOCIAL TAGS -->
-    <meta property="og:site_name" content="( ͡°( ͡° ͜ʖ( ͡° ͜ʖ ͡°)ʖ ͡°) ͡°)">
-    <meta property="og:title" content="Privacy policy" />
-    <meta property="og:description" content="We care about the protection of your data, thats why you should read out privacy policy to know how we use your data!">
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="<%= locals.url %>" />
-    <meta name="theme-color" content="#ffffff">
-    <!-- TWITTER TAGS -->
-    <meta name="twitter:title" content="Privacy policy">
-    <meta name="twitter:description" content="We care about the protection of your data, thats why you should read out privacy policy to know how we use your data!">
-    <!-- ASSETS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.2/flowbite.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="/static/blog.css">
+    <head>
+        <!-- SITE META -->
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="publisher" content="reeceharris.net">  
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="robots" content="all">
+        <!-- SEO TAGS -->
+        <title>Privacy policy</title>
+        <link rel="canonical" href="<%= locals.url %>">
+        <meta name="description" content="We care about the protection of your data, thats why you should read out privacy policy to know how we use your data!">
+        <!-- SOCIAL TAGS -->
+        <meta property="og:site_name" content="( ͡°( ͡° ͜ʖ( ͡° ͜ʖ ͡°)ʖ ͡°) ͡°)">
+        <meta property="og:title" content="Privacy policy" />
+        <meta property="og:description" content="We care about the protection of your data, thats why you should read out privacy policy to know how we use your data!">
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="<%= locals.url %>" />
+        <meta name="theme-color" content="#ffffff">
+        <!-- TWITTER TAGS -->
+        <meta name="twitter:title" content="Privacy policy">
+        <meta name="twitter:description" content="We care about the protection of your data, thats why you should read out privacy policy to know how we use your data!">
+        <!-- ASSETS -->
+        <script src="https://cdn.tailwindcss.com"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.2/flowbite.min.js"></script>
+        <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="/static/blog.css">
+    </head>
 
-</head>
-<body class="bg-[#222222]">
+    <body class="bg-[#222222]">
 
-    <%- include('../components/header.ejs'); %>
-    <div class="w-full top-0 fixed z-[102]" id="page-progress"><div id="progress-bar" class="w-0 h-[2px] bg-white" style="transition: width 0.5s;"></div></div>
+        <%- include('../components/header.ejs'); %>
 
-    
-<main class="pb-16 pt-20 md:pt-28 lg:pb-18 px-6 ">
-    <div class="flex  mx-auto max-w-screen-lg">
-        <article class="mx-auto w-full format format-sm sm:format-base lg:format-lg format-blue text-gray-300">
-            <header class="mb-4 lg:mb-6 not-format">
-                <div class="max-h-screen">
-                    <h1 class="text-3xl font-extrabold leading-tight text-white lg:text-4xl">Privacy policy</h1>
-                    <p class="mt-2">Last updated: <%= new Date(article.data.attributes.updatedAt).toLocaleString('en-US', { month: 'long' }) %> <%= new Date(article.data.attributes.updatedAt).getDate() + (new Date(article.data.attributes.updatedAt).getDate() > 0 ? ['th', 'st', 'nd', 'rd'][(new Date(article.data.attributes.updatedAt).getDate() > 3 && new Date(article.data.attributes.updatedAt).getDate() < 21) || new Date(article.data.attributes.updatedAt).getDate() % 10 > 3 ? 0 : new Date(article.data.attributes.updatedAt).getDate() % 10] : '') %>, <%= new Date(article.data.attributes.updatedAt).getFullYear() %></p>
-                </div>
-            </header>
-            <div id="content" class="break-words">
-                <%- article.data.attributes.content  %>
-            </div>
+        <div class="w-full top-0 fixed z-[102]" id="page-progress"><div id="progress-bar" class="w-0 h-[2px] bg-white" style="transition: width 0.5s;"></div></div>
             
-        </article>
-    </div>
-</main>
+        <main class="pb-16 pt-20 md:pt-28 lg:pb-18 px-6 ">
+            <div class="flex  mx-auto max-w-screen-lg">
+                <article class="mx-auto w-full format format-sm sm:format-base lg:format-lg format-blue text-gray-300">
+                    
+                    <header class="mb-4 lg:mb-6 not-format">
+                        <div class="max-h-screen">
+                            <h1 class="text-3xl font-extrabold leading-tight text-white lg:text-4xl">Privacy policy</h1>
+                            <p class="mt-2">Last updated: <%= new Date(article.data.attributes.updatedAt).toLocaleString('en-US', { month: 'long' }) %> <%= new Date(article.data.attributes.updatedAt).getDate() + (new Date(article.data.attributes.updatedAt).getDate() > 0 ? ['th', 'st', 'nd', 'rd'][(new Date(article.data.attributes.updatedAt).getDate() > 3 && new Date(article.data.attributes.updatedAt).getDate() < 21) || new Date(article.data.attributes.updatedAt).getDate() % 10 > 3 ? 0 : new Date(article.data.attributes.updatedAt).getDate() % 10] : '') %>, <%= new Date(article.data.attributes.updatedAt).getFullYear() %></p>
+                        </div>
+                    </header>
 
+                    <div id="content" class="break-words">
+                        <%- article.data.attributes.content  %>
+                    </div>
+                    
+                </article>
+            </div>
+        </main>
 
+        <%- include('../components/footer.ejs'); %>
 
-<%- include('../components/footer.ejs'); %>
-<script>
-    $('#content h1, #content h2, #content h3, #content h4, #content h5, #content h6').each(function() {
-        var text = $(this).text();
-        var id = text.toLowerCase().replace(/[^a-z0-9]+/g, "-");
-        $(this).attr("id", id);
-      });
-    $('#content h1, #content h2, #content h3, #content h4, #content h5, #content h6').click(function() {
-        var text = $(this).attr('id');
-        console.log($(this))
-        window.location.hash = text;
-    })
-</script>
+        <script>
+            $('#content h1, #content h2, #content h3, #content h4, #content h5, #content h6').each(function() {
+                var text = $(this).text();
+                var id = text.toLowerCase().replace(/[^a-z0-9]+/g, "-");
+                $(this).attr("id", id);
+            });
+            $('#content h1, #content h2, #content h3, #content h4, #content h5, #content h6').click(function() {
+                var text = $(this).attr('id');
+                window.location.hash = text;
+            })
+        </script>
 
-</body>
+    </body>
 </html>
