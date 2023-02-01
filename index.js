@@ -81,7 +81,7 @@ app.use('/static', serveStatic("./public"))
 
 /* START */
 
-const port = 1336
+const port = process.argv.slice(2)[0] == 'dev' ? 80  : 1336
 
 if (!module.parent) {
     app.listen(port, () => {

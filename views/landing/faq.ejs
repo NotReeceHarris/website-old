@@ -78,44 +78,27 @@
             <h1 class="mb-8 text-4xl tracking-tight font-extrabold text-white">Frequently asked questions</h1>
             <div class="grid pt-8 text-left border-t border-gray-200 md:gap-16 md:grid-cols-2">
                 <div>
+                  <% faq[0].forEach(function(details) { %>
                     <div class="mb-10">
-                        <h3 class="flex items-center mb-4 text-lg font-medium text-white">
-                            <svg class="flex-shrink-0 mr-2 w-5 h-5 text-white" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-8-3a1 1 0 00-.867.5 1 1 0 11-1.731-1A3 3 0 0113 8a3.001 3.001 0 01-2 2.83V11a1 1 0 11-2 0v-1a1 1 0 011-1 1 1 0 100-2zm0 8a1 1 0 100-2 1 1 0 000 2z" clip-rule="evenodd"></path></svg>
-                            What are you blogs about?
-                        </h3>
-                        <p class="text-white">Our blog is dedicated to all things technology. We explore various aspects of technology, including its usage and applications, as well as providing insights and tutorials on creating technology. Our goal is to educate and inform our readers on the latest developments and advancements in the field of technology. We strive to keep our content up-to-date and relevant, covering topics such as artificial intelligence, machine learning, internet of things, and much more. Whether you are a tech enthusiast, a student, or an industry professional, our blog is the perfect platform to stay informed and deepen your understanding of technology. Join us on our journey to discover the limitless possibilities of technology!</p>
-                    </div>
-                    <div class="mb-10">
-                        <h3 class="flex items-center mb-4 text-lg font-medium text-white">
-                            <svg class="flex-shrink-0 mr-2 w-5 h-5 text-white" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-8-3a1 1 0 00-.867.5 1 1 0 11-1.731-1A3 3 0 0113 8a3.001 3.001 0 01-2 2.83V11a1 1 0 11-2 0v-1a1 1 0 011-1 1 1 0 100-2zm0 8a1 1 0 100-2 1 1 0 000 2z" clip-rule="evenodd"></path></svg>
-                            Do you run ads or have paywalls?
-                        </h3>
-                        <p class="text-white">At our blog, we believe in providing accessible and quality information to all of our readers. As such, we do not have any advertisements or paywalls that might hinder your experience on our site. We strive to maintain a user-friendly platform that is free from distractions and easy to navigate. We rely on the support of our community to keep our servers running and our content accessible to everyone. If you appreciate the information and insights provided on our blog, we welcome you to make a donation to help us cover our server hosting costs. Your support is greatly appreciated and helps us continue our mission of spreading knowledge and understanding about technology.</p>
-                    </div>  
+                      <h3 class="flex items-center mb-4 text-lg font-medium text-white">
+                          <svg class="flex-shrink-0 mr-2 w-5 h-5 text-white" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-8-3a1 1 0 00-.867.5 1 1 0 11-1.731-1A3 3 0 0113 8a3.001 3.001 0 01-2 2.83V11a1 1 0 11-2 0v-1a1 1 0 011-1 1 1 0 100-2zm0 8a1 1 0 100-2 1 1 0 000 2z" clip-rule="evenodd"></path></svg>
+                          <%= details.Title %>
+                      </h3>
+                      <p class="text-white"><%= details.Content %></p>
+                  </div>
+                  <% }); %> 
+
                 </div>
                 <div>
+                  <% faq[1].forEach(function(details) { %>
                     <div class="mb-10">
-                        <h3 class="flex items-center mb-4 text-lg font-medium text-white">
-                            <svg class="flex-shrink-0 mr-2 w-5 h-5 text-white" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-8-3a1 1 0 00-.867.5 1 1 0 11-1.731-1A3 3 0 0113 8a3.001 3.001 0 01-2 2.83V11a1 1 0 11-2 0v-1a1 1 0 011-1 1 1 0 100-2zm0 8a1 1 0 100-2 1 1 0 000 2z" clip-rule="evenodd"></path></svg>
-                            Who are your authors?
-                        </h3>
-                        <p class="text-white">Our authors are individuals like yourself, driven by a passion for learning and sharing knowledge. They come from diverse backgrounds and bring their unique perspectives to our blog. You too can become an author by emailing <a class="text-blue-400" href="mailto:reeceharris@email.com">reeceharris@email.com</a>.</p>
-                    </div>
-                    <div class="mb-10">
-                        <h3 class="flex items-center mb-4 text-lg font-medium text-white">
-                            <svg class="flex-shrink-0 mr-2 w-5 h-5 text-white" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-8-3a1 1 0 00-.867.5 1 1 0 11-1.731-1A3 3 0 0113 8a3.001 3.001 0 01-2 2.83V11a1 1 0 11-2 0v-1a1 1 0 011-1 1 1 0 100-2zm0 8a1 1 0 100-2 1 1 0 000 2z" clip-rule="evenodd"></path></svg>
-                            Are your facts and figures accurate?
-                        </h3>
-                        <p class="text-white">Our facts and figures are thoroughly fact-checked by our editors to ensure accuracy. However, please note that all information may become outdated over time and can only be considered accurate as of the date of publication. We make efforts to keep major facts updated for up to 3 months after the initial publication.</p>
-                    </div>
-                    <div class="mb-10">
-                        <h3 class="flex items-center mb-4 text-lg font-medium text-white">
-                            <svg class="flex-shrink-0 mr-2 w-5 h-5 text-white" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-8-3a1 1 0 00-.867.5 1 1 0 11-1.731-1A3 3 0 0113 8a3.001 3.001 0 01-2 2.83V11a1 1 0 11-2 0v-1a1 1 0 011-1 1 1 0 100-2zm0 8a1 1 0 100-2 1 1 0 000 2z" clip-rule="evenodd"></path></svg>
-                            Do you store my data?
-                        </h3>
-                        <p class="text-white">Our policy is to not store any data from our users. Any data used in the sandbox environment is temporarily stored for a maximum of 5 minutes before being systematically deleted to maintain user privacy. We take privacy seriously and have a detailed <a href="/privacy-policy" class="text-blue-400">privacy policy</a> in place to protect personal information.</p>
-                    </div>
-
+                      <h3 class="flex items-center mb-4 text-lg font-medium text-white">
+                          <svg class="flex-shrink-0 mr-2 w-5 h-5 text-white" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-8-3a1 1 0 00-.867.5 1 1 0 11-1.731-1A3 3 0 0113 8a3.001 3.001 0 01-2 2.83V11a1 1 0 11-2 0v-1a1 1 0 011-1 1 1 0 100-2zm0 8a1 1 0 100-2 1 1 0 000 2z" clip-rule="evenodd"></path></svg>
+                          <%= details.Title %>
+                      </h3>
+                      <p class="text-white"><%= details.Content %></p>
+                  </div>
+                  <% }); %>
                 </div>
             </div>
         </div>
