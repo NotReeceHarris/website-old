@@ -30,41 +30,17 @@
         {
           "@context": "https://schema.org",
           "@type": "FAQPage",
-          "mainEntity": [{
-            "@type": "Question",
-            "name": "What are you blogs about?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Our blog is dedicated to all things technology. We explore various aspects of technology, including its usage and applications, as well as providing insights and tutorials on creating technology. Our goal is to educate and inform our readers on the latest developments and advancements in the field of technology. We strive to keep our content up-to-date and relevant, covering topics such as artificial intelligence, machine learning, internet of things, and much more. Whether you are a tech enthusiast, a student, or an industry professional, our blog is the perfect platform to stay informed and deepen your understanding of technology. Join us on our journey to discover the limitless possibilities of technology!"
-            }
-          }, {
-            "@type": "Question",
-            "name": "Do you run ads or have paywalls?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "<p>At our blog, we believe in providing accessible and quality information to all of our readers. As such, we do not have any advertisements or paywalls that might hinder your experience on our site. We strive to maintain a user-friendly platform that is free from distractions and easy to navigate. We rely on the support of our community to keep our servers running and our content accessible to everyone. If you appreciate the information and insights provided on our blog, we welcome you to make a donation to help us cover our server hosting costs. Your support is greatly appreciated and helps us continue our mission of spreading knowledge and understanding about technology.</p>"
-            }
-          }, {
-            "@type": "Question",
-            "name": "Who are your authors?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Our authors are individuals like yourself, driven by a passion for learning and sharing knowledge. They come from diverse backgrounds and bring their unique perspectives to our blog. You too can become an author by emailing reeceharris@email.com."
-            }
-          }, {
-            "@type": "Question",
-            "name": "Do you store my data?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Our policy is to not store any data from our users. Any data used in the sandbox environment is temporarily stored for a maximum of 5 minutes before being systematically deleted to maintain user privacy. We take privacy seriously and have a detailed privacy policy in place to protect personal information."
-            }
-          }, {
-            "@type": "Question",
-            "name": "Are your facts and figures accurate?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text":"Are your facts and figures accurate?"}
-            }]
+          "mainEntity": [
+            <% faq[0].concat(faq[1]).forEach(function(details, idx, array) { %>
+              {
+                "@type": "Question",
+                "name": "<%= details.Title %>",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text":"<%= details.Content %>"}
+                }<% if (idx != array.length - 1){ %>,<%}%>
+              <% }); %> 
+          ]
         }
         </script>
 

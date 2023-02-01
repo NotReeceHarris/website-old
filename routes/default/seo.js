@@ -22,7 +22,7 @@ router.get('/faq', async (req, res, next) => {
     .then(response => {
         if (response.data != null) {
             const middleIndex = Math.ceil(response.data.data.attributes.faq.length / 2);
-            res.renderMin('./landing/faq', {faq: [response.data.data.attributes.faq.splice(0, middleIndex),response.data.data.attributes.faq.splice(-middleIndex)]});
+            res.renderMin('./landing/faq', {'faq': [response.data.data.attributes.faq.splice(0, middleIndex),response.data.data.attributes.faq.splice(-middleIndex)]});
         } else {
             res.renderMin('./error/404');
         }
