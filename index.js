@@ -41,7 +41,7 @@ app.use(
 
 app.use((req, res, next) => {
 	res.setHeader('X-Powered-By', '¯\\(º_o)/¯');
-	res.locals.url = req.protocol + '://' + req.get('host') + req.path;
+	res.locals.url = req.protocol + '://' + req.hostname + req.path;
 	next();
 });
 
@@ -81,7 +81,7 @@ app.use('/static', serveStatic('./public'));
 
 /* START */
 
-const port = process.argv.slice(2)[0] === 'dev' ? 80 : 1336;
+const port = process.argv.slice(2)[0] === 'dev' ? 8080 : 1336;
 
 if (!module.parent) {
 	app.listen(port, () => {

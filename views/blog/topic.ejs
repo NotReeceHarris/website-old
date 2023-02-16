@@ -38,7 +38,10 @@
         <main class="mt-12" >
             <div class="py-8 px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-6">
                 <div class="mx-auto mb-8">
-                    <h1 class="mb-4 text-3xl lg:text-4xl tracking-tight font-extrabold text-white decoration-[<%= topic.attributes.color %>] underline">#<%= topic.attributes.title %></h1>
+                    <span class="flex items-center gap-3">
+                        <h1 class="mb-4 text-3xl lg:text-4xl tracking-tight font-extrabold text-white decoration-[<%= topic.attributes.color %>] underline">#<%= topic.attributes.title %></h1> 
+                        <a title="RSS Feed" href="/rss/topic/<%= topic.attributes.slug %>"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
+                    </span>
                     <p class="font-light text-gray-200 sm:text-xl"><%= topic.attributes.description %></p>
                 </div> 
                 <div class="grid gap-8 md:grid-cols-2 xl:grid-cols-3">

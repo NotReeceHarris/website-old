@@ -166,14 +166,18 @@ router.get('/api/related', async (req, res, _next) => {
 					url = `https://cms.reeceharris.net/api/articles?fields=title,slug,description,content,publishedAt&populate=banner&sort[0]=publishedAt:desc&pagination[limit]=1&sort[0]=publishedAt:desc&filters[slug][$not]=${req.query.current}${filterOut}`;
 				}
 
-
 				axios.get(url, authHeader)
 					.then(latest => {
 						related.data.data.shift();
+						const newArray = latest.data.data.concat(related.data.data);
+						if (newArray.length === 4) {
+							newArray.pop();
+						}
+
 						if (latest.data !== null) {
-							res.json({data: latest.data.data.concat(related.data.data)});
+							res.json({data: newArray});
 						} else {
-							res.json({data: latest.data.data.concat(related.data.data)});
+							res.json({data: newArray});
 						}
 					})
 					.catch(error => {
@@ -187,7 +191,7 @@ router.get('/api/related', async (req, res, _next) => {
                     }`);
 					});
 			})
-			.catch(error => {
+			.catch(_error => {
 				res.json(`{
                     "data": null,
                     "error": {
@@ -221,6 +225,33 @@ router.get('/api/latest', async (req, res, _next) => {
 		});
 });
 
+router.get('/latest', async (req, res, _next) => {
+	axios.get('https://cms.reeceharris.net/api/articles?fields=slug&sort[0]=publishedAt:desc&pagination[limit]=1', authHeader)
+		.then(response => {
+			if (response.data !== null) {
+				res.redirect(`/blog/${response.data.data[0].attributes.slug}`);
+			} else {
+				res.redirect('/blogs');
+			}
+		})
+		.catch(_error => {
+			res.redirect('/blogs');
+		});
+});
+
+function xmlSafeString(str) {
+	return str.replace(/[<>&'"]/g, char => {
+		// eslint-disable-next-line default-case
+		switch (char) {
+			case '<': return '&lt;';
+			case '>': return '&gt;';
+			case '&': return '&amp;';
+			case '\'': return '&apos;';
+			case '"': return '&quot;';
+		}
+	});
+}
+
 router.get('/rss', async (req, res, _next) => {
 	axios.get('https://cms.reeceharris.net/api/articles?fields=title,createdAt,description,slug&sort[0]=publishedAt:desc&pagination[limit]=10&populate=banner,topics', authHeader)
 		.then(response => {
@@ -242,13 +273,50 @@ router.get('/rss', async (req, res, _next) => {
                 <link>https://reeceharris.net/blog/${element.attributes.slug}</link>
                 <language>en-us</language>
                 ${category}
-                <description>${element.attributes.description}</description>
+                <description>${xmlSafeString(element.attributes.description)}</description>
                 <pubDate>${weekday[pubdate.getDay()]}, ${pubdate.getDate()} ${pubdate.toLocaleString('en-US', {month: 'short'})} ${pubdate.getFullYear()} ${pubdate.getHours()}:${pubdate.getMinutes()}:${pubdate.getSeconds()} GMT</pubDate>
                 </item>`;
 				});
 
 				res.set('Content-Type', 'text/xml');
 				res.send(`<rss version="2.0"><channel><title>( ͡° ͜ʖ ͡°) reeceharris.net</title><description>Latest articles from the reeceharris.net blog</description><link>https://reeceharris.net</link><image><title>( ͡° ͜ʖ ͡°)</title><url>https://cms.reeceharris.net/uploads/site_logo_5edcfddd75.png</url><link>https://reeceharris.net</link></image>${items}</channel></rss>`);
+			} else {
+				res.renderMin('./error/404');
+			}
+		})
+		.catch(error => {
+			res.renderMin('./error/500', {error});
+		});
+});
+
+router.get('/rss/topic/:slug', async (req, res, _next) => {
+	axios.get(`https://cms.reeceharris.net/api/articles?fields=title,description,slug,publishedAt&filters[topics][slug]=${req.params.slug}&sort[0]=publishedAt:DESC&populate=banner,topics`, authHeader)
+		.then(response => {
+			if (response.data !== null) {
+				let items = '';
+				response.data.data.forEach(element => {
+					const pubdate = new Date(element.attributes.createdAt);
+					const weekday = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+					let category = '';
+					if (element.attributes.topics) {
+						element.attributes.topics.data.forEach(topic => {
+							category += `<category domain="https://reeceharris.net/topic/${topic.attributes.slug}">${topic.attributes.title}</category>`;
+						});
+					}
+
+					items += `<item>
+                <title>${element.attributes.title}</title>
+                <guid>https://reeceharris.net/blog/${element.attributes.slug}</guid>
+                <link>https://reeceharris.net/blog/${element.attributes.slug}</link>
+                <language>en-us</language>
+                ${category}
+                <description>${xmlSafeString(element.attributes.description)}</description>
+                <pubDate>${weekday[pubdate.getDay()]}, ${pubdate.getDate()} ${pubdate.toLocaleString('en-US', {month: 'short'})} ${pubdate.getFullYear()} ${pubdate.getHours()}:${pubdate.getMinutes()}:${pubdate.getSeconds()} GMT</pubDate>
+                </item>`;
+				});
+
+				res.set('Content-Type', 'text/xml');
+				res.send(`<rss version="2.0"><channel><title>( ͡° ͜ʖ ͡°) reeceharris.net | Topic </title><description>Latest articles from the reeceharris.net blog</description><link>https://reeceharris.net/topic/${req.params.slug}</link><image><title>( ͡° ͜ʖ ͡°)</title><url>https://cms.reeceharris.net/uploads/site_logo_5edcfddd75.png</url><link>https://reeceharris.net</link></image>${items}</channel></rss>`);
 			} else {
 				res.renderMin('./error/404');
 			}
