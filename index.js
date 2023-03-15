@@ -81,7 +81,7 @@ app.use('/static', serveStatic('./public'));
 
 /* START */
 
-const port = process.argv.slice(2)[0] === 'dev' ? 8080 : 1336;
+const port = process.argv.slice(2)[0] === 'dev' ? 8080 : 80;
 
 if (!module.parent) {
 	app.listen(port, () => {
