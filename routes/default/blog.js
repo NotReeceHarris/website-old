@@ -13,7 +13,7 @@ const authHeader = {
 };
 
 router.get('/blogs', async (req, res, _next) => {
-	axios.get('https://cms.reeceharris.net/api/articles?fields=title,description,slug,publishedAt&sort[0]=publishedAt:DESC&populate=banner', authHeader)
+	axios.get('https://cms.reeceharris.net/api/articles?fields=title,description,slug,publishedAt&sort[0]=publishedAt:DESC&populate=banner,topics', authHeader)
 		.then(articles => {
 			if (articles.data !== null) {
 				res.renderMin('./blog/blogs', {articles: articles.data});
@@ -67,7 +67,7 @@ router.get('/blog/:slug', async (req, res, _next) => {
 });
 
 router.get('/author/:id', async (req, res, _next) => {
-	axios.get(`https://cms.reeceharris.net/api/articles?fields=title,description,slug,publishedAt&populate=banner,author&sort[0]=createdAt:desc&filters[author][id]=${req.params.id}`, authHeader)
+	axios.get(`https://cms.reeceharris.net/api/articles?fields=title,description,slug,publishedAt&populate=banner,author,topics&sort[0]=createdAt:desc&filters[author][id]=${req.params.id}`, authHeader)
 		.then(article => {
 			if (article.data !== null) {
 				axios.get(`https://cms.reeceharris.net/api/authors/${req.params.id}?populate=social.Logo,portrait`, authHeader)
@@ -107,7 +107,7 @@ router.get('/topic/:topic', async (req, res, _next) => {
 		axios.get(`https://cms.reeceharris.net/api/topics?fields=title,slug,color,description&filters[slug]=${req.params.topic}`, authHeader)
 			.then(topic => {
 				if (topic.data !== null) {
-					axios.get(`https://cms.reeceharris.net/api/articles?fields=title,description,slug,publishedAt&filters[topics][slug]=${req.params.topic}&sort[0]=publishedAt:DESC&populate=banner`, authHeader)
+					axios.get(`https://cms.reeceharris.net/api/articles?fields=title,description,slug,publishedAt&filters[topics][slug]=${req.params.topic}&sort[0]=publishedAt:DESC&populate=banner,topics`, authHeader)
 						.then(articles => {
 							if (articles.data !== null) {
 								res.renderMin('./blog/topic', {topic: topic.data.data[0], articles: articles.data});
