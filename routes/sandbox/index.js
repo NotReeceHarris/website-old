@@ -12,4 +12,8 @@ router.get('/detector', async (req, res, _next) => {
 	res.renderMin('./sandbox/detector');
 });
 
+router.get('/nodes', async (req, res, _next) => {
+	res.renderMin('./sandbox/vvv');
+});
+
 module.exports = router;
