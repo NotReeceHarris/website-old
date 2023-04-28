@@ -88,6 +88,7 @@
                                         <p class="text-base font-light text-gray-200 "><time pubdate datetime="<%= new Date(post.publishedAt).getFullYear() %>-<%= new Date(post.publishedAt).getMonth() + 1%>-<%= new Date(post.publishedAt).getDate() %>" title="<%= new Date(post.publishedAt).toLocaleString('en-US', { month: 'short' }) %> <%= new Date(post.publishedAt).getDate() %>, <%= new Date(post.publishedAt).getFullYear() %>"><%= new Date(post.publishedAt).toLocaleString('en-US', { month: 'long' }) %> <%= new Date(post.publishedAt).getDate() + (new Date(post.publishedAt).getDate() > 0 ? ['th', 'st', 'nd', 'rd'][(new Date(post.publishedAt).getDate() > 3 && new Date(post.publishedAt).getDate() < 21) || new Date(post.publishedAt).getDate() % 10 > 3 ? 0 : new Date(post.publishedAt).getDate() % 10] : '') %>, <%= new Date(post.publishedAt).getFullYear() %></time></p> <!-- Jan. 23, 2023 -->
                                     </div>
                                     <div class="flex gap-x-4 mt-3 md:mt-6">
+                                        <span id="pgp-signed" class="cursor-pointer"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-lock"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg></span>
                                         <span id="copy-link" class="cursor-pointer"><img src="/static/share.svg" alt="Share to clipboard" srcset=""></span>
                                         <a target="_blank" href="https://www.LinkedIn.com/shareArticle?mini=true&url=https://reeceharris.net/blog/<%= post.slug %>&title=<%= post.title %>&summary=<%= post.description %>&source=reeceharris.net"><img src="/static/linkedin.svg" alt="Share to linkedin" srcset=""></a>
                                         <a target="_blank" href="https://twitter.com/intent/tweet?text=View the latest article on <%= post.title %> 
@@ -178,6 +179,13 @@
         <script>
 
             $(document).ready(function() {
+
+
+                $('#pgp-signed').click(() => {
+                    var link = document.URL + "/openPgp";
+			        var popup = window.open(link, "popup", "width=400,height=300");
+                })
+
                 $('#content img').each( function() {
                     $(this).addClass('rounded-md')
                     if ($(this).attr('src').startsWith('/uploads/')) {

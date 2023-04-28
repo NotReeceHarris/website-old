@@ -5,6 +5,14 @@
 const express = require('express');
 const router = express.Router();
 const axios = require('axios');
+const openpgp = require('openpgp');
+const fs = require('fs');
+
+require('dotenv').config();
+
+const privateKeyPath = './privatekey';
+const passphrase = process.env.PGP_pass;
+const privateKeyFile = fs.readFileSync(privateKeyPath, 'utf-8');
 
 const authHeader = {
 	headers: {
@@ -32,7 +40,7 @@ router.get('/blog/:slug', async (req, res, _next) => {
 			.then(article => {
 				if (article.data !== null) {
 					axios.get(`https://cms.reeceharris.net/api/authors/${article.data.data.attributes.author.data.id}?populate=*`, authHeader)
-						.then(author => {
+						.then(async author => {
 							if (author.data !== null) {
 								res.renderMin('./blog/post', {post: article.data.data.attributes, author: author.data});
 							} else {
@@ -40,12 +48,49 @@ router.get('/blog/:slug', async (req, res, _next) => {
 							}
 						})
 						.catch(error => {
+							console.log(error);
 							if (error.response.status === 404) {
 								res.renderMin('./error/404', {error});
 							} else {
 								res.renderMin('./error/500', {error});
 							}
 						});
+				} else {
+					res.renderMin('./blog/notfound');
+				}
+			})
+			.catch(error => {
+				if (error !== null) {
+					if (error.response.status === 404) {
+						res.renderMin('./error/404', {error});
+					} else {
+						res.renderMin('./error/500', {error});
+					}
+				} else {
+					res.renderMin('./error/500', {error});
+				}
+			});
+	} else {
+		res.redirect('/');
+	}
+});
+
+router.get('/blog/:slug/openPGP', async (req, res, _next) => {
+	if (req.params.slug) {
+		axios.get(`https://cms.reeceharris.net/api/slugify/slugs/article/${req.params.slug}?populate=*`, authHeader)
+			.then(async article => {
+				if (article.data !== null) {
+					const privateKey = await openpgp.decryptKey({
+						privateKey: await openpgp.readPrivateKey({armoredKey: privateKeyFile}),
+						passphrase,
+					});
+					const unsignedMessage = await openpgp.createCleartextMessage({text: article.data.data.attributes.content});
+					const cleartextMessage = await openpgp.sign({
+						message: unsignedMessage, // CleartextMessage or Message object
+						signingKeys: privateKey,
+					});
+					res.set('Content-Type', 'text/plain');
+					res.send(cleartextMessage);
 				} else {
 					res.renderMin('./blog/notfound');
 				}
@@ -180,7 +225,7 @@ router.get('/api/related', async (req, res, _next) => {
 							res.json({data: newArray});
 						}
 					})
-					.catch(error => {
+					.catch(() => {
 						res.json(`{
                         "data": null,
                         "error": {
