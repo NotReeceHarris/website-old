@@ -30,13 +30,27 @@
         
         <%- include('../components/header.ejs'); %>
 
-        <section class="pt-[5rem]">
-            <div class="py-8 px-4 mx-auto max-w-screen-md text-center lg:py-16 lg:px-12">
-                <img class="hidden md:block" src="/static/hammer-art.svg" alt="">
-                <h1 class="mb-4 text-4xl font-bold tracking-tight leading-none text-white lg:mb-6 md:text-5xl xl:text-6xl">Under Maintenance</h1>
-                <p class="font-light text-white md:text-lg xl:text-xl">We are currently working on this page, please check back later.</p>
-            </div>
-        </section>
+        <div class="pt-[5rem]">
+            <section class="grid gap-3 md:grid-cols-2 lg:grid-cols-3 py-8 px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-12">
+
+                <div class="max-w-sm p-6 border border-white rounded-lg shadow ">
+                    <a href="sandbox/detector">
+                        <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">YOLOV3 image detection AI</h5>
+                    </a>
+                    <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Identify and locate 80 specific classes, from a uploaded image.</p>
+                    <a href="sandbox/detector" class="inline-flex p-2.5 px-4 text-md font-medium text-white bg-[#444] rounded-md border border-[#444] hover:bg-[#4d4c4c]" role="button">Get started</a>
+                </div>
+
+                <div class="max-w-sm p-6 border border-white rounded-lg shadow ">
+                    <a href="sandbox/nodes">
+                        <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">VVVV three.js</h5>
+                    </a>
+                    <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Interact with three.js through a visual node based programming similar to VVVV</p>
+                    <a href="sandbox/nodes" class="inline-flex p-2.5 px-4 text-md font-medium text-white bg-[#444] rounded-md border border-[#444] hover:bg-[#4d4c4c]" role="button">Get started</a>
+                </div>
+
+            </section>
+        </div>
         
         <%- include('../components/footer.ejs'); %>
 

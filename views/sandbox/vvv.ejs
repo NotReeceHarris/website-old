@@ -11,6 +11,24 @@
     <link href="/static/nodes/scripts/bower_components/codemirror/addon/lint/lint.css" media="all" rel="stylesheet" type="text/css">
     <link href="favicon2.ico" rel="shortcut icon" type="image/x-icon">
     <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700' rel='stylesheet' type='text/css'>
+  
+    <style>
+      #library, 
+      #sidebar, 
+      #timeline, 
+      body, 
+      #main-menu-bar, 
+      #sidebar .ui-tabs-nav, 
+      .ui-layout-resizer {
+        background-color: #222222;
+      }
+
+      .node {
+        background-color: #444444;
+      }
+    </style>
+  
+  
   </head>
   <body class="hidden-timeline">
     <header>
@@ -62,6 +80,9 @@
     <script>
       var core = new ThreeNodes.Core();
       var ui = new ThreeNodes.UI(core);
+
+      $('#ui-id-29').append('<li><span class="ui-corner-all">Made by <a style="right:.5rem;" href="https://github.com/idflood">idflood</a></span></li>')
+
     </script>
   </body>
 </html>
