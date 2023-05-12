@@ -88,10 +88,10 @@
                                         <p class="text-base font-light text-gray-200 "><time pubdate datetime="<%= new Date(post.publishedAt).getFullYear() %>-<%= new Date(post.publishedAt).getMonth() + 1%>-<%= new Date(post.publishedAt).getDate() %>" title="<%= new Date(post.publishedAt).toLocaleString('en-US', { month: 'short' }) %> <%= new Date(post.publishedAt).getDate() %>, <%= new Date(post.publishedAt).getFullYear() %>"><%= new Date(post.publishedAt).toLocaleString('en-US', { month: 'long' }) %> <%= new Date(post.publishedAt).getDate() + (new Date(post.publishedAt).getDate() > 0 ? ['th', 'st', 'nd', 'rd'][(new Date(post.publishedAt).getDate() > 3 && new Date(post.publishedAt).getDate() < 21) || new Date(post.publishedAt).getDate() % 10 > 3 ? 0 : new Date(post.publishedAt).getDate() % 10] : '') %>, <%= new Date(post.publishedAt).getFullYear() %></time></p> <!-- Jan. 23, 2023 -->
                                     </div>
                                     <div class="flex gap-x-4 mt-3 md:mt-6">
-                                        <span id="pgp-signed" class="cursor-pointer"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-lock"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg></span>
-                                        <span id="copy-link" class="cursor-pointer"><img src="/static/share.svg" alt="Share to clipboard" srcset=""></span>
-                                        <a target="_blank" href="https://www.LinkedIn.com/shareArticle?mini=true&url=https://reeceharris.net/blog/<%= post.slug %>&title=<%= post.title %>&summary=<%= post.description %>&source=reeceharris.net"><img src="/static/linkedin.svg" alt="Share to linkedin" srcset=""></a>
-                                        <a target="_blank" href="https://twitter.com/intent/tweet?text=View the latest article on <%= post.title %> 
+                                        <span id="citation" title="Cite" class="cursor-pointer fill-white"><svg clip-rule="evenodd" width="26" height="26" fill-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="m3.378 20c-.76 0-1.378-.608-1.378-1.355 0-.531.315-1.018.843-1.302 1.212-.645 2.614-2.735 2.983-4.286-2.38-.538-3.8-2.394-3.8-4.564 0-2.169 1.859-4.493 4.627-4.493 3.501 0 5.096 2.882 5.096 5.561 0 5.742-6.32 10.439-8.371 10.439zm10.251 0c-.76 0-1.378-.608-1.378-1.355 0-.531.315-1.018.843-1.302 1.212-.645 2.614-2.735 2.983-4.286-2.38-.538-3.8-2.394-3.8-4.564 0-2.169 1.859-4.493 4.627-4.493 3.501 0 5.096 2.882 5.096 5.561 0 5.742-6.32 10.439-8.371 10.439zm-6.21-8.428c.112 3-1.984 5.754-3.649 6.966 1.911-.782 6.479-4.857 6.479-8.977 0-1.869-.942-4.051-3.596-4.051-1.871 0-3.127 1.542-3.127 2.983 0 1.453.862 3.166 3.893 3.079zm10.251 0c.112 3-1.984 5.754-3.649 6.966 1.911-.782 6.479-4.857 6.479-8.977 0-1.869-.942-4.051-3.596-4.051-1.871 0-3.127 1.542-3.127 2.983 0 1.453.862 3.166 3.893 3.079z" fill-rule="nonzero"/></svg></span>
+                                        <span id="pgp-signed" title="PGP Signed" class="cursor-pointer"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-lock"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg></span>
+                                        <span id="copy-link" title="Copy link" class="cursor-pointer"><img src="/static/share.svg" alt="Share to clipboard" srcset=""></span>
+                                        <a target="_blank" title="Share to Twitter" href="https://twitter.com/intent/tweet?text=View the latest article on <%= post.title %> 
                                             
                                             View the article here: https://reeceharris.net/blog/<%= post.slug %>"><img src="/static/twitter.svg" alt="Share to twitter" srcset=""></a>
                                     </div>
@@ -184,6 +184,14 @@
                 $('#pgp-signed').click(() => {
                     var link = document.URL + "/openPgp";
 			        var popup = window.open(link, "popup", "width=400,height=300");
+                })
+
+                $('#citation').click(() => {
+                    window.open(`https://www.citethisforme.com/cite/website/autocite?q=${document.URL}`, '_blank').focus()
+                })
+
+                $('#copy-link').click(() => {
+                    toastr.success('','Link copied to clipboard!')
                 })
 
                 $('#content img').each( function() {
