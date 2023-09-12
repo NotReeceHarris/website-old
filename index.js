@@ -45,39 +45,27 @@ app.use((req, res, next) => {
 	next();
 });
 
-app.use((req, res, next) => {
-	if (res.statusCode === 404) {
-		if (req.accepts('html')) {
-			res.renderMin('./error/404');
-			return;
-		}
-
-		if (req.accepts('json')) {
-			res.json({error: 'Internal Server Error'});
-			return;
-		}
-
-		res.type('txt').send('Internal Server Error');
-	} else if (res.statusCode === 500) {
-		if (req.accepts('html')) {
-			res.renderMin('./error/500');
-			return;
-		}
-
-		if (req.accepts('json')) {
-			res.json({error: 'Not found'});
-			return;
-		}
-
-		res.type('txt').send('Not found');
-	} else {
-		next();
-	}
-});
-
 app.use('/', require('./routes/default.js'));
+app.use('/portfolio', require('./routes/portfolio.js'));
 app.use('/sandbox', require('./routes/sandbox.js'));
 app.use('/static', serveStatic('./public'));
+
+
+app.use((req, res) => {
+	if (res.statusCode === 500) {
+		if (req.accepts('html')) {
+			return res.renderMin('./error/500');
+		}
+
+		if (req.accepts('json')) {
+			return res.json({error: 'Not found'});
+		}
+
+		return res.type('txt').send('Not found');
+	}
+
+	return res.renderMin('./error/404');
+});
 
 /* START */
 

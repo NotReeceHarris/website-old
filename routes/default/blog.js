@@ -284,6 +284,21 @@ router.get('/latest', async (req, res, _next) => {
 		});
 });
 
+router.get('/random', async (req, res, _next) => {
+	axios.get('https://cms.reeceharris.net/api/articles?fields=slug&pagination[limit]=5', authHeader)
+		.then(response => {
+			if (response.data !== null) {
+				const random = Math.floor(Math.random() * response.data.data.length);
+				res.redirect(`/blog/${response.data.data[random].attributes.slug}`);
+			} else {
+				res.redirect('/blogs');
+			}
+		})
+		.catch(_error => {
+			res.redirect('/blogs');
+		});
+});
+
 function xmlSafeString(str) {
 	return str.replace(/[<>&'"]/g, char => {
 		// eslint-disable-next-line default-case
