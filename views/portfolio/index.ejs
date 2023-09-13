@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Not found</title>
+        <script src="/static/js/tailwind.min.js" crossorigin="anonymous"></script>
+        <script src="/static/js/jquery.min.js"  crossorigin="anonymous"></script>
+        
+    </head>
+
+    <body class="bg-[#222222]">
+        
+        <%- include('../components/header.ejs'); %>
+
+        <section class="mt-20">
+            <div class="py-8 px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-6">
+            
+
+                <div>
+                    <div class="sm:hidden">
+                    <label for="Tab" class="sr-only">Tab</label>
+                
+                    <select id="Tab" class="w-full rounded-md text-white bg-[transparent] px-5 py-3 border border-[#444]">
+                        <option>Settings</option>
+                        <option>Messages</option>
+                        <option>Archive</option>
+                        <option select>Notifications</option>
+                    </select>
+                    </div>
+                
+                    <div class="hidden sm:block">
+                        <div class="border-b border-[#444]">
+                            <nav class="-mb-px flex gap-6" aria-label="Tabs">
+
+                                <% for(var i=0; i<tags.data.length; i++) {%>
+
+                            <a
+                                id="<%= tags.data[i].id %>"
+                                href="#<%= tags.data[i].id %>"
+                                class="<% if (i===0) { %> border-white text-white  <% } else { %> text-gray-400 <% } %> shrink-0 border-b-2 border-transparent px-1 pb-4 text-sm font-medium hover:border-white hover:text-white"
+                            >
+                                <%= tags.data[i].attributes.name %>
+                            </a>
+
+                            <% } %>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+  
+
+            </div>
+        </section>
+
+        <%- include('../components/footer.ejs'); %>
+
+    </body>
+
+    <script>$('#current-year').text(new Date().getFullYear())</script>
+
+</html>
