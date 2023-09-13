@@ -27,7 +27,12 @@ app.use(require('./minify'));
 app.use((req, res, next) => {
 	res.setHeader('X-Powered-By', '¯\\(º_o)/¯');
 	res.locals.url = req.protocol + '://' + req.hostname + req.path;
-	next();
+
+	if (req.hostname === 'reeceharris.net') {
+		return res.redirect(req.protocol + '://www.' + req.hostname + req.path);
+	}
+
+	return next();
 });
 
 app.use('/', require('./routes/default.js'));
