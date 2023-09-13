@@ -1,6 +1,6 @@
 'use strict';
 
-const minifyHTML = require('express-minify-html');
+const minify = require('express-minify');
 const cookieParser = require('cookie-parser');
 const serveStatic = require('serve-static');
 const compression = require('compression');
@@ -21,21 +21,10 @@ app.use(express.urlencoded({extended: true}));
 /* Compression and minify to speed up load times */
 
 app.use(compression());
-app.use(
-	minifyHTML({
-		override: true,
-		// eslint-disable-next-line camelcase
-		exception_url: false,
-		htmlMinifier: {
-			removeComments: true,
-			collapseWhitespace: true,
-			collapseBooleanAttributes: true,
-			removeAttributeQuotes: false,
-			removeEmptyAttributes: true,
-			minifyJS: true,
-		},
-	}),
-);
+app.use(minify({
+	cache: __dirname + '/cache',
+}));
+app.use(require('./minify'));
 
 /* Add routes to uri */
 
@@ -50,11 +39,10 @@ app.use('/portfolio', require('./routes/portfolio.js'));
 app.use('/sandbox', require('./routes/sandbox.js'));
 app.use('/static', serveStatic('./public'));
 
-
 app.use((req, res) => {
 	if (res.statusCode === 500) {
 		if (req.accepts('html')) {
-			return res.renderMin('./error/500');
+			return res.render('./error/500');
 		}
 
 		if (req.accepts('json')) {
@@ -64,12 +52,12 @@ app.use((req, res) => {
 		return res.type('txt').send('Not found');
 	}
 
-	return res.renderMin('./error/404');
+	return res.render('./error/404');
 });
 
 /* START */
 
-const port = process.argv.slice(2)[0] === 'dev' ? 8080 : 80;
+const port = process.argv.slice(2)[0] === 'dev' ? 8081 : 80;
 
 if (!module.parent) {
 	app.listen(port, () => {

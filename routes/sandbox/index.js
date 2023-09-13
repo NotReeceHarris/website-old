@@ -5,15 +5,15 @@ const express = require('express');
 const router = express.Router();
 
 router.get('/', async (req, res, _next) => {
-	res.renderMin('./sandbox/index');
+	res.render('./sandbox/index');
 });
 
 router.get('/detector', async (req, res, _next) => {
-	res.renderMin('./sandbox/detector');
+	res.render('./sandbox/detector');
 });
 
 router.get('/nodes', async (req, res, _next) => {
-	res.renderMin('./sandbox/vvv');
+	res.render('./sandbox/vvv');
 });
 
 module.exports = router;

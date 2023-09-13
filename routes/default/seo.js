@@ -23,13 +23,13 @@ router.get('/faq', async (req, res, _next) => {
 		.then(response => {
 			if (response.data !== null) {
 				const middleIndex = Math.ceil(response.data.data.attributes.faq.length / 2);
-				res.renderMin('./landing/faq', {faq: [response.data.data.attributes.faq.splice(0, middleIndex), response.data.data.attributes.faq.splice(-middleIndex)]});
+				res.render('./landing/faq', {faq: [response.data.data.attributes.faq.splice(0, middleIndex), response.data.data.attributes.faq.splice(-middleIndex)]});
 			} else {
-				res.renderMin('./error/404');
+				res.render('./error/404');
 			}
 		})
 		.catch(error => {
-			res.renderMin('./error/500', {error});
+			res.render('./error/500', {error});
 		});
 });
 

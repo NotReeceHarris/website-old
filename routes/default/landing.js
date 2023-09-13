@@ -5,7 +5,7 @@ const express = require('express');
 const router = express.Router();
 
 router.get('/', async (req, res, _next) => {
-	res.renderMin('./landing/landing');
+	res.render('./landing/landing');
 });
 
 module.exports = router;
