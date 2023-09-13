@@ -36,13 +36,11 @@
             <div class="mx-auto  mb-8">
                 <span class="flex items-center gap-3 mb-4 ">
                     <h1 class="text-3xl lg:text-4xl tracking-tight font-extrabold text-white">Latest articles</h1>
-                    <a title="RSS Feed" href="/rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
+                    <a title="RSS Feed" href="/rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#f29f19" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
                 </span>
                 <p class="font-light text-gray-200 sm:text-xl">Welcome to our article list page! Here you will find a wide range of informative and engaging articles on various topics. From the latest advancements in technology and science to tips for self-improvement, our articles aim to educate and inspire. Whether you're a student, professional, or just looking for interesting reading material, you're sure to find something of interest here. We cover a diverse range of subjects, including Artificial Intelligence, programming, and more. Take a look around and start exploring the world of knowledge today!</p>
             </div> 
-            <div class="grid gap-8 md:grid-cols-2 xl:grid-cols-3">
-                <%- include('./feed.ejs'); %>
-            </div>  
+            <%- include('./feed.ejs'); %>
         </div>
     </main>
 

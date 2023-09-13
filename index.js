@@ -53,7 +53,6 @@ app.use((req, res) => {
 
 /* START */
 const port = process.argv.slice(2)[0] === 'dev' ? 8081 : 80;
-
 if (!module.parent) {
 	app.listen(port, () => {
 		console.log(`[server]: listening on port ${port}`);

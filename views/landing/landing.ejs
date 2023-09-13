@@ -8,20 +8,20 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="robots" content="all">
         <!-- SEO TAGS -->
-        <title>Reeceharris.net | Explore our tech blog or maybe mess with the interactive sandbox.</title>
+        <title>Reeceharris.net | The personal website of Reece Harris.</title>
         <link rel="canonical" href="<%= locals.url %>">
         <meta name="description" content="Stay informed and engaged by exploring our tech blog or experimenting with the interactive sandbox, where you can test cutting-edge technology and tools.">
         <meta name="author" content="Reece Harris">
         <meta name="keywords" content="ai,blog,technology">
         <!-- SOCIAL TAGS -->
         <meta property="og:site_name" content="( ͡°( ͡° ͜ʖ( ͡° ͜ʖ ͡°)ʖ ͡°) ͡°)">
-        <meta property="og:title" content="Reeceharris.net | Explore our tech blog or maybe mess with the interactive sandbox." />
+        <meta property="og:title" content="Reeceharris.net | The personal website of Reece Harris." />
         <meta property="og:description" content="Stay informed and engaged by exploring our tech blog or experimenting with the interactive sandbox, where you can test cutting-edge technology and tools.">
         <meta property="og:type" content="website" />
         <meta property="og:url" content="<%= locals.url %>" />
         <meta name="theme-color" content="#ffffff">
         <!-- TWITTER TAGS -->
-        <meta name="twitter:title" content="Reeceharris.net | Explore our tech blog or maybe mess with the interactive sandbox.">
+        <meta name="twitter:title" content="Reeceharris.net | The personal website of Reece Harris.">
         <meta name="twitter:description" content="Stay informed and engaged by exploring our tech blog or experimenting with the interactive sandbox, where you can test cutting-edge technology and tools.">
         <meta name="twitter:site" content="@n0treeceharris">
         <!-- ASSETS -->
@@ -42,10 +42,10 @@
                             Empowering innovation, shaping <span id="change-shot">tomorrow</span>.
                         </h1>
 
-                        <p class="mt-5 text-base text-white sm:text-lg">Welcome to the ultimate destination for all things technology! Our website not only features a cutting-edge blog, filled with the latest news and insights on the tech industry, but also an interactive sandbox where you can experience the power of the latest technology such as AI.</p>
+                        <p class="mt-5 text-base text-white sm:text-lg">Welcome to my personal website, where I curate diverse tech-related content. You'll find regular blog posts on software, technology, projects, hardware, cybersecurity, and more here. But that's not all – I also provide an interactive <a class="text-blue-400" href="/sandbox">sandbox</a> for you to explore and experiment with my creations. In addition, you can view my <a class="text-blue-400" href="/portfolio">portfolio</a> to get a glimpse of my past projects and expertise. Feel free to explore my <a class="text-blue-400" href="/blogs">articles</a>, and if you enjoy what you find, consider joining my mailing list for the latest updates. Thank you for visiting!</p>
 
                         <div class="mt-6 sm:flex sm:items-center sm:space-x-6 space-y-1">
-                            <a href="/latest" class="inline-flex p-2.5 px-4 text-md font-medium text-white bg-[#444] rounded-md border border-[#444] hover:bg-[#4d4c4c]" role="button">Latest Articles</a>
+                            <a href="/latest" class="inline-flex p-2.5 px-4 text-md font-medium text-white bg-[#444] rounded-md border border-[#444] hover:bg-[#4d4c4c]" role="button">Latest Article</a>
                             <a href="/sandbox" class="inline-flex p-2.5 px-4 text-md font-medium text-white bg-[#444] rounded-md border border-[#444] hover:bg-[#4d4c4c]" role="button">Visit Sandbox</a>
                             <a href="/static/publickey.txt" class="inline-flex p-2.5 px-4 text-md font-medium text-white bg-[#444] rounded-md border border-[#444] hover:bg-[#4d4c4c]" role="button">OpenPGP Key</a>
                         </div>
@@ -132,69 +132,13 @@
             </div>
         </section>
 
-        <div class="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8 border-t-[2px] border-[#444] mt-6"></div>
 
-        <section id="newsletter-signup">
-            <div class="pb-20 pt-24 grid max-w-7xl w-[90vw] sm:w-[80vw] md:w-[70vw] lg:w-full px-4 py-2 mx-auto lg:gap-8 lg:grid-cols-12 text-center lg:text-start">
-                <div class="mr-auto place-self-center lg:col-span-7">
-                    <span class="max-w-2xl text-2xl font-bold tracking-tight leading-none md:text-3xl xl:text-4xl text-white">Sign up for our newsletter</span>
-                    <p class="max-w-2xl mb-4 mt-2 font-light text-gray-100 lg:mb-4 md:text-md lg:text-lg text-gray-300">Stay up to date with the latest articles, sandbox tools and updates feel free to sign up with your email.</p>
-                    <div>
-                        <div class="flex items-center">   
-                            <label for="email-input" class="sr-only">Search</label>
-                            <div class="relative w-full">
-                                <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                                    <svg class="w-5 h-5 text-white" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
-                                </div>
-                                <input type="email" id="email-input" class="bg-[#222222] border border-[#444] text-white text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5" placeholder="Enter your  email" required>
-                            </div>
-                            <button id="email-signup" class="p-2.5 ml-2 text-sm font-medium text-white bg-[#444] rounded-md border border-[#444] hover:bg-[#4d4c4c]">
-                                <span>Signup</span>
-                            </button>
-                            
-                        </div>
-                        <div class="text-sm mt-4 text-gray-300">We care about the protection of your data <a href="/privacy-policy#email-collection" class="font-medium text-gray-400 hover:underline">Read our Privacy Policy</a>.</div>
-                    </div>
-                </div>
-                <div class="hidden lg:mt-0 lg:col-span-5 lg:flex">
-                    <img src="/static/letterbox-art.svg" alt="mockup" class="h-[250px]">
-                </div>                
-            </div>
-        </section>
-        
-        <script src="https://www.google.com/recaptcha/api.js?render=6LckWSkkAAAAAPXSePkWq0nb7sWXwRSpZmCWuNsL"></script>
-        
-        <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
-        <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+        <%- include('../components/newsletter.ejs'); %>
 
-        <script>
-        
-            $('#email-signup').click(function() {
-                grecaptcha.ready(function() {
-                    grecaptcha.execute('6LckWSkkAAAAAPXSePkWq0nb7sWXwRSpZmCWuNsL', {action: 'submit'}).then(function(token) {
-                        $.ajax({
-                            type: "POST",
-                            url: "/api/newletter",
-                            data: { email: $('#email-input').val(), recaptcha: token },
-                            success: function(response) {
-                                if(response.data == "success"){
-                                    toastr.success('','You are now signed up for email alerts!')
-                                }else{
-                                    toastr.error('', 'Issue submitting your email.')
-                                }
-                            }
-                        });
-                    });
-                });
-            })
-        </script>
-
-        <div class="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8 border-t-[2px] border-[#444] my-6"></div>
-
-        <aside aria-label="Latest articles" class="py-8 mt-12 lg:pb-12" id="latest-articles-container">
+        <aside aria-label="Latest articles" class="py-8 mt-12 lg:pb-12 px-4 mx-auto max-w-7xl sm:px-6 lg:px-8" id="latest-articles-container">
             <div class="px-4 mx-auto max-w-7xl">
-                <h2 class="mb-12 md:mb-8 text-3xl font-bold text-white text-center md:text-left">Latest articles</h2>
-                <div class="grid gap-y-12 sm:grid-cols-2 lg:grid-cols-3" id="latest-articles">
+                <h2 class="mb-12 text-3xl font-bold text-white text-center md:text-left">Latest articles</h2>
+                <div class="grid gap-y-12 gap-x-8 sm:grid-cols-2 lg:grid-cols-3" id="latest-articles">
                     
                 </div>
             </div>
@@ -235,15 +179,15 @@
                     $('#latest-articles-container').remove()
                 }
                 
-                data.data.forEach(function(element) {
+                data.data.forEach(function(element, index) {
                         $('#latest-articles').append(`
-                                <article class="max-w-xs mx-auto md:mx-0">
-                                    <a href="/blog/${element.attributes.slug}" class="hidden md:block">
-                                        <img alt="${escapeHtml(element.attributes.banner.data.attributes.alternativeText)}" src="https://cms.reeceharris.net/${element.attributes.banner.data.attributes.url}" class="mb-5 h-[8rem] w-auto object-contain">
+                                <article ${index != 0 ? 'class=" border-[#444] border-t-[1px] pt-8 sm:pt-0 sm:border-none "' : ''}>
+                                    <img alt="${escapeHtml(element.attributes.banner.data.attributes.alternativeText)}" src="https://cms.reeceharris.net/${element.attributes.banner.data.attributes.url}" class="mb-5 h-[8rem] w-auto object-contain hidden sm:block">
+                                    <a href="/blog/${element.attributes.slug}">
+                                        <h3 class="mb-2 text-xl font-bold leading-tight text-white ">
+                                            ${element.attributes.title}
+                                        </h3>
                                     </a>
-                                    <h3 class="mb-2 text-xl font-bold leading-tight text-white ">
-                                        <a href="/blog/${element.attributes.slug}">${element.attributes.title}</a>
-                                    </h3>
                                     <p class="mb-4 font-light text-gray-200 ">${element.attributes.description}</p>
                                     <a href="/blog/${element.attributes.slug}" class="inline-flex items-center font-medium underline underline-offset-4 text-gray-200 hover:no-underline">
                                         Read in ${readingTime(element.attributes.content)} minutes

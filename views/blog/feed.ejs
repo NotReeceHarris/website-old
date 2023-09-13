@@ -1,6 +1,7 @@
+<div class="grid gap-8 md:gap-12 md:gap-y-14 md:grid-cols-2 xl:grid-cols-3">
 <% for(var i=0; i<articles.data.length; i++) {%>
 
-    <article class="flex flex-col <% if (i!=0) { %> border-t pt-8 md:pt-0 md:border-none <% } %>">
+    <article class="flex flex-col <% if (i!=0) { %> border-[#444] border-t-[1px] pt-8 md:pt-0 md:border-none  <% } %>">
         <div class="grow">
             <a href="/blog/<%= articles.data[i].attributes.slug %>">
                 <div class="flex justify-between items-center mb-5 text-gray-500">
@@ -33,3 +34,4 @@
     </article> 
 
 <% } %>
+</div>

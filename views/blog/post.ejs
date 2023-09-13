@@ -50,7 +50,7 @@
     <script src="/static/js/tailwind.min.js" crossorigin="anonymous"></script>
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/stackoverflow-dark.min.css" integrity="sha512-Xn1b0y/BrCD7usnEh6r9CcKxHXFVleVUjGDnfc95zDDwFUwtOz3lJC/XtJcuLRNyrMQJEEToFfwjC9Ue/aWY/g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+    <script src="/static/js/highlighter.min.js"></script>
     <link rel="stylesheet" href="/static/css/blog.min.css">
     <script src="/static/js/jquery.min.js"  crossorigin="anonymous"></script>
 
@@ -66,7 +66,7 @@
         <div class="w-full top-0 fixed z-[102]" id="page-progress"><div id="progress-bar" class="w-0 h-[3px] bg-white" style="transition: width 0.5s;"></div></div>
         
         <main class="mt-12 pb-16 pt-8 md:pt-16 lg:pb-18 px-6 ">
-            <div class="flex  mx-auto max-w-screen-lg">
+            <div class="flex mx-auto max-w-7xl w-[90vw] sm:w-[80vw] md:w-[70vw] lg:w-full">
                 <article class="mx-auto w-full format format-sm sm:format-base lg:format-lg format-blue text-gray-300">
                     <header class="mb-4 lg:mb-6 not-format">
                         <div class="max-h-screen">
@@ -104,68 +104,16 @@
             </div>
         </main>
 
-        <section id="articleHighlights" class="mb-2 hidden">
+        <section id="articleHighlights" class="mb-2 hidden ">
         </section>
 
-        <section class="mb-2">
-            <div class="py-6 border-t border-b border-[#444] grid max-w-screen-lg w-[90vw] sm:w-[80vw] md:w-[90vw] lg:w-full px-4 py-2 mx-auto lg:gap-8 lg:grid-cols-12 text-center lg:text-start">
-                <div class="mr-auto place-self-center lg:col-span-7">
-                    <span class="max-w-2xl text-2xl font-bold tracking-tight leading-none md:text-3xl xl:text-4xl text-white">Sign up for our newsletter</span>
-                    <p class="max-w-2xl mb-4 mt-2 font-light text-gray-100 lg:mb-4 md:text-md lg:text-lg text-gray-300">Stay up to date with the latest articles, sandbox tools and updates feel free to sign up with your email.</p>
-                    <div>
-                        <div class="flex items-center">   
-                            <label for="email-input" class="sr-only">Enter your email</label>
-                            <div class="relative w-full">
-                                <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                                    <svg class="w-5 h-5 text-white" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
-                                </div>
-                                <input type="email" id="email-input" class="bg-[#222222] border border-[#444] text-white text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5" placeholder="Enter your  email" required>
-                            </div>
-                            <button id="email-signup" class="p-2.5 ml-2 text-sm font-medium text-white bg-[#444] rounded-md border border-[#444] hover:bg-[#4d4c4c]">
-                                <span>Signup</span>
-                            </button>
-                            
-                        </div>
-                        <div class="text-sm mt-4 text-gray-300">We care about the protection of your data <a href="/privacy-policy#email-collection" class="font-medium text-gray-400 hover:underline">Read our Privacy Policy</a>.</div>
-                    </div>
-                </div>
-                <div class="hidden lg:mt-0 lg:col-span-5 lg:flex">
-                    <img src="/static/letterbox-art.svg" alt="mockup" class="h-[250px]">
-                </div>                
-            </div>
-        </section>
-        
-        <script src="https://www.google.com/recaptcha/api.js?render=6LckWSkkAAAAAPXSePkWq0nb7sWXwRSpZmCWuNsL"></script>
-        
-        <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
-        <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
-        <script>
-        
-            $('#email-signup').click(function() {
-                grecaptcha.ready(function() {
-                    grecaptcha.execute('6LckWSkkAAAAAPXSePkWq0nb7sWXwRSpZmCWuNsL', {action: 'submit'}).then(function(token) {
-                        $.ajax({
-                            type: "POST",
-                            url: "/api/newletter",
-                            data: { email: $('#email-input').val(), recaptcha: token },
-                            success: function(response) {
-                                if(response.data == "success"){
-                                    toastr.success('','You are now signed up for email alerts!')
-                                }else{
-                                    toastr.error('', 'Issue submitting your email.')
-                                }
-                            }
-                        });
-                    });
-                });
-            })
-        </script>
+        <%- include('../components/newsletter.ejs'); %>
         
 
         <aside aria-label="Related articles" class="py-8 lg:pb-12" id="related-articles-container">
-            <div class="px-4 mx-auto max-w-screen-lg">
+            <div class="px-4 mx-auto max-w-7xl w-[90vw] sm:w-[80vw] md:w-[70vw] lg:w-full">
                 <h2 class="mb-8 text-2xl font-bold text-white text-center md:text-left">Related articles</h2>
-                <div class="grid gap-12 md:grid-cols-2 lg:grid-cols-3" id="related-articles">
+                <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3" id="related-articles">
                     
                 </div>
             </div>
@@ -201,42 +149,6 @@
                         $(this).attr('src', 'https://cms.reeceharris.net' + $(this).attr('src'))
                     }
                 })
-
-                let articleHighlights = '';
-                
-                let articleImages = '<div><h4 class="text-white text-lg mb-2">Images</h4><ul class="w-full list-disc text-white ml-[1rem]">';
-                let externalLinks = '<div><h4 class="text-white text-lg mb-2">External Links</h4><ul class="w-full list-disc text-white ml-[1rem]">';
-                
-                let links = false;
-                let images = false;
-
-                $('#content a').each(function () {
-                    if (!$(this).attr('href').startsWith('https://reeceharris.net') && $(this).attr('href').startsWith('http') || $(this).attr('href').startsWith('://')) {
-                        externalLinks += `<li class="w-full"><a class="text-blue-400" href="${$(this).attr('href')}">${$(this).attr('href')}</a></li>`
-                        links = true
-                        $(this).attr('target', '_blanc')
-                    }
-                })
-
-                $('#content img').each(function () {
-                    articleImages += `<li class="w-full"><a class="text-blue-400" target="_blanc" href="${$(this).attr('src')}">${$(this).attr('alt') ? $(this).attr('alt') : $(this).attr('src').substring(70,0)}${!$(this).attr('alt') && $(this).attr('src').length > 70 ? '...' : ''}</a></li>`
-                    images = true;
-                })
-
-                externalLinks += '</ul></div>'
-                articleImages += '</ul></div>'
-
-                if (links) {articleHighlights += externalLinks}
-                if (images) {articleHighlights += articleImages}
-
-                if (articleHighlights != '') {
-                    $('#articleHighlights').html(`
-                    <div class="py-6 border-t border-[#444] flex flex-col gap-3 max-w-screen-lg w-[90vw] sm:w-[80vw] md:w-[90vw] lg:w-full px-4 py-2 mx-auto text-start">
-                        ${articleHighlights}
-                    </div>
-                    `)
-                    $('#articleHighlights').removeClass('hidden')
-                }
             })
 
             document.addEventListener('DOMContentLoaded', function() {
@@ -285,20 +197,7 @@
                 }
                 
                 data.data.forEach(function(element) {
-                        $('#related-articles').append(`
-                                <article class="max-w-xs mx-auto">
-                                    <a href="/blog/${element.attributes.slug}" class="hidden md:block">
-                                        <img alt="${escapeHtml(element.attributes.banner.data.attributes.alternativeText)}" src="https://cms.reeceharris.net/${element.attributes.banner.data.attributes.url}" class=" h-[8rem] w-auto object-contain">
-                                    </a>
-                                    <h3 class="mb-2 text-xl font-bold leading-tight text-white ">
-                                        <a href="/blog/${element.attributes.slug}">${element.attributes.title}</a>
-                                    </h3>
-                                    <p class="mb-4 font-light text-gray-200 ">${element.attributes.description}</p>
-                                    <a href="/blog/${element.attributes.slug}" class="inline-flex items-center font-medium underline underline-offset-4 text-gray-200 hover:no-underline">
-                                        Read in ${readingTime(element.attributes.content)} minutes
-                                    </a>
-                                </article>
-                            `)
+                        $('#related-articles').append(`<article><a href="/blog/${element.attributes.slug}" class="hidden md:block"><img alt="${escapeHtml(element.attributes.banner.data.attributes.alternativeText)}" src="https://cms.reeceharris.net/${element.attributes.banner.data.attributes.url}" class=" h-[8rem] w-auto object-contain"></a><h3 class="mb-2 text-xl font-bold leading-tight text-white "><a href="/blog/${element.attributes.slug}">${element.attributes.title}</a></h3><p class="mb-4 font-light text-gray-200 ">${element.attributes.description}</p><a href="/blog/${element.attributes.slug}" class="inline-flex items-center font-medium underline underline-offset-4 text-gray-200 hover:no-underline">Read in ${readingTime(element.attributes.content)} minutes</a></article>`)
                     })
             });
         </script>

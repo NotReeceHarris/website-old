@@ -31,37 +31,55 @@
         <%- include('../components/header.ejs'); %>
 
         <div class="pt-[5rem]">
-            <section class="grid gap-3 md:grid-cols-2 lg:grid-cols-3 py-8 px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-12">
+            <section class="grid gap-8 md:grid-cols-2 lg:grid-cols-3 py-8 px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-12">
 
-                <div class="max-w-sm p-6 border border-white rounded-lg shadow ">
-                    <a href="sandbox/detector">
-                        <h5 class="mb-2 text-2xl font-bold tracking-tight text-white">YOLOV3 image detection AI</h5>
-                    </a>
-                    <p class="mb-3 font-normal text-gray-400">Identify and locate 80 specific classes, from a uploaded image.</p>
+                <div class="max-w-sm flex flex-col">
+
+                    <div class="grow">
+                        <img src="/static/svg/eyes.svg" height="111" class="h-[111px] mx-auto"  >
+
+                        <a href="sandbox/detector">
+                            <h5 class="mb-2 text-2xl font-bold tracking-tight text-white">YOLOV3 image detection AI</h5>
+                        </a>
+                        <p class="mb-3 font-normal text-gray-400">The yolov3 image detection model is capable of identifying the positions and outlining up to 80 distinct objects, including cars and animals. However, this is just a small glimpse of the immense potential that advanced image detection models possess.</p>
+                    </div>
+
                     <a href="sandbox/detector" class="inline-flex items-center font-medium text-white hover:underline">
-                        View now
+                        Try now
                         <svg class="ml-2 w-4 h-4" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
                     </a>
                 </div>
 
-                <div class="max-w-sm p-6 border border-white rounded-lg shadow ">
-                    <a href="https://path.reeceharris.net">
-                        <h5 class="mb-2 text-2xl font-bold tracking-tight text-white">Path finding algorithms</h5>
-                    </a>
-                    <p class="mb-3 font-normal text-gray-400">Use diffrent algorithms to find the fastest route between points.</p>
+                <div class="max-w-sm flex flex-col border-[#444] border-t-[1px] pt-8 md:pt-0 md:border-none ">
+
+                    <div class="grow">
+                        <img src="/static/svg/ants.svg" height="111" class="h-[111px] mx-auto"  >
+
+                        <a href="https://path.reeceharris.net">
+                            <h5 class="mb-2 text-2xl font-bold tracking-tight text-white">Path finding algorithms</h5>
+                        </a>
+                        <p class="mb-3 font-normal text-gray-400">Pathfinding algorithms have become a fundamental component of modern technology. They are utilized in a wide range of applications, from networking to the maps on your phone. I encourage you to experiment with different algorithms to gain a better understanding of how they work.</p>
+                    </div>
+                    
                     <a href="https://path.reeceharris.net" class="inline-flex items-center font-medium text-white hover:underline">
-                        View now
+                        Experiment now
                         <svg class="ml-2 w-4 h-4" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
                     </a>
                 </div>
 
-                <div class="max-w-sm p-6 border border-white rounded-lg shadow ">
-                    <a href="sandbox/nodes">
-                        <h5 class="mb-2 text-2xl font-bold tracking-tight text-white">VVVV three.js</h5>
-                    </a>
-                    <p class="mb-3 font-normal text-gray-400">Interact with three.js through a visual node based programming similar to VVVV</p>
-                    <a href="sandbox/nodes" class="inline-flex items-center font-medium text-white hover:underline">
-                        View now
+                <div class="max-w-sm flex flex-col border-[#444] border-t-[1px] pt-8 md:pt-0 md:border-none ">
+
+                    <div class="grow">
+                        <img src="/static/svg/chess.svg" height="111" class="h-[111px] mx-auto" >
+
+                        <a href="sandbox/nodes">
+                            <h5 class="mb-2 text-2xl font-bold tracking-tight text-white">Chess bots</h5>
+                        </a>
+                        <p class="mb-3 font-normal text-gray-400">You can have a fun game of chess with my various chess bots, or even better, you can have them play against each other to see which one comes out on top. Additionally, my simple chess API allows you to load your own chess algorithms and test them out. Have fun!</p>
+                    </div>
+
+                    <a href="https://chess.reeceharris.net" class="inline-flex items-center font-medium text-white hover:underline">
+                        Play now
                         <svg class="ml-2 w-4 h-4" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
                     </a>
                 </div>
