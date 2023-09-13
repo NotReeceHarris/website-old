@@ -9,17 +9,14 @@ const path = require('path');
 const app = express();
 
 /* View engine set to ejs */
-
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 
 /* Cookie parser */
-
 app.use(cookieParser());
 app.use(express.urlencoded({extended: true}));
 
 /* Compression and minify to speed up load times */
-
 app.use(compression());
 app.use(minify({
 	cache: __dirname + '/cache',
@@ -27,7 +24,6 @@ app.use(minify({
 app.use(require('./minify'));
 
 /* Add routes to uri */
-
 app.use((req, res, next) => {
 	res.setHeader('X-Powered-By', '¯\\(º_o)/¯');
 	res.locals.url = req.protocol + '://' + req.hostname + req.path;
@@ -56,7 +52,6 @@ app.use((req, res) => {
 });
 
 /* START */
-
 const port = process.argv.slice(2)[0] === 'dev' ? 8081 : 80;
 
 if (!module.parent) {
