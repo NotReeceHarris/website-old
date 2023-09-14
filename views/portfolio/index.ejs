@@ -47,7 +47,7 @@
             
                 <div class="flex flex-col gap-4">
                     <h1 class="text-4xl text-white">Portfolio</h1>
-                    <p class="text-white text-lg ">Welcome to my personal portfolio. I have a diverse range of experiences ranging from personal projects to industry and client work. Please take a moment to browse through all my projects. If you have any inquiries, please feel free to contact me via email at <a class="text-blue-400" href="mailto:reeceharris@email.com">reeceharris@email.com</a>.</p>
+                    <p class="text-white text-lg font-light ">Welcome to my personal portfolio. I have a diverse range of experiences ranging from personal projects to industry and client work. Please take a moment to browse through all my projects. If you have any inquiries, please feel free to contact me via email at <a class="text-blue-400" href="mailto:reeceharris@email.com">reeceharris@email.com</a>.</p>
                 </div>
 
                 <div>
@@ -118,9 +118,9 @@
                         </div>
 
                         <span id="title" class="text-4xl text-white"></span>
-                        <a id="project-url" target="_blank" class="hidden text-blue-400 inline-flex gap-1 items-center" href=""></a>
-                        <p id="description" class="text-white text-lg border-b border-[#444] pb-6"></p>
-                        <div id="content" class="text-white"></div>
+                        <p id="description" class="text-white font-light text-lg"></p>
+                        <a id="project-url" target="_blank" class="hidden text-blue-400 inline-flex gap-1 items-center border-b pb-6 border-[#444]" href=""></a>
+                        <div id="content" class="text-white font-light"></div>
                     </div>
     
                 </div>
@@ -151,12 +151,11 @@
                         src="https://cms.reeceharris.net${project.attributes.screenshots.data[0].attributes.url}"
                         class="h-56 w-full rounded-md object-cover shadow-xl transition group-hover:grayscale-[50%]"
                     />
-                        
                     <div class="pt-4 flex flex-col gap-1">
                         <h3 class="text-lg font-medium text-white">
                             ${project.attributes.title}
                         </h3>
-                        <p class="line-clamp-3 text-sm/relaxed text-white">
+                        <p class="line-clamp-3 text-sm/relaxed font-light text-white">
                             ${project.attributes.description}
                         </p>
                         <span class="view_more text-blue-400 cursor-pointer">See more</span>
@@ -179,6 +178,10 @@
             $('#view-more #title').text(project.attributes.title)
             $('#view-more #description').text(project.attributes.description)
             $('#view-more #content').html(project.attributes.content)
+
+            $('#view-more #content h2').each(function(e) {
+                $(this).addClass('text-xl md:text-2xl font-bold mb-2')
+            })
 
             if (project.attributes.url) {
                 $('#view-more #project-url').html(project.attributes.url + '<svg class="w-3.5 h-3.5" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>')
