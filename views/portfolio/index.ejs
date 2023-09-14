@@ -7,26 +7,38 @@
         <title>Not found</title>
         <script src="/static/js/tailwind.min.js" crossorigin="anonymous"></script>
         <script src="/static/js/jquery.min.js"  crossorigin="anonymous"></script>
-        
+
+        <link href=" https://cdn.jsdelivr.net/npm/glidejs@2.1.0/dist/css/glide.core.min.css " rel="stylesheet">
+
+        <style>
+            .glide__bullet--active {
+                opacity: 1 !important;
+            }
+        </style>
+
     </head>
 
     <body class="bg-[#222222]">
         
         <%- include('../components/header.ejs'); %>
 
-        <section class="mt-20">
-            <div class="py-8 px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-6">
+        <section class="mt-12 md:mt-20 min-h-[80vh]">
+            <div class="abc123 py-8 px-4 mx-auto max-w-screen-xl lg:py-8 lg:px-6 flex flex-col gap-8">
             
+                <div class="flex flex-col gap-4">
+                    <h1 class="text-4xl text-white">Portfolio</h1>
+                    <p class="text-white text-lg ">Welcome to my personal portfolio. I have a diverse range of experiences ranging from personal projects to industry and client work. Please take a moment to browse through all my projects. If you have any inquiries, please feel free to contact me via email at <a class="text-blue-400" href="mailto:reeceharris@email.com">reeceharris@email.com</a>.</p>
+                </div>
 
                 <div>
                     <div class="sm:hidden">
-                    <label for="Tab" class="sr-only">Tab</label>
+                    <label for="tab" class="sr-only">Tab</label>
                 
-                    <select id="Tab" class="w-full rounded-md text-white bg-[transparent] px-5 py-3 border border-[#444]">
-                        <option>Settings</option>
-                        <option>Messages</option>
-                        <option>Archive</option>
-                        <option select>Notifications</option>
+                    <select id="tab" class="w-full rounded-md text-white bg-[transparent] px-5 py-3 border border-[#444]">
+                        <option value="all">All</option>
+                        <% for(var i=0; i<tags.data.length; i++) {%>
+                            <option value="<%= tags.data[i].id %>"><%= tags.data[i].attributes.name %></option>
+                        <% } %>
                     </select>
                     </div>
                 
@@ -34,30 +46,233 @@
                         <div class="border-b border-[#444]">
                             <nav class="-mb-px flex gap-6" aria-label="Tabs">
 
+                                <span
+                                    id="all"
+                                    class="tab_selector border-white text-white shrink-0 border-b-2 cursor-pointer border-transparent px-1 pb-4 text-sm font-medium hover:border-white hover:text-white"
+                                >
+                                    All
+                                </span>
+
                                 <% for(var i=0; i<tags.data.length; i++) {%>
 
-                            <a
+                            <span
                                 id="<%= tags.data[i].id %>"
-                                href="#<%= tags.data[i].id %>"
-                                class="<% if (i===0) { %> border-white text-white  <% } else { %> text-gray-400 <% } %> shrink-0 border-b-2 border-transparent px-1 pb-4 text-sm font-medium hover:border-white hover:text-white"
+                                class="tab_selector text-gray-400 shrink-0 border-b-2 cursor-pointer border-transparent px-1 pb-4 text-sm font-medium hover:border-white hover:text-white"
                             >
                                 <%= tags.data[i].attributes.name %>
-                            </a>
+                            </span>
 
                             <% } %>
                             </nav>
                         </div>
                     </div>
                 </div>
+
+                <div id="projects" class="grid gap-8 md:gap-12 md:gap-y-14 md:grid-cols-2 xl:grid-cols-3">
+                      
+
+                </div>
   
 
             </div>
         </section>
 
+        <div id="view-more" class="z-[1] hidden overflow-auto w-screen h-screen fixed top-0 left-0 bg-[#222222]">
+            <section class="mt-12 md:mt-20 min-h-[80vh]">
+                <div class="py-8 px-4 mx-auto max-w-screen-xl lg:py-8 lg:px-6">
+                
+                    <div class="flex flex-col gap-6">
+                        <div class="w-full flex justify-end">
+                            <span id="go_back" class="text-blue-400 flex gap-1 items-center cursor-pointer">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+                                go back
+                            </span>
+                        </div>
+                        
+                        
+                        <div class="glide w-full mb-6">
+                            <div data-glide-el="track" class="glide__track">
+                                <ul class="glide__slides"></ul>
+                            </div>
+                            <div class="glide__bullets text-white absolute top-10 h-full w-full flex gap-3 justify-center items-end pb-3" data-glide-el="controls[nav]"></div>
+                        </div>
+
+                        <span id="title" class="text-4xl text-white"></span>
+                        <a id="project-url" target="_blank" class="hidden text-blue-400 inline-flex gap-1 items-center" href=""></a>
+                        <p id="description" class="text-white text-lg border-b border-[#444] pb-6"></p>
+                        <div id="content" class="text-white"></div>
+                    </div>
+    
+                </div>
+            </section>
+        </div>
+
         <%- include('../components/footer.ejs'); %>
+
+        <script src="https://cdn.jsdelivr.net/npm/@glidejs/glide"></script>
 
     </body>
 
-    <script>$('#current-year').text(new Date().getFullYear())</script>
+    <script>
+        const portfolio = JSON.parse(`<%- JSON.stringify(portfolios.data) %>`)
+
+        portfolio.forEach((project, index) => {
+            const tags = [];
+            
+
+            project.attributes.portfolio_tags.data.forEach((tag) => {
+                tags.push(tag.id)
+            })
+
+            $('#projects').append(`
+                <article class="group ${index!=0 ? 'border-[#444] border-t-[1px] pt-10 md:pt-0 md:border-none ' : ''} " id="project${index}" tags="${tags.join()}" style="transition: transform 0.2s ease-in-out;">
+                    <img
+                        alt="${project.attributes.screenshots.data[0].attributes.name}"
+                        src="https://cms.reeceharris.net${project.attributes.screenshots.data[0].attributes.url}"
+                        class="h-56 w-full rounded-md object-cover shadow-xl transition group-hover:grayscale-[50%]"
+                    />
+                        
+                    <div class="pt-4 flex flex-col gap-1">
+                        <h3 class="text-lg font-medium text-white">
+                            ${project.attributes.title}
+                        </h3>
+                        <p class="line-clamp-3 text-sm/relaxed text-white">
+                            ${project.attributes.description}
+                        </p>
+                        <span class="view_more text-blue-400 cursor-pointer">See more</span>
+                    </div>
+                </article>
+            `)
+
+        });
+
+        $('#view-more #go_back').click(() => {
+            $('#view-more').addClass('hidden')
+            console.log('er')
+        })
+    
+        $('#projects').on('click', '.view_more', function() {
+            const project = portfolio[$(this).parent().parent().attr('id').replace('project', '')]
+
+            console.log(project)
+
+            $('#view-more #title').text(project.attributes.title)
+            $('#view-more #description').text(project.attributes.description)
+            $('#view-more #content').html(project.attributes.content)
+
+            if (project.attributes.url) {
+                $('#view-more #project-url').html(project.attributes.url + '<svg class="w-3.5 h-3.5" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>')
+                $('#view-more #project-url').attr('href',project.attributes.url)
+                $('#view-more #project-url').removeClass('hidden')
+            }
+
+            $('.abc123').addClass('overflow-hidden')
+
+            var images = '';
+            var controls = '';
+
+            project.attributes.screenshots.data.forEach((screenshot, index) => {
+                images += `
+                    <li class="glide__slide">
+                        <img
+                            alt="${screenshot.attributes.name}"
+                            src="https://cms.reeceharris.net${screenshot.attributes.url}"
+                            class="h-50 rounded-md object-cover"
+                        />
+                    </li>
+                `
+
+                controls += `
+                    <button class="glide__bullet w-2 h-2 rounded-lg bg-white opacity-50" data-glide-dir="=${index}"></button>
+                `
+            });
+
+            $('#view-more .glide__slides').html(images)
+            $('#view-more .glide__bullets').html(controls)
+
+            $('#view-more').removeClass('hidden')
+
+            new Glide(`#view-more .glide`, {
+                type: 'slider',
+                focusAt: 'center',
+                startAt: Math.round(project.attributes.screenshots.data.length/2)-1,
+                hoverpause: false,
+                autoPlay: 4000,
+                perView: 4,
+                gap: 10,
+                breakpoints: {
+                    1024: {
+                        perView: 2
+                    },
+                    600: {
+                        perView: 1
+                    }
+                }
+            }).mount()
+
+
+
+        })
+    </script>
+
+    <script>
+
+function hideArticle($article) {
+      $article.addClass('hidden');
+      setTimeout(function () {
+        $article.css('transform', 'scale(0)');
+        setTimeout(function () {
+          $article.hide();
+          // Remove the article from the grid completely if needed
+        }, 300); // You can adjust the timing to match your transition duration
+      }, 5); // Small delay to ensure the class is applied before transitioning
+    }
+
+    function showArticle($article) {
+      $article.show();
+      setTimeout(function () {
+        $article.css('transform', 'scale(1)');
+      }, 10); // Small delay to ensure the class is removed before transitioning
+    }
+
+
+        $('.tab_selector').click(function(e) {
+            const tag = $(this).attr('id')
+
+            $('.tab_selector').addClass('text-gray-400').removeClass('border-white text-white ')
+            $(this).removeClass('text-gray-400').addClass('border-white text-white ')
+
+            $('#projects article').each(function() {
+                const tags = $(this).attr('tags')
+
+                if (tags.includes(tag) || tag === 'all') {
+                    showArticle($(this))
+                } else {
+                    hideArticle($(this))
+                }
+
+            })
+
+        })
+
+        $('#tab').change(function(e) {
+            const tag = $(this).val()
+
+            $('.tab_selector').addClass('text-gray-400').removeClass('border-white text-white ')
+            $(this).removeClass('text-gray-400').addClass('border-white text-white ')
+
+            $('#projects article').each(function() {
+                const tags = $(this).attr('tags')
+
+                if (tags.includes(tag) || tag === 'all') {
+                    showArticle($(this))
+                } else {
+                    hideArticle($(this))
+                }
+
+            })
+
+        })
+    </script>
 
 </html>

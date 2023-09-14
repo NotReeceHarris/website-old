@@ -13,7 +13,7 @@ const authHeader = {
 };
 
 router.get('/', async (req, res, _next) => {
-	axios.get('https://cms.reeceharris.net/api/portfolios?fields=title,content,url&populate=screenshots,portfolio_tags', authHeader)
+	axios.get('https://cms.reeceharris.net/api/portfolios?fields=title,content,description,url&populate=screenshots,portfolio_tags', authHeader)
 		.then(portfolios => {
 			axios.get('https://cms.reeceharris.net/api/portfolio-tags?fields=name', authHeader)
 				.then(tags => {
@@ -24,7 +24,7 @@ router.get('/', async (req, res, _next) => {
 					return res.render('./portfolio/index', {portfolios: []});
 				})
 				.catch(error => {
-					console.log(error)
+					console.log(error);
 					res.render('./error/500', {error});
 				});
 		})

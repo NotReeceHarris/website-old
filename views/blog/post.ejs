@@ -147,6 +147,27 @@
                         $(this).attr('src', 'https://cms.reeceharris.net' + $(this).attr('src'))
                     }
                 })
+
+
+                $('#content h2').each( function() {
+                    $(this).addClass('text-xl md:text-2xl')
+                })
+
+                $('#content h3').each( function() {
+                    $(this).addClass('text-lg md:text-xl')
+                })
+
+                $('#content h4,#content h5,#content h6').each( function() {
+                    $(this).addClass('text-lg')
+                })
+
+
+                $('#content a').each( function() {
+                    console.log($(this).html())
+                    $(this).addClass('inline-flex gap-1 items-center')
+                    $(this).attr('target', '_blank')
+                    $(this).html($(this).html() + '<svg class="w-3.5 h-3.5" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>')
+                })
             })
 
             document.addEventListener('DOMContentLoaded', function() {
