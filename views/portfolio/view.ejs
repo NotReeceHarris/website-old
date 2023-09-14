@@ -102,19 +102,17 @@
 
     <script>
         new Glide('.glide', {
-                type: 'slider',
+                type: 'carousel',
                 focusAt: 'center',
-                startAt: Math.round(parseInt('<%= portfolio.attributes.screenshots.data.length %>')/2)-1,
+                startAt: 1,
+                //startAt: Math.round(parseInt('<%= portfolio.attributes.screenshots.data.length %>')/2)-1,
                 hoverpause: true,
                 dragThreshold: 120,
                 autoplay: 4000,
                 perTouch: 1,
-                perView: 4,
-                gap: 10,
+                perView: 3,
+                gap: 15,
                 breakpoints: {
-                    1280: {
-                        perView: 3
-                    },
                     1024: {
                         perView: 2
                     },
