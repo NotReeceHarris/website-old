@@ -8,21 +8,21 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="robots" content="all">
         <!-- SEO TAGS -->
-        <title>Reece Harris's Portfolio.</title>
+        <title>Project: <%= portfolio.attributes.title %></title>
         <link rel="canonical" href="<%= locals.url %>">
-        <meta name="description" content="Explore my diverse portfolio showcasing a range of projects, from personal endeavors to client collaborations.">
+        <meta name="description" content="<%= portfolio.attributes.description.substring(0, 155) %><% if (portfolio.attributes.description.length > 155) { %>...<% } %>">
         <meta name="author" content="Reece Harris">
         <meta name="keywords" content="ai,blog,technology,portfolio">
         <!-- SOCIAL TAGS -->
         <meta property="og:site_name" content="( ͡°( ͡° ͜ʖ( ͡° ͜ʖ ͡°)ʖ ͡°) ͡°)">
-        <meta property="og:title" content="Reece Harris's Portfolio" />
-        <meta property="og:description" content="Explore my diverse portfolio showcasing a range of projects, from personal endeavors to client collaborations.">
+        <meta property="og:title" content="Project: <%= portfolio.attributes.title %>" />
+        <meta property="og:description" content="<%= portfolio.attributes.description.substring(0, 155) %><% if (portfolio.attributes.description.length > 155) { %>...<% } %>">
         <meta property="og:type" content="website" />
         <meta property="og:url" content="<%= locals.url %>" />
         <meta name="theme-color" content="#ffffff">
         <!-- TWITTER TAGS -->
-        <meta name="twitter:title" content="Reece Harris's Portfolio">
-        <meta name="twitter:description" content="Explore my diverse portfolio showcasing a range of projects, from personal endeavors to client collaborations.">
+        <meta name="twitter:title" content="Project: <%= portfolio.attributes.title %>">
+        <meta name="twitter:description" content="<%= portfolio.attributes.description.substring(0, 155) %><% if (portfolio.attributes.description.length > 155) { %>...<% } %>">
         <meta name="twitter:site" content="@n0treeceharris">
         <!-- ASSETS -->
         <script src="/static/js/tailwind.min.js" crossorigin="anonymous"></script>
@@ -42,8 +42,6 @@
         
         <%- include('../components/header.ejs'); %>
 
-
-
             <section class="mt-12 md:mt-20 min-h-[80vh]">
                 <div class="py-8 px-4 mx-auto max-w-screen-xl lg:py-8 lg:px-6">
                 
@@ -54,7 +52,6 @@
                                 Go Back
                             </a>
                         </div>
-                        
                         
                         <div class="glide w-full mb-6">
                             <div data-glide-el="track" class="glide__track">
@@ -77,9 +74,9 @@
                             </div>
                         </div>
 
-                        <span id="title" class="text-4xl text-white">
+                        <h1 id="title" class="text-4xl text-white">
                             <%= portfolio.attributes.title %>
-                        </span>
+                        </h1>
                         <p id="description" class="text-white font-light text-lg">
                             <%= portfolio.attributes.description %>
                         </p>
