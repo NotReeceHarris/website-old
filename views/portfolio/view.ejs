@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <!-- SITE META -->
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="publisher" content="reeceharris.net">  
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="robots" content="all">
+        <!-- SEO TAGS -->
+        <title>Reece Harris's Portfolio.</title>
+        <link rel="canonical" href="<%= locals.url %>">
+        <meta name="description" content="Explore my diverse portfolio showcasing a range of projects, from personal endeavors to client collaborations.">
+        <meta name="author" content="Reece Harris">
+        <meta name="keywords" content="ai,blog,technology,portfolio">
+        <!-- SOCIAL TAGS -->
+        <meta property="og:site_name" content="( ͡°( ͡° ͜ʖ( ͡° ͜ʖ ͡°)ʖ ͡°) ͡°)">
+        <meta property="og:title" content="Reece Harris's Portfolio" />
+        <meta property="og:description" content="Explore my diverse portfolio showcasing a range of projects, from personal endeavors to client collaborations.">
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="<%= locals.url %>" />
+        <meta name="theme-color" content="#ffffff">
+        <!-- TWITTER TAGS -->
+        <meta name="twitter:title" content="Reece Harris's Portfolio">
+        <meta name="twitter:description" content="Explore my diverse portfolio showcasing a range of projects, from personal endeavors to client collaborations.">
+        <meta name="twitter:site" content="@n0treeceharris">
+        <!-- ASSETS -->
+        <script src="/static/js/tailwind.min.js" crossorigin="anonymous"></script>
+        <script src="/static/js/jquery.min.js"  crossorigin="anonymous"></script>
+
+        <link href=" https://cdn.jsdelivr.net/npm/glidejs@2.1.0/dist/css/glide.core.min.css " rel="stylesheet">
+
+        <style>
+            .glide__bullet--active {
+                opacity: 1 !important;
+            }
+        </style>
+
+    </head>
+
+    <body class="bg-[#222222]">
+        
+        <%- include('../components/header.ejs'); %>
+
+
+
+            <section class="mt-12 md:mt-20 min-h-[80vh]">
+                <div class="py-8 px-4 mx-auto max-w-screen-xl lg:py-8 lg:px-6">
+                
+                    <div class="flex flex-col gap-6">
+                        <div class="w-full flex justify-end">
+                            <a href="/portfolio" class="text-blue-400 flex gap-1 items-center cursor-pointer">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+                                Go Back
+                            </a>
+                        </div>
+                        
+                        
+                        <div class="glide w-full mb-6">
+                            <div data-glide-el="track" class="glide__track">
+                                <ul class="glide__slides">
+                                    <% for(var i=0; i<portfolio.attributes.screenshots.data.length; i++) {%>
+                                        <li class="glide__slide">
+                                            <img
+                                                alt="$<%= portfolio.attributes.screenshots.data[i].attributes.name %>"
+                                                src="https://cms.reeceharris.net<%= portfolio.attributes.screenshots.data[i].attributes.url %>"
+                                                class="h-50 rounded-md object-cover"
+                                            />
+                                        </li>
+                                    <% } %>
+                                </ul>
+                            </div>
+                            <div class="glide__bullets text-white absolute top-10 h-full w-full flex gap-3 justify-center items-end pb-3" data-glide-el="controls[nav]">
+                                <% for(var i=0; i<portfolio.attributes.screenshots.data.length; i++) {%>
+                                <button class="glide__bullet w-2 h-2 rounded-lg bg-white opacity-50" data-glide-dir="=<%= i %>"></button>
+                                <% } %>
+                            </div>
+                        </div>
+
+                        <span id="title" class="text-4xl text-white">
+                            <%= portfolio.attributes.title %>
+                        </span>
+                        <p id="description" class="text-white font-light text-lg">
+                            <%= portfolio.attributes.description %>
+                        </p>
+                        <% if (portfolio.attributes.url) { %>
+                            <a id="project-url" href="<%= portfolio.attributes.url %>" target="_blank" class="text-blue-400 inline-flex gap-1 items-center" href="">
+                                <%= portfolio.attributes.url %>
+                                <svg class="w-3.5 h-3.5" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                            </a>
+                        <% } %> 
+                        <div id="content" class="text-white font-light  border-t pt-6 border-[#444]">
+                            <%- portfolio.attributes.content %>
+                        </div>
+                    </div>
+    
+                </div>
+            </section>
+
+        <%- include('../components/footer.ejs'); %>
+
+        <script src="https://cdn.jsdelivr.net/npm/@glidejs/glide"></script>
+
+    </body>
+
+    <script>
+        new Glide('.glide', {
+                type: 'slider',
+                focusAt: 'center',
+                startAt: Math.round(parseInt('<%= portfolio.attributes.screenshots.data.length %>')/2)-1,
+                hoverpause: false,
+                autoPlay: 4000,
+                perView: 4,
+                gap: 10,
+                breakpoints: {
+                    1024: {
+                        perView: 2
+                    },
+                    600: {
+                        perView: 1
+                    }
+                }
+            }).mount()
+
+            $('#content h2').addClass('text-xl md:text-2xl font-bold mb-2')
+    </script>
+
+</html>
