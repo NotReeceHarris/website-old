@@ -102,9 +102,8 @@
 
                         <article tags="<%- tags.join() %>" class="group  <% if (i!=0) { %> border-[#444] border-t-[1px] pt-8 md:pt-0 md:border-none  <% } %>" style="transition: transform 0.2s ease-in-out;">
                             <img
-                                alt="<%= portfolios.data[i].attributes.screenshots.data[i].attributes.name %>"
                                 src="https://cms.reeceharris.net<%= portfolios.data[i].attributes.screenshots.data[0].attributes.url %>"
-                                class="h-56 w-full rounded-md object-cover shadow-xl transition group-hover:grayscale-[50%]"
+                                class="h-56 w-full rounded-md object-cover shadow-xl transition"
                             />
                             <div class="pt-4 flex flex-col gap-1">
                                 <h3 class="text-lg font-medium text-white">
