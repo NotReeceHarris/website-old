@@ -105,7 +105,7 @@
                         <div class="w-full flex justify-end">
                             <span id="go_back" class="text-blue-400 flex gap-1 items-center cursor-pointer">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
-                                go back
+                                Go back
                             </span>
                         </div>
                         
@@ -179,9 +179,8 @@
             $('#view-more #description').text(project.attributes.description)
             $('#view-more #content').html(project.attributes.content)
 
-            $('#view-more #content h2').each(function(e) {
-                $(this).addClass('text-xl md:text-2xl font-bold mb-2')
-            })
+            $('#view-more #content h2').addClass('text-xl md:text-2xl font-bold mb-2')
+
 
             if (project.attributes.url) {
                 $('#view-more #project-url').html(project.attributes.url + '<svg class="w-3.5 h-3.5" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>')
