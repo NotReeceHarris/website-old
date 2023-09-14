@@ -54,24 +54,33 @@
                         </div>
                         
                         <div class="glide w-full mb-6">
-                            <div data-glide-el="track" class="glide__track">
-                                <ul class="glide__slides">
+                            <% if (portfolio.attributes.screenshots.data.length > 1) { %>
+                                <div data-glide-el="track" class="glide__track">
+                                    <ul class="glide__slides">
+                                        
+                                        <% for(var i=0; i<portfolio.attributes.screenshots.data.length; i++) {%>
+                                            <li class="glide__slide">
+                                                <img
+                                                    alt="$<%= portfolio.attributes.screenshots.data[i].attributes.name %>"
+                                                    src="https://cms.reeceharris.net<%= portfolio.attributes.screenshots.data[i].attributes.url %>"
+                                                    class="rounded-md object-cover cursor-pointer"
+                                                />
+                                            </li>
+                                        <% } %>
+                                    </ul>
+                                </div>
+                                <div class="glide__bullets text-white absolute top-10 h-full w-full flex gap-3 justify-center items-end pb-3" data-glide-el="controls[nav]">
                                     <% for(var i=0; i<portfolio.attributes.screenshots.data.length; i++) {%>
-                                        <li class="glide__slide">
-                                            <img
-                                                alt="$<%= portfolio.attributes.screenshots.data[i].attributes.name %>"
-                                                src="https://cms.reeceharris.net<%= portfolio.attributes.screenshots.data[i].attributes.url %>"
-                                                class="rounded-md object-cover cursor-pointer"
-                                            />
-                                        </li>
+                                    <button class="glide__bullet w-2 h-2 rounded-lg bg-white opacity-50" data-glide-dir="=<%= i %>"></button>
                                     <% } %>
-                                </ul>
-                            </div>
-                            <div class="glide__bullets text-white absolute top-10 h-full w-full flex gap-3 justify-center items-end pb-3" data-glide-el="controls[nav]">
-                                <% for(var i=0; i<portfolio.attributes.screenshots.data.length; i++) {%>
-                                <button class="glide__bullet w-2 h-2 rounded-lg bg-white opacity-50" data-glide-dir="=<%= i %>"></button>
-                                <% } %>
-                            </div>
+                                </div>
+                            <% } else { %>
+                                <img
+                                    alt="$<%= portfolio.attributes.screenshots.data[0].attributes.name %>"
+                                    src="https://cms.reeceharris.net<%= portfolio.attributes.screenshots.data[0].attributes.url %>"
+                                    class="rounded-md object-cover max-h-[266px] mx-auto"
+                                />
+                            <% } %>
                         </div>
 
                         <h1 id="title" class="text-4xl text-white">
@@ -100,15 +109,16 @@
 
     </body>
 
-    <script>
+    <% if (portfolio.attributes.screenshots.data.length > 1) { %>
+        <script>
 
-        let startAt = 1
-
-        if (window.innerWidth < 1024) {
-            startAt = 0
-        }
-
-        new Glide('.glide', {
+            let startAt = 1
+    
+            if (window.innerWidth < 1024) {
+                startAt = 0
+            }
+    
+            new Glide('.glide', {
                 type: 'carousel',
                 focusAt: 'center',
                 startAt,
@@ -128,8 +138,13 @@
                     }
                 }
             }).mount()
-
+    
             $('#content h2').addClass('text-xl md:text-2xl font-bold mb-2')
-    </script>
+        </script>
+    <% } else { %>
+        <script>
+            $('#content h2').addClass('text-xl md:text-2xl font-bold mb-2')
+        </script>
+    <% } %>
 
 </html>
