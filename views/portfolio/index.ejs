@@ -49,7 +49,57 @@
                     <p class="text-white text-lg font-light ">Welcome to my personal portfolio. I have a diverse range of experiences ranging from personal projects. Please take a moment to browse through all my personal projects.</p>
                 </div>
 
+                <div class="flex flex-col gap-4">
+                    <h2 class="text-3xl text-white">Education and Certifications</h2>
+                    <div class="grid md:grid-cols-2 xl:grid-cols-3 gap-6 gap-y-10">
+
+                        <div class="relative border-4 border-white h-60 w-full rounded-md p-5">
+                            <div class="absolute w-full bg-[#222222] h-5 top-0 left-0 z-[1]"></div>
+                            <div class="absolute w-full bg-[#222222] h-5 bottom-0 left-0 z-[1]"></div>
+                            <div class="absolute h-full bg-[#222222] w-5 top-0 left-0 z-[1]"></div>
+                            <div class="absolute h-full bg-[#222222] w-5 top-0 right-0 z-[1]"></div>
+                            <svg class="absolute h-[7rem] z-[1] right-3 -bottom-8" version="1.2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><style>.a{fill:#222}.b{fill:#fff}</style><path class="a" d="m493 621c-160.4 0-290-128.9-290-288.4 0-159.5 129.6-288.4 290-288.4 160.4 0 290 128.9 290 288.4 0 159.5-129.6 288.4-290 288.4z"/><path class="a" d="m362 604l4 330 134-103 114 119 8-338"/><path fill-rule="evenodd" class="b" d="m778.2 410.9v89.3l-77.5 44.7-44.6 77.5h-11.3c0 0 0 333.5 0 333.6 0 2.9-0.5 5.8-1.6 8.5-1 2.7-2.7 5.1-4.7 7.2-2.1 2-4.5 3.7-7.2 4.7-2.7 1.1-5.6 1.6-8.5 1.6h-0.2q-2.5-0.1-5-0.7-2.4-0.6-4.7-1.7-2.2-1.2-4.1-2.8-2-1.7-3.4-3.7l-116.2-116-116.1 116q-1.5 2-3.4 3.7-2 1.6-4.2 2.8-2.2 1.1-4.7 1.7-2.4 0.6-5 0.7h-0.2c-2.9 0-5.8-0.5-8.4-1.6-2.7-1-5.2-2.7-7.2-4.7-2.1-2.1-3.7-4.5-4.8-7.2-1.1-2.7-1.6-5.6-1.5-8.5 0-2.9 0-0.1 0-0.2v-333.4h-11.3l-44.7-77.4-77.5-44.8v-89.3l-44.6-77.4 44.6-77.4v-89.3l77.5-44.8 44.7-77.4h89.4l77.4-44.7 77.4 44.7h89.4l44.6 77.4 77.5 44.8v89.3l44.7 77.4zm-400.1 211.5v280.4l93.1-93.1q0.2-0.4 0.5-0.8 0.2-0.4 0.5-0.8 0.2-0.4 0.5-0.8 0.3-0.4 0.6-0.8c2.2-2 4.6-3.5 7.4-4.6 2.7-1.1 5.6-1.6 8.5-1.6 2.9 0 5.8 0.5 8.5 1.6 2.8 1.1 5.2 2.6 7.4 4.6q0.3 0.4 0.6 0.8 0.2 0.4 0.5 0.8 0.3 0.4 0.5 0.8 0.3 0.4 0.5 0.8l93.1 93.1v-280.4h-33.7l-77.4 44.8-77.3-44.8zm355.5-354.4v-75.5l-65.5-37.8-37.7-65.6h-75.7l-65.5-37.8-65.4 37.8h-75.7l-37.7 65.4-65.6 37.7v75.6l-37.8 65.7 37.8 65.5v75.6l65.5 37.8 37.8 65.4h75.7l65.4 37.8 65.4-37.8h75.7l37.7-65.4 65.6-37.8v-75.6l37.8-65.5z"/></svg>
+                            <div class="relative border-4 border-white h-full rounded-md w-full text-center flex justify-center items-center p-8">
+                                <div class="hidden absolute bg-[#222222] border-4 border-white w-14 h-14 rounded-full -top-6 -left-6"></div>
+                                <div class="hidden absolute bg-[#222222] border-4 border-white w-14 h-14 rounded-full -top-6 -right-6"></div>
+                                <div class="hidden absolute bg-[#222222] border-4 border-white w-14 h-14 rounded-full -bottom-6 -left-6"></div>
+                                <div class="hidden absolute bg-[#222222] border-4 border-white w-14 h-14 rounded-full -bottom-6 -right-6"></div>
+                                <div class="flex flex-col gap-2">
+                                    <span class="text-white font-bold">Cyber security analyst - Degree apprenticeship (Hons)</span>
+                                    <p class="text-white font-light">Aug 2022 - May 2025</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <% for(var i=0; i<2; i++) { %>
+                        <div class="relative border-4 border-white h-60 w-full rounded-md p-5">
+                            <div class="absolute w-full bg-[#222222] h-5 top-0 left-0 z-[1]"></div>
+                            <div class="absolute w-full bg-[#222222] h-5 bottom-0 left-0 z-[1]"></div>
+                            <div class="absolute h-full bg-[#222222] w-5 top-0 left-0 z-[1]"></div>
+                            <div class="absolute h-full bg-[#222222] w-5 top-0 right-0 z-[1]"></div>
+                            <svg class="absolute h-[2.5rem] z-[2] bottom-[1.5rem] right-[3.1rem]" version="1.1" viewBox="0 0 1e3 1e3" xmlns="http://www.w3.org/2000/svg"><g fill="none" stroke="#919191" stroke-width="2"><path d="m176.99 375.22 136.79 68.43q0.47 0.23 0.93 0 74.35-37.19 148.77-74.38c10.76-5.38 20.63-11.79 31.2-13 39.87-4.59 62.5 43.27 34.14 70.98-4.35 4.26-10.03 7.47-15.59 10.26q-52.65 26.29-105.26 52.64-0.59 0.3 0 0.6l91.41 45.66a1.38 1.38 0 0 0 1.22 0l322.42-161.16q0.52-0.26 0-0.52l-322.59-161.19a0.99 0.99 0 0 0-0.9 0l-322.54 161.19q-0.49 0.25 0 0.49" vector-effect="non-scaling-stroke"/><path d="m250 661.54a0.34 0.34 0 0 0 0.19 0.3l21.82 10.91a0.34 0.34 0 0 0 0.49-0.3v-155.98a0.34 0.34 0 0 0-0.19-0.3l-21.82-10.94a0.34 0.34 0 0 0-0.49 0.3v156.01" vector-effect="non-scaling-stroke"/><path d="m356.09 714.83 143.43 71.63q0.46 0.23 0.92 0l249.08-124.44a0.87 0.87 0 0 0 0.48-0.78v-155.74a0.4 0.4 0 0 0-0.58-0.36q-113.2 56.68-226.61 113.27c-11.04 5.51-19.76 7.83-31.19 5.51q-5.69-1.15-17.37-6.99-59.02-29.44-118.05-58.85a0.27 0.27 0 0 0-0.39 0.24l-0.09 155.91a0.68 0.67 13.8 0 0 0.37 0.6" vector-effect="non-scaling-stroke"/></g><path d="m355.77 808.33q-0.07 29.31-0.02 58.8 0.03 12.35-1.4 18.1c-4.92 19.87-24.83 34.19-45.82 30.91q-22.53-3.51-32.7-24.95c-2.76-5.81-3.3-13.35-3.31-20.78q-0.05-51.83-0.01-103.62 0-0.49-0.43-0.7-40.67-20.54-81.51-40.92-17.69-8.83-22.44-27.12-1.37-5.28-1.37-15.36-0.02-109.45-0.01-218.5 0-0.95-0.84-1.37-51.07-25.5-102.13-51.07c-10.33-5.18-17.47-14.75-20.47-26.01-5.19-19.5 3.73-38.86 22.21-48.13q206.43-103.55 413.07-206.67c15.69-7.82 27.13-7.82 42.81 0.01q206.65 103.11 413.16 206.49c28.71 14.37 32.26 53.62 5.3 71.99q-2.71 1.85-8.49 4.74-48.18 24.13-97.27 48.65-0.85 0.42-0.85 1.37-0.01 107.09 0.01 214.74 0 13.72-1.52 19.49-3.16 11.96-12.4 20.14-4.26 3.77-15.01 9.14-139.36 69.72-278.76 139.37-11.5 5.74-17.25 6.95-14.02 2.96-27.02-3.53-62.4-31.13-125.01-62.48-0.52-0.25-0.52 0.32zm-178.78-433.11 136.79 68.43q0.47 0.23 0.93 0 74.35-37.19 148.77-74.38c10.76-5.38 20.63-11.79 31.2-13 39.87-4.59 62.5 43.27 34.14 70.98-4.35 4.26-10.03 7.47-15.59 10.26q-52.65 26.29-105.26 52.64-0.59 0.3 0 0.6l91.41 45.66a1.38 1.38 0 0 0 1.22 0l322.42-161.16q0.52-0.26 0-0.52l-322.59-161.19a0.99 0.99 0 0 0-0.9 0l-322.54 161.19q-0.49 0.25 0 0.49zm73.01 286.32a0.34 0.34 0 0 0 0.19 0.3l21.82 10.91a0.34 0.34 0 0 0 0.49-0.3v-155.98a0.34 0.34 0 0 0-0.19-0.3l-21.82-10.94a0.34 0.34 0 0 0-0.49 0.3v156.01zm106.09 53.29 143.43 71.63q0.46 0.23 0.92 0l249.08-124.44a0.87 0.87 0 0 0 0.48-0.78v-155.74a0.4 0.4 0 0 0-0.58-0.36q-113.2 56.68-226.61 113.27c-11.04 5.51-19.76 7.83-31.19 5.51q-5.69-1.15-17.37-6.99-59.02-29.44-118.05-58.85a0.27 0.27 0 0 0-0.39 0.24l-0.09 155.91a0.68 0.67 13.8 0 0 0.37 0.6z" fill="#fff"/><path d="m313.78 443.65-136.79-68.43q-0.49-0.24 0-0.49l322.54-161.19a0.99 0.99 0 0 1 0.9 0l322.59 161.19q0.52 0.26 0 0.52l-322.42 161.16a1.38 1.38 0 0 1-1.22 0l-91.41-45.66q-0.59-0.3 0-0.6 52.61-26.35 105.26-52.64c5.56-2.79 11.24-6 15.59-10.26 28.36-27.71 5.73-75.57-34.14-70.98-10.57 1.21-20.44 7.62-31.2 13q-74.42 37.19-148.77 74.38-0.46 0.23-0.93 0z" fill="#222"/><path d="m250 661.54v-156.01a0.34 0.34 0 0 1 0.49-0.3l21.82 10.94a0.34 0.34 0 0 1 0.19 0.3v155.98a0.34 0.34 0 0 1-0.49 0.3l-21.82-10.91a0.34 0.34 0 0 1-0.19-0.3z" fill="#222"/><path d="m356.09 714.83a0.68 0.67 13.8 0 1-0.37-0.6l0.09-155.91a0.27 0.27 0 0 1 0.39-0.24q59.03 29.41 118.05 58.85 11.68 5.84 17.37 6.99c11.43 2.32 20.15 0 31.19-5.51q113.41-56.59 226.61-113.27a0.4 0.4 0 0 1 0.58 0.36v155.74a0.87 0.87 0 0 1-0.48 0.78l-249.08 124.44q-0.46 0.23-0.92 0l-143.43-71.63z" fill="#222"/></svg>
+                            <svg class="absolute h-[7rem] z-[1] right-3 -bottom-8" version="1.2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><style>.a{fill:#222}.b{fill:#fff}</style><path class="a" d="m493 621c-160.4 0-290-128.9-290-288.4 0-159.5 129.6-288.4 290-288.4 160.4 0 290 128.9 290 288.4 0 159.5-129.6 288.4-290 288.4z"/><path class="a" d="m362 604l4 330 134-103 114 119 8-338"/><path fill-rule="evenodd" class="b" d="m778.2 410.9v89.3l-77.5 44.7-44.6 77.5h-11.3c0 0 0 333.5 0 333.6 0 2.9-0.5 5.8-1.6 8.5-1 2.7-2.7 5.1-4.7 7.2-2.1 2-4.5 3.7-7.2 4.7-2.7 1.1-5.6 1.6-8.5 1.6h-0.2q-2.5-0.1-5-0.7-2.4-0.6-4.7-1.7-2.2-1.2-4.1-2.8-2-1.7-3.4-3.7l-116.2-116-116.1 116q-1.5 2-3.4 3.7-2 1.6-4.2 2.8-2.2 1.1-4.7 1.7-2.4 0.6-5 0.7h-0.2c-2.9 0-5.8-0.5-8.4-1.6-2.7-1-5.2-2.7-7.2-4.7-2.1-2.1-3.7-4.5-4.8-7.2-1.1-2.7-1.6-5.6-1.5-8.5 0-2.9 0-0.1 0-0.2v-333.4h-11.3l-44.7-77.4-77.5-44.8v-89.3l-44.6-77.4 44.6-77.4v-89.3l77.5-44.8 44.7-77.4h89.4l77.4-44.7 77.4 44.7h89.4l44.6 77.4 77.5 44.8v89.3l44.7 77.4zm-400.1 211.5v280.4l93.1-93.1q0.2-0.4 0.5-0.8 0.2-0.4 0.5-0.8 0.2-0.4 0.5-0.8 0.3-0.4 0.6-0.8c2.2-2 4.6-3.5 7.4-4.6 2.7-1.1 5.6-1.6 8.5-1.6 2.9 0 5.8 0.5 8.5 1.6 2.8 1.1 5.2 2.6 7.4 4.6q0.3 0.4 0.6 0.8 0.2 0.4 0.5 0.8 0.3 0.4 0.5 0.8 0.3 0.4 0.5 0.8l93.1 93.1v-280.4h-33.7l-77.4 44.8-77.3-44.8zm355.5-354.4v-75.5l-65.5-37.8-37.7-65.6h-75.7l-65.5-37.8-65.4 37.8h-75.7l-37.7 65.4-65.6 37.7v75.6l-37.8 65.7 37.8 65.5v75.6l65.5 37.8 37.8 65.4h75.7l65.4 37.8 65.4-37.8h75.7l37.7-65.4 65.6-37.8v-75.6l37.8-65.5z"/></svg>
+                            <div class="relative border-4 border-white h-full rounded-md w-full text-center flex justify-center items-center p-8">
+                                <div class="hidden absolute bg-[#222222] border-4 border-white w-14 h-14 rounded-full -top-6 -left-6"></div>
+                                <div class="hidden absolute bg-[#222222] border-4 border-white w-14 h-14 rounded-full -top-6 -right-6"></div>
+                                <div class="hidden absolute bg-[#222222] border-4 border-white w-14 h-14 rounded-full -bottom-6 -left-6"></div>
+                                <div class="hidden absolute bg-[#222222] border-4 border-white w-14 h-14 rounded-full -bottom-6 -right-6"></div>
+                                <div class="flex flex-col gap-2">
+                                    <span class="text-white font-bold">Digital Production, Design and Development - T Level (Level 3)</span>
+                                    <p class="text-white font-light">Sep 2020 - May 2022</p>
+                                </div>
+                            </div>
+                        </div>
+                        <%  } %>
+                        
+                    </div>
+                </div>
+
                 <div>
+                    <div class="flex flex-col gap-4 mb-6">
+                        <h2 class="text-3xl text-white">Personal projects</h2>
+                        <p class="text-white text-lg font-light ">My personal projects reflect my deep interest in continuous learning, creative expression, and problem-solving. Each of the projects I have taken on has been a unique journey that has allowed me to explore various facets of my interests and skills. As you go through them, you will see the diverse range of experiences I have gained.</p>
+                    </div>
                     <div class="sm:hidden">
                     <label for="tab" class="sr-only">Tab</label>
                 
