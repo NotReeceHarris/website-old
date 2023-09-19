@@ -43,7 +43,7 @@ router.get('/v/:id', async (req, res, _next) => {
 			return res.render('./error/404');
 		})
 		.catch(error => {
-			if (error.response.status === 404) {
+			if ('response' in error && error.response.status === 404) {
 				return res.render('./error/404');
 			}
 

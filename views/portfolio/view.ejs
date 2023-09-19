@@ -27,11 +27,28 @@
         <!-- ASSETS -->
 <script src="/static/js/tailwind.min.js" crossorigin="anonymous"></script><link rel="stylesheet" href="/static/css/style.css">        <script src="/static/js/jquery.min.js"  crossorigin="anonymous"></script>
 
+        <link rel="stylesheet" href="/static/css/lightbox.min.css">
+       
+
+
         <link href=" https://cdn.jsdelivr.net/npm/glidejs@2.1.0/dist/css/glide.core.min.css " rel="stylesheet">
 
         <style>
             .glide__bullet--active {
                 opacity: 1 !important;
+            }
+
+            li {
+                padding-top: 10px;
+            }
+
+            ul {
+                list-style-type: disc !important;
+                margin-left: 15px !important;
+            }
+
+            strong {
+                font-weight: 900 !important;
             }
         </style>
 
@@ -52,33 +69,34 @@
                             </a>
                         </div>
                         
-                        <div class="glide w-full mb-6">
+                        <div class="glide w-full">
                             <% if (portfolio.attributes.screenshots.data.length > 1) { %>
                                 <div data-glide-el="track" class="glide__track">
                                     <ul class="glide__slides">
                                         
                                         <% for(var i=0; i<portfolio.attributes.screenshots.data.length; i++) {%>
                                             <li class="glide__slide">
-                                                <img
-                                                    alt="$<%= portfolio.attributes.screenshots.data[i].attributes.name %>"
+                                                <a data-lightbox="<%= portfolio.attributes.screenshots.data[i].id %>" href="https://cms.reeceharris.net<%= portfolio.attributes.screenshots.data[i].attributes.url %>">
+                                                    <img
+                                                    alt="<%= portfolio.attributes.screenshots.data[i].attributes.name %>"
                                                     src="https://cms.reeceharris.net<%= portfolio.attributes.screenshots.data[i].attributes.url %>"
                                                     class="rounded-md object-cover cursor-pointer"
                                                 />
+                                                </a>
                                             </li>
                                         <% } %>
                                     </ul>
                                 </div>
-                                <div class="glide__bullets text-white absolute top-10 h-full w-full flex gap-3 justify-center items-end pb-3" data-glide-el="controls[nav]">
-                                    <% for(var i=0; i<portfolio.attributes.screenshots.data.length; i++) {%>
-                                    <button class="glide__bullet w-2 h-2 rounded-lg bg-white opacity-50" data-glide-dir="=<%= i %>"></button>
-                                    <% } %>
-                                </div>
+
                             <% } else { %>
-                                <img
-                                    alt="$<%= portfolio.attributes.screenshots.data[0].attributes.name %>"
+                                <a data-lightbox="<%= portfolio.attributes.screenshots.data[0].id %>" href="https://cms.reeceharris.net<%= portfolio.attributes.screenshots.data[0].attributes.url %>" >
+                                    <img
+                                    alt="<%= portfolio.attributes.screenshots.data[0].attributes.name %>"
                                     src="https://cms.reeceharris.net<%= portfolio.attributes.screenshots.data[0].attributes.url %>"
                                     class="rounded-md object-cover max-h-[266px] mx-auto"
                                 />
+                                </a>
+                                
                             <% } %>
                         </div>
 
@@ -94,7 +112,7 @@
                                 <svg class="w-3.5 h-3.5" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
                             </a>
                         <% } %> 
-                        <div id="content" class="text-white font-light  border-t pt-6 border-[#444]">
+                        <div id="content" class="text-white font-light border-t pt-6 border-[#444]">
                             <%- portfolio.attributes.content %>
                         </div>
                     </div>
@@ -103,10 +121,20 @@
             </section>
 
         <%- include('../components/footer.ejs'); %>
-
-        <script src="https://cdn.jsdelivr.net/npm/@glidejs/glide"></script>
+        
 
     </body>
+
+    <script src="https://cdn.jsdelivr.net/npm/@glidejs/glide"></script>
+    <script src="https://cdn.jsdelivr.net/npm/lightbox2@2.11.4/dist/js/lightbox.min.js"></script>
+
+    <script>
+        lightbox.option({
+        'resizeDuration': 200,
+        'wrapAround': true,
+        albumLabel: false
+        })
+    </script>
 
     <% if (portfolio.attributes.screenshots.data.length > 1) { %>
         <script>
